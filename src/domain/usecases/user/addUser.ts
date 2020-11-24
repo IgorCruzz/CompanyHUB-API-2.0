@@ -7,5 +7,5 @@ export interface IAddUserDTO {
 }
 
 export interface IAddUser {
-  add(data: IAddUserDTO): Promise<User>
+  add(data: IAddUserDTO): Promise<User | null>
 }

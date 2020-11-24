@@ -11,14 +11,18 @@ export class DbAddUser implements IAddUser {
     private readonly saveTokenRepo: ISaveTokenRepository
   ) {}
 
-  async add(data: IAddUserDTO): Promise<User> {
-    const { email } = data
+  async add(data: IAddUserDTO): Promise<User | null> {
+    const { email, name, password } = data
 
     const userEmail = await this.findUserByEmailRepo.findUserByEmail(email)
 
     if (userEmail) return null
 
-    const user = await this.saveUserRepo.saveUser(data)
+    const user = await this.saveUserRepo.saveUser({
+      email,
+      name,
+      password_hash: password
+    })
 
     await this.saveTokenRepo.saveToken(
       {
@@ -28,7 +32,7 @@ export class DbAddUser implements IAddUser {
     )
 
     return user
-   
+
   }
 
 }

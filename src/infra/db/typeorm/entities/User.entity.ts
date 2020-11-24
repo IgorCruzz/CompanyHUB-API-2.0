@@ -32,9 +32,4 @@ export class User {
 
   @UpdateDateColumn()
   updated_at: Date
-
-  @BeforeInsert()
-  private password () {
-    this.password_hash = 'senhadokrl'
-  }
 }

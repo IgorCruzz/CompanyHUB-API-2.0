@@ -1,15 +1,14 @@
 import 'reflect-metadata'
 import '../infra/db/typeorm'
-import app from 'express'
+import express from 'express'
+import routes from './routes/signup.routes'
 
-const caralho = app()
+const app = express()
 
-caralho.use(app.json())
+app.use(express.json())
 
-caralho.post('/', (req, res) => {
-  return res.json({ ok: req.body.fodase })
-})
+app.use(routes)
 
-caralho.listen(3333, () => {
+app.listen(3333, () => {
   console.log('Server is running on port 3333')
 })

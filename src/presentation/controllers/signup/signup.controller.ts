@@ -7,18 +7,32 @@ export class SignupController implements Controller {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const { email, name, password } = httpRequest.body
+    try {
+      const { email, name, password } = httpRequest.body
 
-    await this.AddUser.add({
-      email,
-      name,
-      password
-    })
+      const user = await this.AddUser.add({
+        email,
+        name,
+        password
+      })
 
-    return {
-      statusCode: 200,
-      body: {
-        oi: 'okokok'
+      if (!user) {
+        return {
+          statusCode: 401,
+          body: {
+            message: 'Este e-mail já está em uso, escolha outro.'
+          }
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: user
+      }
+    } catch (err) {
+      return {
+        statusCode: 400,
+        body: err
       }
     }
   }
