@@ -1,7 +1,7 @@
-import { Controller, IHttpRequest } from '@/presentation/protocols'
+import { IController, IHttpRequest } from '@/presentation/protocols'
 import { Request, Response } from 'express'
 
-export const adapRoute = (controller: Controller) => {
+export const adapRoute = (controller: IController) => {
   return async (req: Request, res: Response) => {
     const httpRequest: IHttpRequest = {
       body: req.body,

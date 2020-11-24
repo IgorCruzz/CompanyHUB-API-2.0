@@ -1,7 +1,7 @@
-import { IAddUser } from '@/domain/usecases/user/addUser'
-import { Controller, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import { IAddUser } from '@/domain/usecases/user/addUser.interface'
+import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
-export class SignupController implements Controller {
+export class SignupController implements IController {
   constructor (
     private readonly AddUser: IAddUser
   ) {}
@@ -13,7 +13,7 @@ export class SignupController implements Controller {
       const user = await this.AddUser.add({
         email,
         name,
-        password
+        password_hash: password
       })
 
       if (!user) {

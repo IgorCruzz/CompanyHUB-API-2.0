@@ -1,7 +1,7 @@
 import { ISaveTokenRepository } from "@/data/protocols/db/token/saveTokenRepository.interface"
 import { IFindUserByEmailRepository } from "@/data/protocols/db/user/findUserRepository.inteface"
 import { ISaveUserRepository } from "@/data/protocols/db/user/saveUserRepository.interface"
-import { IAddUser, IAddUserDTO } from "@/domain/usecases/user/addUser"
+import { IAddUser, IAddUserDTO } from "@/domain/usecases/user/addUser.interface"
 import { User } from "@/infra/db/typeorm/entities/User.entity"
 
 export class DbAddUser implements IAddUser {
@@ -12,16 +12,16 @@ export class DbAddUser implements IAddUser {
   ) {}
 
   async add(data: IAddUserDTO): Promise<User | null> {
-    const { email, name, password } = data
+    const { email, name, password_hash } = data
 
-    const userEmail = await this.findUserByEmailRepo.findUserByEmail(email)
+    const userEmail = await this.findUserByEmailRepo.findEmail(email)
 
     if (userEmail) return null
 
     const user = await this.saveUserRepo.saveUser({
       email,
       name,
-      password_hash: password
+      password_hash
     })
 
     await this.saveTokenRepo.saveToken(

@@ -6,7 +6,7 @@ import { User } from '../../entities/User.entity'
 export class UserRepository implements
 IFindUserByEmailRepository,
 ISaveUserRepository {
-  async findUserByEmail (email: string): Promise<User> {
+  async findEmail (email: string): Promise<User> {
     const orm = getRepository(User)
     return await orm.findOne({
       where: { email }
