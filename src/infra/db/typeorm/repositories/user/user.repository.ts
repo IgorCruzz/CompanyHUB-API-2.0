@@ -1,5 +1,6 @@
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import { ISaveUserRepository } from '@/data/protocols/db/user/saveUserRepository.interface'
+import { IAddUserDTO } from '@/domain/usecases/user/addUser'
 import { Repository } from 'typeorm'
 import { User } from '../../entities/User.entity'
 
@@ -16,11 +17,7 @@ ISaveUserRepository {
     })
   }
 
-  async saveUser (data: {
-    email: string
-    name: string
-    password_hash: string
-  }): Promise<User> {
+  async saveUser (data: IAddUserDTO): Promise<User> {
     return await this.userRepository.save(data)
   }
 }
