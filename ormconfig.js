@@ -2,14 +2,14 @@ require('dotenv').config
 
 module.exports = {
   type: 'postgres',
-  host: '',
+  host: 'localhost',
   port: 5432,
-  username: '',
-  password: '',
-  database: '',
-  entities: ['dist/**/*.entity.js'],
-  migrations: ['dist/migration/**/*.js'],
+  username: 'postgres',
+  password: 'docker',
+  database: 'postgres',
+  entities: ['dist/infra/db/typeorm/entities/*.entity.js'],
+  migrations: ['src/infra/db/typeorm/migrations/*.ts'],
   cli: {
-    migrationsDir: 'src/migration'
+    migrationsDir: 'src/infra/db/typeorm/migrations'
   }
 }

@@ -17,7 +17,8 @@
     "test:staged": "npm test -- --findRelatedTests",
     "test:ci": "npm test -- --coverage",
     "test:cov": "npm run test:ci && coveralls < coverage/lcov.info",
-    "lint": "eslint 'src/**' --fix"
+    "lint": "eslint 'src/**' --fix",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "author": "Igor",
   "license": "ISC",

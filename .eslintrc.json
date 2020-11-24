@@ -4,18 +4,17 @@
     "project": "./tsconfig.json"
   },
   "rules": {
-    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-explicit-any": "off",
+    "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/class-name-casing": "off",
-    "@typescript-eslint/camelcase": "off",
-    "class-methods-use-this": "off",
+    "@typescript-eslint/camelcase": "off",  
     "no-useless-constructor": "off",
     "no-unused-expressions": "off",
+    "@typescript-eslint/no-floating-promises": "off",
     "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-useless-constructor": "off",
-    "@typescript-eslint/no-empty-function": "off",
+    "@typescript-eslint/no-useless-constructor": "off",   
     "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/consistent-type-definitions": "off"
+    "@typescript-eslint/consistent-type-definitions": "off"   
   }
 }
