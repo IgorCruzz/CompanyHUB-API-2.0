@@ -1,3 +1,4 @@
+import { IGenerateCrypto } from "@/data/protocols/crypto/generateCrypto.interface"
 import { ISaveTokenRepository } from "@/data/protocols/db/token/saveTokenRepository.interface"
 import { IFindUserByEmailRepository } from "@/data/protocols/db/user/findUserRepository.inteface"
 import { ISaveUserRepository } from "@/data/protocols/db/user/saveUserRepository.interface"
@@ -6,6 +7,7 @@ import { User } from "@/infra/db/typeorm/entities/User.entity"
 
 export class DbAddUser implements IAddUser {
   constructor (
+    private readonly generateCrypto: IGenerateCrypto,
     private readonly findUserByEmailRepo: IFindUserByEmailRepository,
     private readonly saveUserRepo: ISaveUserRepository,
     private readonly saveTokenRepo: ISaveTokenRepository
@@ -24,9 +26,11 @@ export class DbAddUser implements IAddUser {
       password_hash
     })
 
+    const token = this.generateCrypto.generate(16)
+
     await this.saveTokenRepo.saveToken(
       {
-        token: 'CRYPTO',
+        token,
         user_id: user.id
       }
     )
