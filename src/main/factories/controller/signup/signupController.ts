@@ -4,16 +4,19 @@ import { UserRepository } from '../../../../infra/db/typeorm/repositories/user/u
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
 import { SignupController } from '../../../../presentation/controllers/signup/signup.controller'
 import { CryptoAdapter } from '../../../../infra/cypto/crypto.adapter'
+import { BcryptAdapter } from '../../../../infra/bcryptAdapter/bcrypt.adapter'
 
 export const makeSignUpController = () => {
   const cryptoAdapter = new CryptoAdapter()
   const tokenRepository = new TokenRepository()
   const userRepository = new UserRepository()
+  const bcryptAdapter = new BcryptAdapter()
   const dbAddUser = new DbAddUser(
     cryptoAdapter,
     userRepository,
     userRepository,
-    tokenRepository
+    tokenRepository,
+    bcryptAdapter
   )
 
   const signupController = new SignupController(dbAddUser)

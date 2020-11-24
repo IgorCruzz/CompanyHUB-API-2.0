@@ -1,5 +1,6 @@
+import { IHasher } from "@/data/protocols/bcryptAdapter/IHasher.interface"
 import { IGenerateCrypto } from "@/data/protocols/crypto/generateCrypto.interface"
-import { ISaveTokenRepository } from "@/data/protocols/db/token/saveTokenRepository.interface"
+import { ICreateTokenRepository } from "@/data/protocols/db/token/createTokenRepository.interface"
 import { ICreateUserRepository } from "@/data/protocols/db/user/createUserRepository.interface"
 import { IFindUserByEmailRepository } from "@/data/protocols/db/user/findUserRepository.inteface"
 import { IAddUser, IAddUserDTO } from "@/domain/usecases/user/addUser.interface"
@@ -10,7 +11,8 @@ export class DbAddUser implements IAddUser {
     private readonly generateCrypto: IGenerateCrypto,
     private readonly findUserByEmailRepo: IFindUserByEmailRepository,
     private readonly createUserRepo: ICreateUserRepository,
-    private readonly saveTokenRepo: ISaveTokenRepository
+    private readonly createTokenRepo: ICreateTokenRepository,
+    private readonly hasher: IHasher
   ) {}
 
   async add(data: IAddUserDTO): Promise<User | null> {
@@ -22,12 +24,12 @@ export class DbAddUser implements IAddUser {
 
     const user = await this.createUserRepo.create({
       ...data,
-      password_hash: 'efefffe'
+      password_hash: await this.hasher.hash('fefedww')
     })
 
     const token = this.generateCrypto.generate(16)
 
-    await this.saveTokenRepo.saveToken(
+    await this.createTokenRepo.create(
       {
         token,
         user_id: user.id

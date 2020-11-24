@@ -1,5 +1,6 @@
 import { ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
+import { IAddUserDTO } from '@/domain/usecases/user/addUser.interface'
 import { getRepository } from 'typeorm'
 import { User } from '../../entities/User.entity'
 
@@ -13,7 +14,7 @@ ICreateUserRepository {
     })
   }
 
-  async create (data: any): Promise<User> {
+  async create (data: IAddUserDTO): Promise<User> {
     const orm = getRepository(User)
 
     return orm.save(data)
