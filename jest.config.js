@@ -8,7 +8,6 @@ module.exports = {
     '!<rootDir>/src/presentation/protocols/**'
   ],
   coverageDirectory: 'coverage',
-  preset: '@shelf/jest-mongodb',
   testEnvironment: 'node',
   transform: {
     '.+\\.ts$': 'ts-jest'
