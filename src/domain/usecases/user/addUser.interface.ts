@@ -1,6 +1,6 @@
 import { IAddUserDTO } from '@/data/protocols'
-import { User } from '@/infra/db/typeorm/entities/User.entity'
+import { IUserModel } from '@/domain/models/user.interface'
 
 export interface IAddUser {
-  add(data: IAddUserDTO): Promise<User | null>
+  add(data: IAddUserDTO): Promise<IUserModel | null>
 }
