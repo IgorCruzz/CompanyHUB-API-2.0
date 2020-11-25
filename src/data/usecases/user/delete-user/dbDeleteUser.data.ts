@@ -8,7 +8,7 @@ export class DbDeleteUser implements IDeleteUser {
     private readonly deleteUserRepository: IDeleteUserRepository
   ) {}
 
-  async delete (id: number): Promise<any> {
+  async delete (id: number): Promise<boolean> {
     const user = await this.findUserByIdRepository.findId(id)
 
     if(!user) return null

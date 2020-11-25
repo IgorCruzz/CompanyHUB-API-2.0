@@ -1,6 +1,3 @@
-
-
-
 export interface IDeleteUserRepository {
-   delete (id: number): Promise<any>
+   delete (id: number): Promise<boolean>
 }

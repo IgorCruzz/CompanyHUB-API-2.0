@@ -14,14 +14,14 @@ export class DeleteUserController implements IController {
 
       if (!deleteUser) {
         return {
-          statusCode: 401,
+          statusCode: 400,
           body: { message: 'Não existe um usuário com este ID' }
         }
       }
 
       return {
-        statusCode: 204,
-        body: null
+        statusCode: 200,
+        body: { message: 'Usuário deletado com sucesso.' }
       }
     } catch (err) {
       return {

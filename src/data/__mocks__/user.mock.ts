@@ -59,8 +59,8 @@ export const MockUserFindByIdRepository = (): IFindUserByIdRepository => {
 export const MockUserDeleteRepository = (): IDeleteUserRepository => {
   class DeleteUserRepositoryStub  implements IDeleteUserRepository {
 
-    async delete (id: number): Promise<any> {
-    return Promise.resolve({ })
+    async delete (id: number): Promise<boolean> {
+      return true
     }
 }
   return new DeleteUserRepositoryStub()

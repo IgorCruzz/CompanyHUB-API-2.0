@@ -27,9 +27,11 @@ IFindUserByIdRepository {
     return orm.save(data)
   }
 
-  async delete (id: number): Promise<any> {
+  async delete (id: number): Promise<boolean> {
     const orm = getRepository(User)
 
-    return orm.delete(id)
+    const deleteUser = await orm.delete(id)
+
+    return deleteUser && true
   }
 }
