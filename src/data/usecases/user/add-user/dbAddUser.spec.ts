@@ -1,5 +1,5 @@
 import { IAddUserDTO, ICreateTokenDTO, ICreateTokenRepository, ICreateUserRepository, IFindUserByEmailRepository, IGenerateCrypto, IHasher } from "@/data/protocols";
-import { IUserModel } from "@/domain/models/user.interface";
+import { IUser } from "@/domain/models/user.interface";
 import { Token } from "@/infra/db/typeorm/entities/Token.entity";
 
 import { DbAddUser } from "./dbAddUser";
@@ -20,12 +20,12 @@ class CryptoAdapterStub implements IGenerateCrypto {
 class UserRepositoryStub  implements
 IFindUserByEmailRepository,
 ICreateUserRepository {
-  async findEmail (email: string): Promise<IUserModel| undefined> {
+  async findEmail (email: string): Promise<IUser | undefined> {
 
     return Promise.resolve(undefined)
   }
 
-  async create (data: IAddUserDTO): Promise<IUserModel> {
+  async create (data: IAddUserDTO): Promise<IUser> {
     return Promise.resolve({
       id: 1,
       name: 'name',
@@ -69,7 +69,7 @@ describe('DbAddUser  Data', () => {
   it('should be defined', () => {
     expect(dbAddUser).toBeDefined()
   })
-  tokenRepository
+
   it('should be able to call UserRepository with success', async () => {
     const res = jest.spyOn(userRepository, 'create')
 
