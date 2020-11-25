@@ -69,7 +69,7 @@ describe('DbAddUser  Data', () => {
   it('should be defined', () => {
     expect(dbAddUser).toBeDefined()
   })
-
+  tokenRepository
   it('should be able to call UserRepository with success', async () => {
     const res = jest.spyOn(userRepository, 'create')
 
@@ -123,6 +123,44 @@ describe('DbAddUser  Data', () => {
       token: 'TOKEN_GENERATED',
       user_id: 1
     })
+  })
+
+  it('throw an Error if tokenRepository create throws', async () => {
+    jest.spyOn(tokenRepository, 'create').mockRejectedValue(new Error())
+
+    const promise =  dbAddUser.add({
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'password'
+    })
+
+    await expect(promise).rejects.toThrow()
+
+  })
+
+  it('throw an Error if userRepository loadByEmail throws', async () => {
+    jest.spyOn(userRepository, 'create').mockRejectedValue(new Error())
+
+    const promise =  dbAddUser.add({
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'password'
+    })
+
+    await expect(promise).rejects.toThrow()
+
+  })
+
+  it('throw an Error if userRepository loadByEmail throws', async () => {
+    jest.spyOn(userRepository, 'findEmail').mockRejectedValue(new Error())
+
+    const promise =  dbAddUser.add({
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'password'
+    })
+
+    await expect(promise).rejects.toThrow()
 
   })
 });
