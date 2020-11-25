@@ -31,7 +31,7 @@ export class SignupController implements IController {
       }
     } catch (err) {
       return {
-        statusCode: 400,
+        statusCode: 500,
         body: err
       }
     }

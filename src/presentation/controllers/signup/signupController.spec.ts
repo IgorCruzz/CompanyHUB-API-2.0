@@ -91,4 +91,24 @@ describe('SignupController', () => {
       }
     })
   })
+
+  it('throw error 500 if AddUser throws', async () => {
+    const req: IHttpRequest = {
+      body: {
+        name: 'name',
+        email: 'user@mail.com',
+        password: 'password',
+        confirmPassword: 'password'
+      }
+    }
+
+    jest.spyOn(dbAddUser, 'add').mockRejectedValue(new Error())
+
+    const res = await signupController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
