@@ -69,4 +69,26 @@ describe('SignupController', () => {
       password_hash: 'password'
     })
   })
+
+  it('throw error 401 with has an user with email passed on request', async () => {
+    const req: IHttpRequest = {
+      body: {
+        name: 'name',
+        email: 'user@mail.com',
+        password: 'password',
+        confirmPassword: 'password'
+      }
+    }
+
+    jest.spyOn(dbAddUser, 'add').mockResolvedValue(null)
+
+    const res = await signupController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 401,
+      body: {
+        message: 'Este e-mail já está em uso, escolha outro.'
+      }
+    })
+  })
 })
