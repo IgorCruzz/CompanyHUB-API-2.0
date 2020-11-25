@@ -1,5 +1,4 @@
-import { IUserModel } from "@/domain/models/user.interface";
-import { User } from "@/infra/db/typeorm/entities/User.entity";
+import { IUser } from "@/domain/models/user.interface";
 
 export interface IAddUserDTO {
   email: string
@@ -8,5 +7,5 @@ export interface IAddUserDTO {
 }
 
 export interface ICreateUserRepository {
-  create (data: IAddUserDTO): Promise<IUserModel>
+  create (data: IAddUserDTO): Promise<IUser>
 }
