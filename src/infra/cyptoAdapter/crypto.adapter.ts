@@ -1,4 +1,4 @@
-import { IGenerateCrypto } from '@/data/protocols/crypto/generateCrypto.interface'
+import { IGenerateCrypto } from '@/data/protocols/cryptoAdapter/generateCrypto.interface'
 import * as crypto from 'crypto'
 
 export class CryptoAdapter implements IGenerateCrypto {

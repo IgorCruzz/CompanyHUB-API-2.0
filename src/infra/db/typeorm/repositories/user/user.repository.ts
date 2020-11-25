@@ -1,6 +1,4 @@
-import { ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
-import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
-import { IAddUserDTO } from '@/domain/usecases/user/addUser.interface'
+import { IAddUserDTO, ICreateUserRepository, IFindUserByEmailRepository } from '@/data/protocols'
 import { getRepository } from 'typeorm'
 import { User } from '../../entities/User.entity'
 

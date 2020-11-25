@@ -3,10 +3,8 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn,
-  BeforeInsert
+  UpdateDateColumn
 } from 'typeorm'
-import * as bcryptjs from 'bcryptjs'
 
 @Entity({ name: 'users' })
 export class User {

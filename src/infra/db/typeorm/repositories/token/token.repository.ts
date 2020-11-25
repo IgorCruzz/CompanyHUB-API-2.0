@@ -1,4 +1,4 @@
-import { ICreateTokenDTO, ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
+import { ICreateTokenDTO, ICreateTokenRepository } from '@/data/protocols'
 import { getRepository } from 'typeorm'
 import { Token } from '../../entities/Token.entity'
 

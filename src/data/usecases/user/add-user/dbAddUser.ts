@@ -1,9 +1,6 @@
+import { IAddUserDTO, ICreateTokenRepository, ICreateUserRepository, IFindUserByEmailRepository, IGenerateCrypto } from "@/data/protocols"
 import { IHasher } from "@/data/protocols/bcryptAdapter/IHasher.interface"
-import { IGenerateCrypto } from "@/data/protocols/crypto/generateCrypto.interface"
-import { ICreateTokenRepository } from "@/data/protocols/db/token/createTokenRepository.interface"
-import { ICreateUserRepository } from "@/data/protocols/db/user/createUserRepository.interface"
-import { IFindUserByEmailRepository } from "@/data/protocols/db/user/findUserRepository.inteface"
-import { IAddUser, IAddUserDTO } from "@/domain/usecases/user/addUser.interface"
+import { IAddUser } from "@/domain/usecases/user/addUser.interface"
 import { User } from "@/infra/db/typeorm/entities/User.entity"
 
 export class DbAddUser implements IAddUser {
@@ -16,7 +13,7 @@ export class DbAddUser implements IAddUser {
   ) {}
 
   async add(data: IAddUserDTO): Promise<User | null> {
-    const { email } = data
+    const { email, password_hash } = data
 
     const userEmail = await this.findUserByEmailRepo.findEmail(email)
 
@@ -24,7 +21,7 @@ export class DbAddUser implements IAddUser {
 
     const user = await this.createUserRepo.create({
       ...data,
-      password_hash: await this.hasher.hash('fefedww')
+      password_hash: await this.hasher.hash(password_hash)
     })
 
     const token = this.generateCrypto.generate(16)

@@ -1,9 +1,8 @@
 import { IValidation, IValidationResult } from '@/data/protocols/yup/validation.interface'
-import { IHttpRequest } from '@/presentation/protocols'
 import * as Yup from 'yup'
 
 export class SignupValidation implements IValidation {
-  async validate (data: IHttpRequest): Promise<IValidationResult> {
+  async validate (data: any): Promise<IValidationResult> {
     const schema = Yup.object().shape({
       name: Yup.string()
         .min(5)
