@@ -13,7 +13,7 @@ let bcryptAdapter: BcryptAdapterStub
 
 class CryptoAdapterStub implements IGenerateCrypto {
   generate (randomBytes: number): string {
-    return 'VALUE'
+    return 'TOKEN_GENERATED'
   }
 }
 
@@ -101,6 +101,28 @@ describe('DbAddUser  Data', () => {
     })
 
     expect(res).toBeNull()
+
+  })
+
+  it('should be generate a token', async () => {
+    const res =  cryptoAdapter.generate(16)
+
+    expect(res).toBe('TOKEN_GENERATED')
+  })
+
+  it('should be able to call createTokenRepo with success', async () => {
+    const res = jest.spyOn(tokenRepository, 'create')
+
+    await dbAddUser.add({
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'password'
+    })
+
+    expect(res).toHaveBeenCalledWith({
+      token: 'TOKEN_GENERATED',
+      user_id: 1
+    })
 
   })
 });
