@@ -84,7 +84,23 @@ describe('DbAddUser  Data', () => {
       name: 'name',
       password_hash: 'hashed_password'
     })
+  })
 
+  it('returns null if already has a user with email passed on request', async () => {
+    jest.spyOn(userRepository, 'findEmail').mockResolvedValue({
+      id: 1,
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'hashed_password'
+    })
+
+    const res = await dbAddUser.add({
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'password'
+    })
+
+    expect(res).toBeNull()
 
   })
 });
