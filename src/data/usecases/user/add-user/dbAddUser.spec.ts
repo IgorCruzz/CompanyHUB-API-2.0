@@ -1,66 +1,28 @@
-import { IAddUserDTO, ICreateTokenDTO, ICreateTokenRepository, ICreateUserRepository, IFindUserByEmailRepository, IGenerateCrypto, IHasher } from "@/data/protocols";
-import { IUser } from "@/domain/models/user.interface";
-import { Token } from "@/infra/db/typeorm/entities/Token.entity";
-
+import { ICreateTokenRepository, ICreateUserRepository, IFindUserByEmailRepository, IGenerateCrypto, IHasher } from "@/data/protocols";
+import { mockHasher } from "@/data/__mocks__/bcrypt.mock";
+import { mockCryptoAdapter } from "@/data/__mocks__/crypto.mock";
+import { mockTokenCreateRepository } from "@/data/__mocks__/token.mock";
+import { MockUserCreateRepository, MockUserFindByEmailRepository } from "@/data/__mocks__/user.mock";
 import { DbAddUser } from "./dbAddUser";
 
 let dbAddUser: DbAddUser
-let cryptoAdapter: CryptoAdapterStub
-let userRepository: UserRepositoryStub
-let tokenRepository: TokenRepositoryStub
-let bcryptAdapter: BcryptAdapterStub
-
-
-class CryptoAdapterStub implements IGenerateCrypto {
-  generate (randomBytes: number): string {
-    return 'TOKEN_GENERATED'
-  }
-}
-
-class UserRepositoryStub  implements
-IFindUserByEmailRepository,
-ICreateUserRepository {
-  async findEmail (email: string): Promise<IUser | undefined> {
-
-    return Promise.resolve(undefined)
-  }
-
-  async create (data: IAddUserDTO): Promise<IUser> {
-    return Promise.resolve({
-      id: 1,
-      name: 'name',
-      email: 'user@mail.com'
-    })
-  }
-}
-
-class TokenRepositoryStub implements ICreateTokenRepository {
-  async create (data: ICreateTokenDTO): Promise<Token> {
-
-
-    return Promise.resolve({
-      user_id: 1,
-      token: 'token'
-    })
-  }
-}
-
-class BcryptAdapterStub implements IHasher {
-  async hash (value: string): Promise<string> {
-    return Promise.resolve('hashed_password')
-  }
-}
+let cryptoAdapter: IGenerateCrypto
+let userFindByEmailRepository: IFindUserByEmailRepository
+let userCreateRepository: ICreateUserRepository
+let tokenRepository: ICreateTokenRepository
+let bcryptAdapter: IHasher
 
 describe('DbAddUser  Data', () => {
   beforeEach(() => {
-    cryptoAdapter = new CryptoAdapterStub()
-    userRepository = new UserRepositoryStub()
-    tokenRepository = new TokenRepositoryStub()
-    bcryptAdapter = new BcryptAdapterStub()
+    cryptoAdapter = mockCryptoAdapter()
+    userFindByEmailRepository = MockUserFindByEmailRepository()
+    userCreateRepository = MockUserCreateRepository()
+    tokenRepository = mockTokenCreateRepository()
+    bcryptAdapter = mockHasher()
     dbAddUser = new DbAddUser(
       cryptoAdapter,
-      userRepository,
-      userRepository,
+      userFindByEmailRepository,
+      userCreateRepository ,
       tokenRepository,
       bcryptAdapter
     )
@@ -71,7 +33,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('should be able to call UserRepository with success', async () => {
-    const res = jest.spyOn(userRepository, 'create')
+    const res = jest.spyOn(userCreateRepository, 'create')
 
     await dbAddUser.add({
       email: 'user@mail.com',
@@ -87,7 +49,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('returns null if already has a user with email passed on request', async () => {
-    jest.spyOn(userRepository, 'findEmail').mockResolvedValue({
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
       email: 'user@mail.com',
       name: 'name',
@@ -139,7 +101,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('throw an Error if userRepository loadByEmail throws', async () => {
-    jest.spyOn(userRepository, 'create').mockRejectedValue(new Error())
+    jest.spyOn(userCreateRepository, 'create').mockRejectedValue(new Error())
 
     const promise =  dbAddUser.add({
       email: 'user@mail.com',
@@ -152,7 +114,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('throw an Error if userRepository loadByEmail throws', async () => {
-    jest.spyOn(userRepository, 'findEmail').mockRejectedValue(new Error())
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockRejectedValue(new Error())
 
     const promise =  dbAddUser.add({
       email: 'user@mail.com',

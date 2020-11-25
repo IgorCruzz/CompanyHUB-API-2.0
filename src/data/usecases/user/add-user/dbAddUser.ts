@@ -3,6 +3,7 @@ import { IHasher } from "@/data/protocols/bcryptAdapter/IHasher.interface"
 import {  IUser } from "@/domain/models/user.interface"
 import { IAddUser } from "@/domain/usecases/user/addUser.interface"
 
+
 export class DbAddUser implements IAddUser {
   constructor (
     private readonly generateCrypto: IGenerateCrypto,

@@ -1,26 +1,14 @@
-import { IAddUserDTO } from '@/data/protocols'
-import { IUser } from '@/domain/models/user.interface'
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
 import { IHttpRequest } from '@/presentation/protocols'
+import { MockAddUser } from '@/presentation/__mocks__/user.mock'
 import { SignupController } from './signup.controller'
 
 let signupController: SignupController
-let dbAddUser: DbAddUserStub
-
-class DbAddUserStub implements IAddUser {
-  async add (data: IAddUserDTO): Promise<IUser | null> {
-    return Promise.resolve({
-      id: 1,
-      name: 'name',
-      email: 'user@mail.com'
-
-    })
-  }
-}
+let dbAddUser: IAddUser
 
 describe('SignupController', () => {
   beforeEach(() => {
-    dbAddUser = new DbAddUserStub()
+    dbAddUser = MockAddUser()
     signupController = new SignupController(dbAddUser)
   })
   it('should be defined', () => {
