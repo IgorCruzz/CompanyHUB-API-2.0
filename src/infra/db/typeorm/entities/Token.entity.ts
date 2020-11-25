@@ -16,7 +16,7 @@ export class Token {
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id' })
-  user: User
+  user?: User
 
   @Column()
   token: string
