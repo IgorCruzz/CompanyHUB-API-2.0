@@ -10,7 +10,14 @@ export class UpdateUserController implements IController {
     try {
       const { id } = httpRequest.params
 
-      await this.updateUser.update(id, httpRequest.body)
+      const user = await this.updateUser.update(id, httpRequest.body)
+
+      if (!user) {
+        return {
+          statusCode: 400,
+          body: { message: 'Não foi possivel atualizar seus dados' }
+        }
+      }
 
       return {
         statusCode: 200,
