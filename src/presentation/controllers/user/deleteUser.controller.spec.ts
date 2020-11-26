@@ -16,20 +16,6 @@ describe('DeleteUser Controller', () => {
     expect(deleteUserController).toBeDefined()
   })
 
-  it('should be able to call DbDeleteUser with success', async () => {
-    const req: IHttpRequest = {
-      params: {
-        id: 1
-      }
-    }
-
-    const res = jest.spyOn(deleteUserData, 'delete')
-
-    await deleteUserController.handle(req)
-
-    expect(res).toHaveBeenCalledWith(req.params.id)
-  })
-
   it('return status 200 if deleteUser returns true', async () => {
     const req: IHttpRequest = {
       params: {

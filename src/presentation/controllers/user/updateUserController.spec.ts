@@ -31,4 +31,21 @@ describe('UpdateUser Controller', () => {
       body: { message: 'Atualizado com sucesso.' }
     })
   })
+
+  it('return statusCode 500 if UpdateUser throws', async () => {
+    const req: IHttpRequest = {
+      params: { id: 1 },
+      body: {
+        name: 'name'
+      }
+    }
+    jest.spyOn(updateUserData, 'update').mockRejectedValue(new Error())
+
+    const promise = await updateUserController.handle(req)
+
+    expect(promise).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
