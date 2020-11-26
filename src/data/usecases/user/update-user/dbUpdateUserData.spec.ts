@@ -1,8 +1,8 @@
-import { IFindUserByEmailRepository } from "@/data/protocols";
+import { IFindUserByEmailRepository, IHasher } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
-import { mockCompare } from "@/data/__mocks__/bcrypt.mock";
+import { mockCompare, mockHasher } from "@/data/__mocks__/bcrypt.mock";
 import { MockUserFindByEmailRepository, MockUserFindByIdRepository, MockUserUpdateRepository } from "@/data/__mocks__/user.mock";
 import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
 import { DbUpdateUser } from "./dbUpdateUser.data";
@@ -12,6 +12,8 @@ let userFindIdRepository: IFindUserByIdRepository
 let userFindByEmailRepository: IFindUserByEmailRepository
 let userUpdateRepository: IUpdateUserRepository
 let bcryptCompare: ICompare
+let bcryptHasher: IHasher
+
 
 describe('UpdateUser Data', () => {
   beforeEach(() => {
@@ -19,11 +21,13 @@ describe('UpdateUser Data', () => {
     userFindByEmailRepository = MockUserFindByEmailRepository()
     userUpdateRepository = MockUserUpdateRepository()
     bcryptCompare = mockCompare()
+    bcryptHasher = mockHasher()
     updateUserData = new DbUpdateUser(
       userFindIdRepository,
       userFindByEmailRepository,
       userUpdateRepository,
-      bcryptCompare)
+      bcryptCompare,
+      bcryptHasher)
   })
 
   it('should be defined', () => {
@@ -94,6 +98,19 @@ describe('UpdateUser Data', () => {
     await updateUserData.update(1, { name: 'name_changed' })
 
     expect(res).toHaveBeenCalledWith(1, { name: 'name_changed' })
+  })
+
+  it('should be able to call to UpdateUserRepository and changed the password', async () => {
+    const res = jest.spyOn(userUpdateRepository, 'update')
+
+    await updateUserData.update(1,
+      {
+        oldPassword: 'password',
+        password: 'newPassword',
+        confirmPassword: 'newPassword'
+      })
+
+    expect(res).toBeTruthy()
   })
 
 });
