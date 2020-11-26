@@ -11,7 +11,9 @@ export class DbUpdateUser implements IUpdateUserRepository {
 
     const user = await this.findUserByIdRepository.findId(id)
 
-    return Promise.resolve(null)
+    if(!user) return null
+
+    return true
   }
 
 }
