@@ -19,7 +19,6 @@
     "lint": "eslint 'src/**' --fix",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-    "pretest": "NODE_ENV=test ts-node ./node_modules/typeorm/cli.js migration:run",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand"
   },
   "author": "Igor",
