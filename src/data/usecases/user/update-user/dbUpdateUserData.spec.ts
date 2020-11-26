@@ -25,4 +25,13 @@ describe('UpdateUser Data', () => {
    expect(res).toHaveBeenCalledWith(1)
   })
 
+  it('return null if usersRepository returns undefined', async () => {
+    jest.spyOn(userFindIdRepository, 'findId').mockResolvedValue(undefined)
+
+    const res = await updateUserData.update(1, { name: 'name' })
+
+    expect(res).toBeNull()
+
+  })
+
 });
