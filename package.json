@@ -10,7 +10,6 @@
     "build": "tsc -p tsconfig.build.json",
     "debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "dev": "ts-node-dev --respawn --transpile-only src/main/server.ts",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "npm test -- --watch -c jest-integration-config.js",
@@ -18,7 +17,11 @@
     "test:ci": "npm test -- --coverage",
     "test:cov": "npm run test:ci && coveralls < coverage/lcov.info",
     "lint": "eslint 'src/**' --fix",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration": "ts-node ./node_modules/typeorm/cli.js migration:revert",
+    "pretest": "NODE_ENV=test ts-node ./node_modules/typeorm/cli.js migration:run",
+    "test": "NODE_ENV=test jest",
+    "posttest": "NODE_ENV=test"
   },
   "author": "Igor",
   "license": "ISC",
@@ -102,6 +105,7 @@
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
+    "sqlite3": "^5.0.0",
     "swagger-ui-express": "^4.1.5",
     "typeorm": "^0.2.25",
     "typeorm-test-transactions": "^1.11.1",
