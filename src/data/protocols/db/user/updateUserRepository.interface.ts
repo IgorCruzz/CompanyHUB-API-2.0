@@ -5,6 +5,7 @@ export interface IUpdateUserDTO {
   oldPassword?: string
   password?: string
   confirmPassword?: string
+  password_hash?: string
 }
 
 export interface IUpdateUserRepository {
