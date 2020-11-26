@@ -7,13 +7,20 @@ export class UpdateUserController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const { id } = httpRequest.params
+    try {
+      const { id } = httpRequest.params
 
-    const updateUser = await this.updateUser.update(id, httpRequest.body)
+      await this.updateUser.update(id, httpRequest.body)
 
-    return {
-      statusCode: 200,
-      body: { message: 'Atualizado com sucesso.' }
+      return {
+        statusCode: 200,
+        body: { message: 'Atualizado com sucesso.' }
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
