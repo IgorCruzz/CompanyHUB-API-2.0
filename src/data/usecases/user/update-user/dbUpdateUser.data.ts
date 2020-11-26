@@ -33,7 +33,9 @@ export class DbUpdateUser implements IUpdateUser {
 
     if (data.oldPassword) {
 
-      return !(await this.bcryptCompare.compare(data.oldPassword, user.password_hash)) && null
+      const comparePassword = await this.bcryptCompare.compare(data.oldPassword, user.password_hash)
+
+      if (!comparePassword) return null
 
       const { oldPassword, ...rest } = data
 
