@@ -1,6 +1,6 @@
 import { IDeleteUserRepository } from "@/data/protocols/db/user/deleteUserRepository.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
-import { MockUserDeleteRepository, MockUserFindByIdRepository } from "@/data/__mocks__/user.mock";
+import { MockUserDeleteRepository, MockUserFindByIdRepository } from "@/data/mocks/user.mock";
 import { IDeleteUser } from "@/domain/usecases/user/deleteUser.interface";
 import { DbDeleteUser } from "./dbDeleteUser.data";
 

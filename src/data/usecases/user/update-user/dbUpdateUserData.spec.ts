@@ -2,8 +2,8 @@ import { IFindUserByEmailRepository, IHasher } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
-import { mockCompare, mockHasher } from "@/data/__mocks__/bcrypt.mock";
-import { MockUserFindByEmailRepository, MockUserFindByIdRepository, MockUserUpdateRepository } from "@/data/__mocks__/user.mock";
+import { mockCompare, mockHasher } from "@/data/mocks/bcrypt.mock";
+import { MockUserFindByEmailRepository, MockUserFindByIdRepository, MockUserUpdateRepository } from "@/data/mocks/user.mock";
 import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
 import { DbUpdateUser } from "./dbUpdateUser.data";
 
