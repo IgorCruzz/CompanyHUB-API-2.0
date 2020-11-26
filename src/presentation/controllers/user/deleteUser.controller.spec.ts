@@ -30,7 +30,22 @@ describe('DeleteUser Controller', () => {
     expect(res).toHaveBeenCalledWith(req.params.id)
   })
 
-  it('throw an error 401 if id passed on params doesnt belongs to a user registered', async () => {
+  it('return status 200 if deleteUser returns true', async () => {
+    const req: IHttpRequest = {
+      params: {
+        id: 1
+      }
+    }
+
+    const res = await deleteUserController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 200,
+      body: { message: 'Usuário deletado com sucesso.' }
+    })
+  })
+
+  it('throw an error 400 if id passed on params doesnt belongs to a user registered', async () => {
     jest.spyOn(deleteUserData, 'delete').mockResolvedValue(null)
 
     const req: IHttpRequest = {
@@ -42,7 +57,7 @@ describe('DeleteUser Controller', () => {
     const res = await deleteUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      statusCode: 400,
       body: { message: 'Não existe um usuário com este ID' }
     })
   })
