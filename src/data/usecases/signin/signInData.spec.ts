@@ -31,4 +31,15 @@ describe('SigIn Data', () => {
     })
 
   })
+
+  it('should be able to call Sign with success', async () => {
+    const res = jest.spyOn(jwtSignAdapter, 'sign')
+
+    await signInData.signIn({
+      email: 'user@mail.com',
+      password: 'password'
+    })
+
+    expect(res).toHaveBeenCalledWith(1)
+  })
 });
