@@ -1,15 +1,7 @@
-import './config/bootstrap'
-import 'reflect-metadata'
-import '../infra/db/typeorm'
-import express from 'express'
-import { exposeRoutes } from './routes'
-
-const app = express()
-
-app.use(express.json())
-
-app.use(exposeRoutes)
+import app from './config/app'
 
 app.listen(3333, () => {
   console.log('Server is running on port 3333')
 })
+
+export default app
