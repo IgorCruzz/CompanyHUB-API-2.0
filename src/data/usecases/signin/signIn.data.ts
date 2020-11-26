@@ -19,10 +19,14 @@ export class DbSignIn implements ISignIn {
 
     const comparePassword = await this.bcryptCompare.compare(password, user.password_hash)
 
+    if(!comparePassword) return null
+
+    if(!user.activation) return null
+
     return {
-      id: 1,
-      email: 'user@mail.com',
-      name: 'name',
+      id: user.id,
+      email: user.email,
+      name: user.name,
       token: this.Sign.sign(1)
     }
   }
