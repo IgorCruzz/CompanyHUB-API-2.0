@@ -1,6 +1,8 @@
+import { mockCompare } from "@/data/mocks/bcrypt.mock";
 import { MockJwtSignAdapter } from "@/data/mocks/jwt.mock";
 import { MockUserFindByEmailRepository } from "@/data/mocks/user.mock";
 import { IFindUserByEmailRepository } from "@/data/protocols";
+import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { ISign } from "@/data/protocols/jwtAdapter/signJwt.interface";
 import { ISignIn } from "@/domain/usecases/signin/signIn.interface"
 import { DbSignIn } from "./signIn.data";
@@ -8,12 +10,14 @@ import { DbSignIn } from "./signIn.data";
 let signInData: ISignIn
 let jwtSignAdapter: ISign
 let userFindByEmailRepository: IFindUserByEmailRepository
+let bcryptCompare: ICompare
 
 describe('SigIn Data', () => {
   beforeEach(() => {
     jwtSignAdapter = MockJwtSignAdapter()
     userFindByEmailRepository = MockUserFindByEmailRepository()
-    signInData = new DbSignIn(jwtSignAdapter, userFindByEmailRepository)
+    bcryptCompare = mockCompare()
+    signInData = new DbSignIn(jwtSignAdapter, userFindByEmailRepository, bcryptCompare)
   })
 
   it('should be defined', () => {
@@ -78,4 +82,22 @@ describe('SigIn Data', () => {
 
     expect(res).toBeNull()
   })
+
+  it('should be able to call mockCompare with success', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
+      id: 1,
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'hashed_password'
+    })
+
+    const res = jest.spyOn(bcryptCompare, 'compare')
+
+    await signInData.signIn({
+      email: 'user@mail.com',
+      password: 'password'
+    })
+
+    expect(res).toHaveBeenCalledWith('password', 'hashed_password')
+  } )
 });
