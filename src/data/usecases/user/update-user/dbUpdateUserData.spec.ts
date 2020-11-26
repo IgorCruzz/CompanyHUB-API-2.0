@@ -1,22 +1,29 @@
 import { IFindUserByEmailRepository } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
+import { IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
 import { mockCompare } from "@/data/__mocks__/bcrypt.mock";
-import { MockUserFindByEmailRepository, MockUserFindByIdRepository } from "@/data/__mocks__/user.mock";
+import { MockUserFindByEmailRepository, MockUserFindByIdRepository, MockUserUpdateRepository } from "@/data/__mocks__/user.mock";
 import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
 import { DbUpdateUser } from "./dbUpdateUser.data";
 
 let updateUserData: IUpdateUser
 let userFindIdRepository: IFindUserByIdRepository
 let userFindByEmailRepository: IFindUserByEmailRepository
+let userUpdateRepository: IUpdateUserRepository
 let bcryptCompare: ICompare
 
 describe('UpdateUser Data', () => {
   beforeEach(() => {
     userFindIdRepository = MockUserFindByIdRepository()
     userFindByEmailRepository = MockUserFindByEmailRepository()
+    userUpdateRepository = MockUserUpdateRepository()
     bcryptCompare = mockCompare()
-    updateUserData = new DbUpdateUser(userFindIdRepository, userFindByEmailRepository, bcryptCompare)
+    updateUserData = new DbUpdateUser(
+      userFindIdRepository,
+      userFindByEmailRepository,
+      userUpdateRepository,
+      bcryptCompare)
   })
 
   it('should be defined', () => {
@@ -67,5 +74,26 @@ describe('UpdateUser Data', () => {
 
     expect(res).toHaveBeenCalledWith('password', 'password')
   } )
+
+  it('should return null if mockCompare returns false', async () => {
+    jest.spyOn(bcryptCompare, 'compare').mockResolvedValue(false)
+
+    const res = await updateUserData.update(1,
+      { name: 'name',
+        email: 'user@mail.com',
+        oldPassword: 'password',
+        password: 'password',
+        confirmPassword: 'password' })
+
+    expect(res).toBeNull()
+  })
+
+  it('should be able to call to UpdateUserRepository with success', async () => {
+    const res = jest.spyOn(userUpdateRepository, 'update')
+
+    await updateUserData.update(1, { name: 'name_changed' })
+
+    expect(res).toHaveBeenCalledWith(1, { name: 'name_changed' })
+  })
 
 });
