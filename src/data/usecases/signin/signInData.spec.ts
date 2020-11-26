@@ -29,7 +29,8 @@ describe('SigIn Data', () => {
       id: 1,
       email: 'user@mail.com',
       name: 'name',
-      password_hash: 'hashed_password'
+      password_hash: 'hashed_password',
+      activation: true
     })
 
     const res = await signInData.signIn({
@@ -51,7 +52,8 @@ describe('SigIn Data', () => {
       id: 1,
       email: 'user@mail.com',
       name: 'name',
-      password_hash: 'hashed_password'
+      password_hash: 'hashed_password',
+      activation: true
     })
 
     const res = jest.spyOn(jwtSignAdapter, 'sign')
@@ -99,5 +101,41 @@ describe('SigIn Data', () => {
     })
 
     expect(res).toHaveBeenCalledWith('password', 'hashed_password')
+  })
+
+  it('return null if mockCompare returns false', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
+      id: 1,
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'hashed_password'
+    })
+
+    jest.spyOn(bcryptCompare, 'compare').mockResolvedValue(false)
+
+    const res =  await signInData.signIn({
+      email: 'user@mail.com',
+      password: 'password'
+    })
+
+    expect(res).toBeNull()
+  })
+
+  it('return null if user activation is false', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
+      id: 1,
+      email: 'user@mail.com',
+      name: 'name',
+      password_hash: 'hashed_password',
+      activation: false
+    })
+
+    const res =  await signInData.signIn({
+      email: 'user@mail.com',
+      password: 'password'
+    })
+
+    expect(res).toBeNull()
+
   })
 });
