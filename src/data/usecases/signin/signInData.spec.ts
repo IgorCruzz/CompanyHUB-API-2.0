@@ -99,5 +99,5 @@ describe('SigIn Data', () => {
     })
 
     expect(res).toHaveBeenCalledWith('password', 'hashed_password')
-  } )
+  })
 });
