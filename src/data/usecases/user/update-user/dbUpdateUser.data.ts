@@ -25,7 +25,9 @@ export class DbUpdateUser implements IUpdateUser {
 
     if(rest.email) {
       if(user.email !== rest.email) {
-      return await this.findUserByEmailRepo.findEmail(rest.email) && null
+         const findMail = await this.findUserByEmailRepo.findEmail(rest.email)
+
+         if(findMail) return null
       }
     }
 
