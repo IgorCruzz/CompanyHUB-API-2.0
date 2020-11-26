@@ -3,6 +3,7 @@ import { IAddUser } from "@/domain/usecases/user/addUser.interface";
 import { IAddUserDTO, ICreateUserRepository, IFindUserByEmailRepository } from "../protocols";
 import { IDeleteUserRepository } from "../protocols/db/user/deleteUserRepository.interface";
 import { IFindUserByIdRepository } from "../protocols/db/user/findUserByIdRepository.interface";
+import { IUpdateUserDTO, IUpdateUserRepository } from "../protocols/db/user/updateUserRepository.interface";
 
 export const MockAddUser = (): IAddUser => {
   class DbAddUserStub implements IAddUser {
@@ -65,4 +66,14 @@ export const MockUserDeleteRepository = (): IDeleteUserRepository => {
     }
 }
   return new DeleteUserRepositoryStub()
+}
+
+export const MockUserUpdateRepository = (): IUpdateUserRepository => {
+  class UpdateUserRepositoryStub  implements IUpdateUserRepository {
+
+    update (id: number, data: IUpdateUserDTO): Promise<boolean> {
+      return Promise.resolve(true)
+    }
+}
+  return new UpdateUserRepositoryStub()
 }
