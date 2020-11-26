@@ -1,4 +1,5 @@
 import { IHasher } from "../protocols"
+import { ICompare } from "../protocols/bcryptAdapter/ICompare.interface"
 
 export const mockHasher = (): IHasher => {
   class BcryptAdapterStub implements IHasher {
@@ -7,6 +8,15 @@ export const mockHasher = (): IHasher => {
     }
   }
   return new BcryptAdapterStub()
+}
+
+export const mockCompare = (): ICompare => {
+  class BcryptCompareStub implements ICompare {
+    compare (firstValue: string, secondValue: string): Promise<boolean> {
+      return Promise.resolve(true)
+    }
+  }
+  return new BcryptCompareStub()
 }
 
 
