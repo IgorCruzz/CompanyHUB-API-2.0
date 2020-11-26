@@ -49,7 +49,8 @@ export const MockUserFindByIdRepository = (): IFindUserByIdRepository => {
     return Promise.resolve({
         id: 1,
         name: 'name',
-        email: 'user@mail.com'
+        email: 'user@mail.com',
+        password_hash: 'password'
       })
     }
 }
