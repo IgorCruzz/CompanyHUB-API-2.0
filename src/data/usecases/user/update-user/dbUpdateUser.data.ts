@@ -2,9 +2,10 @@ import { IFindUserByEmailRepository, IHasher } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IUpdateUserDTO, IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
+import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
 
 
-export class DbUpdateUser implements IUpdateUserRepository {
+export class DbUpdateUser implements IUpdateUser {
   constructor (
     private readonly findUserByIdRepository: IFindUserByIdRepository,
     private readonly findUserByEmailRepo: IFindUserByEmailRepository,
