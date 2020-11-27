@@ -3,14 +3,14 @@ import { IVerify } from "@/data/protocols/jwtAdapter/verifyJwt.interface";
 
 export class DbAuthorization implements IAuthorization {
   constructor(
-    private readonly IVerify: IVerify
+    private readonly Verify: IVerify
   ) {}
 
   async auth (data: any): Promise<any> {
 
-    await this.IVerify.verify(data.token)
+    const decoded = await this.Verify.verify(data.token)
 
-    return null
+    return decoded
   }
 
 }
