@@ -18,6 +18,12 @@ export class DbAuthorization implements IAuthorization {
 
     if(!user) return {  error: 'Este token não pertence a nenhum usuário.' }
 
+    if(data.role) {
+      if(!user.administrator && user.id !== decoded.id ) {
+        return { error: 'Você não tem permissão para fazer isto.'}
+      }
+    }
+
     return {
       id: user.id,
       administrator: user.administrator
