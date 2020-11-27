@@ -32,7 +32,8 @@ describe('Authorization Data', () => {
     const res = await authorizationData.auth({ token: 'token'})
 
     expect(res).toEqual({
-      id: 1
+      id: 1,
+      administrator: false
     })
   })
 
