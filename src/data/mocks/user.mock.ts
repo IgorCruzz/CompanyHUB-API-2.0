@@ -57,11 +57,15 @@ export const MockUserFindByIdRepository = (): IFindUserByIdRepository => {
 
     async findId (id: number): Promise<IUser> {
     return Promise.resolve({
-        id: 1,
-        name: 'name',
-        email: 'user@mail.com',
-        password_hash: 'password'
-      })
+      id: 1,
+      name: 'user',
+      email: 'user@mail.com',
+      password_hash: 'hashed_password',
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date()
+    })
     }
 }
   return new UserFindByIdRepositoryStub()

@@ -76,7 +76,7 @@ describe('UpdateUser Data', () => {
           password: 'password',
           confirmPassword: 'password' })
 
-    expect(res).toHaveBeenCalledWith('password', 'password')
+    expect(res).toHaveBeenCalledWith('password', 'hashed_password')
   } )
 
   it('should return null if mockCompare returns false', async () => {
