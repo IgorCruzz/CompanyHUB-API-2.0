@@ -77,6 +77,8 @@ describe('SigIn Data', () => {
   })
 
   it('return null with findUserByEmail returns undefined', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
      const res =  await signInData.signIn({
       email: 'user@mail.com',
       password: 'password'
