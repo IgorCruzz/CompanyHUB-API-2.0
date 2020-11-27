@@ -10,7 +10,7 @@ export class ValidatorDecorator implements IMiddleware {
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     const result = await this.validation.validate(httpRequest)
 
-    if (result.validate === false) {
+    if (!result.validate) {
       return {
         statusCode: 401,
         body: {

@@ -13,7 +13,7 @@ export class SignInController implements IController {
       if (signIn.error) {
         return {
           statusCode: 401,
-          body: { message: signIn?.error }
+          body: { message: signIn.error }
         }
       }
 
