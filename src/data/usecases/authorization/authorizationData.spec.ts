@@ -64,7 +64,15 @@ describe('Authorization Data', () => {
     expect(res).toEqual({
      error: 'Este token não pertence a nenhum usuário.'
     })
+  })
 
+  it('should return an error message if user try to update another user data', async () => {
+    jest.spyOn(verifyRepository, 'verify').mockReturnValue({ id: 2})
 
+    const res = await authorizationData.auth({ token: 'token', role: true})
+
+    expect(res).toEqual({
+     error: 'Você não tem permissão para fazer isto.'
+    })
   })
 });
