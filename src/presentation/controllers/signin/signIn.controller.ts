@@ -7,11 +7,25 @@ export class SignInController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const signIn = await this.dbSignInData.signIn(httpRequest.body)
+    try {
+      const signIn = await this.dbSignInData.signIn(httpRequest.body)
 
-    return Promise.resolve({
-      statusCode: 200,
-      body: signIn
-    })
+      if (!signIn) {
+        return {
+          statusCode: 401,
+          body: 'Erro ao fazer o login'
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: signIn
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
+    }
   }
 }
