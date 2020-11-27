@@ -1,4 +1,4 @@
-import { IAuthorization } from "@/domain/usecases/authorization/authorization.interface";
+import { IAuthorization, IAuthorizationResult } from "@/domain/usecases/authorization/authorization.interface";
 import { IVerify } from "@/data/protocols/jwtAdapter/verifyJwt.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 
@@ -8,7 +8,8 @@ export class DbAuthorization implements IAuthorization {
     private readonly findUserByIdRepository: IFindUserByIdRepository,
   ) {}
 
-  async auth (data: any): Promise<any> {
+  async auth (data: any): Promise<IAuthorizationResult> {
+
 
     const decoded = await this.Verify.verify(data.token)
 
@@ -19,14 +20,12 @@ export class DbAuthorization implements IAuthorization {
     if(!user) return {  error: 'Este token não pertence a nenhum usuário.' }
 
     if(data.role) {
-      if(!user.administrator && user.id !== decoded.id ) {
+      if(!user.administrator && data.params.id !== decoded.id ) {
+
         return { error: 'Você não tem permissão para fazer isto.'}
       }
     }
 
-    return {
-      id: user.id,
-      administrator: user.administrator
-    }
+    return { id: decoded.id }
   }
 }

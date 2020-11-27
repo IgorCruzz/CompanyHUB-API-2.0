@@ -22,7 +22,8 @@ export class AuthMiddleware implements IMiddleware {
 
       const authUser = await this.dbAuthorization.auth({
         token,
-        role: this.role
+        role: this.role,
+        params: { id: Number(httpRequest.params.id) }
       })
 
       if (authUser.error) {
@@ -34,7 +35,7 @@ export class AuthMiddleware implements IMiddleware {
 
       return {
         statusCode: 200,
-        body: authUser
+        body: { userId: authUser.id }
       }
     } catch (err) {
       return {
