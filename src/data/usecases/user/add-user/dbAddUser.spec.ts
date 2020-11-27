@@ -34,6 +34,8 @@ describe('DbAddUser  Data', () => {
   })
 
   it('should be able to call UserRepository with success', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
     const res = jest.spyOn(userCreateRepository, 'create')
 
     await dbAddUser.add({
@@ -50,12 +52,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('returns null if already has a user with email passed on request', async () => {
-    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
-      id: 1,
-      email: 'user@mail.com',
-      name: 'name',
-      password_hash: 'hashed_password'
-    })
+
 
     const res = await dbAddUser.add({
       email: 'user@mail.com',
@@ -68,12 +65,16 @@ describe('DbAddUser  Data', () => {
   })
 
   it('should be generate a token', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
     const res =  cryptoAdapter.generate(16)
 
     expect(res).toBe('TOKEN_GENERATED')
   })
 
   it('should be able to call createTokenRepo with success', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
     const res = jest.spyOn(tokenRepository, 'create')
 
     await dbAddUser.add({
@@ -89,6 +90,8 @@ describe('DbAddUser  Data', () => {
   })
 
   it('throw an Error if tokenRepository create throws', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
     jest.spyOn(tokenRepository, 'create').mockRejectedValue(new Error())
 
     const promise =  dbAddUser.add({
@@ -102,6 +105,8 @@ describe('DbAddUser  Data', () => {
   })
 
   it('throw an Error if userRepository loadByEmail throws', async () => {
+    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+
     jest.spyOn(userCreateRepository, 'create').mockRejectedValue(new Error())
 
     const promise =  dbAddUser.add({
@@ -115,6 +120,7 @@ describe('DbAddUser  Data', () => {
   })
 
   it('throw an Error if userRepository loadByEmail throws', async () => {
+
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockRejectedValue(new Error())
 
     const promise =  dbAddUser.add({

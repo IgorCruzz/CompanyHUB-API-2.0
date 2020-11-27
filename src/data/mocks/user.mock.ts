@@ -23,7 +23,16 @@ export const MockUserFindByEmailRepository = (): IFindUserByEmailRepository => {
 
   async findEmail (email: string): Promise<IUser | undefined> {
 
-    return Promise.resolve(undefined)
+    return Promise.resolve({
+      id: 1,
+      name: 'user',
+      email: 'user@mail.com',
+      password_hash: 'hashed_password',
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date()
+    })
   }
 }
   return new UserRepositoryStub()
@@ -77,3 +86,6 @@ export const MockUserUpdateRepository = (): IUpdateUserRepository => {
 }
   return new UpdateUserRepositoryStub()
 }
+
+
+
