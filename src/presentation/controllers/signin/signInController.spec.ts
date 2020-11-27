@@ -69,7 +69,7 @@ describe('SignIn Controller', () => {
 
     expect(res).toEqual({
       statusCode: 401,
-      body: 'Erro ao fazer o login'
+      body: { message: 'Erro ao fazer o login' }
     })
   })
 

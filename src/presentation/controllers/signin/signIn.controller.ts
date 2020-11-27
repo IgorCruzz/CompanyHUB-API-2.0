@@ -13,7 +13,7 @@ export class SignInController implements IController {
       if (!signIn) {
         return {
           statusCode: 401,
-          body: 'Erro ao fazer o login'
+          body: { message: 'Erro ao fazer o login' }
         }
       }
 
