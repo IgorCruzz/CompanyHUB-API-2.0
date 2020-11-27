@@ -10,6 +10,8 @@ export class DbAuthorization implements IAuthorization {
 
     const decoded = await this.Verify.verify(data.token)
 
+    if(!decoded) return { error: 'Token inválido.' }
+
     return decoded
   }
 
