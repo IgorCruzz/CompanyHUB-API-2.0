@@ -53,6 +53,17 @@ describe('Authorization Data', () => {
     await authorizationData.auth({ token: 'token'})
 
     expect(res).toHaveBeenCalledWith(1)
+  })
+
+  it('should return an error message if userFindIdRepository returns undefined', async () => {
+    jest.spyOn(userFindIdRepository, 'findId').mockResolvedValue(undefined)
+
+    const res = await authorizationData.auth({ token: 'token'})
+
+    expect(res).toEqual({
+     error: 'Este token não pertence a nenhum usuário.'
+    })
+
 
   })
 });
