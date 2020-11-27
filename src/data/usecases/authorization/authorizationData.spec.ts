@@ -23,4 +23,23 @@ describe('Authorization Data', () => {
 
     expect(res).toHaveBeenCalledWith('token')
   })
+
+  it('should be able to return an user id', async () => {
+    const res = await authorizationData.auth({ token: 'token'})
+
+    expect(res).toEqual({
+      id: 1
+    })
+  })
+
+  it('should be returns an error message if VerifyRepository returns false', async () => {
+
+    jest.spyOn(verifyRepository, 'verify').mockReturnValue(false)
+
+    const res = await authorizationData.auth({ token: 'token'})
+
+    expect(res).toEqual({
+     error: 'Token inválido.'
+    })
+  })
 });
