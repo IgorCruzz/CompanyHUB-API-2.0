@@ -1,4 +1,4 @@
-import { IAuthorization, IAuthorizationResult } from "@/domain/usecases/authorization/authorization.interface";
+import { IAuthorization, IAuthorizationDTO, IAuthorizationResult } from "@/domain/usecases/authorization/authorization.interface";
 import { IVerify } from "@/data/protocols/jwtAdapter/verifyJwt.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 
@@ -8,7 +8,7 @@ export class DbAuthorization implements IAuthorization {
     private readonly findUserByIdRepository: IFindUserByIdRepository,
   ) {}
 
-  async auth (data: any): Promise<IAuthorizationResult> {
+  async auth (data: IAuthorizationDTO): Promise<IAuthorizationResult> {
 
 
     const decoded = await this.Verify.verify(data.token)
