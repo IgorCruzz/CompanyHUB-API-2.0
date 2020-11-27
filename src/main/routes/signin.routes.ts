@@ -1,9 +1,9 @@
 import { Router } from 'express'
-import { makeSignUpValidation } from '../factories/validation/signup'
 import { makeSignInController } from '../factories/controller/signin/signInController'
+import { makeSignInValidation } from '../factories/validation/signin'
 
 const routes = Router()
 
-routes.post('/signin', makeSignUpValidation(), makeSignInController())
+routes.post('/signin', makeSignInValidation(), makeSignInController())
 
 export default routes
