@@ -8,7 +8,7 @@ import {
   JoinColumn,
   OneToMany
 } from 'typeorm'
-import { Companies } from './Companies.entity'
+import { Company } from './Company.entity'
 import { Services } from './Services.entity'
 
 @Entity({ name: 'products' })
@@ -23,11 +23,11 @@ export class Products {
   company_id: number
 
   @ManyToOne(
-    () => Companies,
+    () => Company,
     companies => companies.productConnection
   )
   @JoinColumn({ name: 'company_id', referencedColumnName: 'id' })
-  companyConnection?: Companies
+  companyConnection?: Company
 
   @OneToMany(
     () => Services,
