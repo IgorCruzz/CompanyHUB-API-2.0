@@ -3,13 +3,13 @@ import { mockAuthorization } from '../mocks/authorization.mock'
 import { IHttpRequest, IMiddleware } from '../protocols'
 import { AuthMiddleware } from './auth.middleware'
 
-let authMiddleware: IAuthorization
+let authData: IAuthorization
 let authController: IMiddleware
 
 describe('Auth Middleware', () => {
   beforeEach(() => {
-    authMiddleware = mockAuthorization()
-    authController = new AuthMiddleware()
+    authData = mockAuthorization()
+    authController = new AuthMiddleware(authData)
   })
 
   it('should be defined', () => {
@@ -29,5 +29,19 @@ describe('Auth Middleware', () => {
       statusCode: 401,
       body: { message: 'Insira o token.' }
     })
+  })
+
+  it('should be to call authData with success', async () => {
+    const res = jest.spyOn(authData, 'auth')
+
+    const req: IHttpRequest = {
+      headers: {
+        authorization: 'Bearer token'
+      }
+    }
+
+    await authController.handle(req)
+
+    expect(res).toHaveBeenCalledWith('token')
   })
 })
