@@ -64,4 +64,21 @@ describe('Auth Middleware', () => {
       body: { message: 'Você não tem permissão para fazer isto.' }
     })
   })
+
+  it('should return statusCode 500 if authData throws', async () => {
+    jest.spyOn(authData, 'auth').mockRejectedValue(new Error())
+
+    const req: IHttpRequest = {
+      headers: {
+        authorization: 'Bearer token'
+      }
+    }
+
+    const res = await authController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
