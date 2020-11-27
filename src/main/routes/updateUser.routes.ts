@@ -1,9 +1,11 @@
 import { Router } from 'express'
 import { makeUpdateUserValidation } from '../factories/validation/updateUser'
 import { makeUpdateUserController } from '../factories/controller/user/updateUser'
+import { adapMiddleware } from '../adapters/expressMiddleware.adapter'
+import { makeAuthMiddleware } from '../factories/middlewares/authMiddleware'
 
 const routes = Router()
 
-routes.put('/users/:id', makeUpdateUserValidation(), makeUpdateUserController())
+routes.put('/users/:id', adapMiddleware(makeAuthMiddleware(true)), makeUpdateUserValidation(), makeUpdateUserController())
 
 export default routes
