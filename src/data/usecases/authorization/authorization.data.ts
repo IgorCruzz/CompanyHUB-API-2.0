@@ -16,6 +16,8 @@ export class DbAuthorization implements IAuthorization {
 
     const user = await this.findUserByIdRepository.findId(decoded.id)
 
+    if(!user) return {  error: 'Este token não pertence a nenhum usuário.' }
+
     return decoded
   }
 
