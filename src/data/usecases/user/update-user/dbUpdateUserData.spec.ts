@@ -48,7 +48,7 @@ describe('UpdateUser Data', () => {
 
     const res = await updateUserData.update(1, { name: 'name' })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Não existe um usuário com este ID.'})
 
   })
 
@@ -62,7 +62,7 @@ describe('UpdateUser Data', () => {
 
     const res = await updateUserData.update(1, { name: 'name', email: 'other@mail.com' })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Este e-mail já está em uso, escolha outro' })
   })
 
   it('should be able to call mockCompare with success', async () => {
@@ -89,7 +89,7 @@ describe('UpdateUser Data', () => {
         password: 'password',
         confirmPassword: 'password' })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'A senha está incorreta' })
   })
 
   it('should be able to call to UpdateUserRepository with success', async () => {

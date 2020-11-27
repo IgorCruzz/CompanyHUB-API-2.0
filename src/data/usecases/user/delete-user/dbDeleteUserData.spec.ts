@@ -34,7 +34,7 @@ describe('DbDeleteUser', () => {
 
     const res = await dbDeleteUser.delete(1)
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Não existe um usuário com este ID'})
   })
 
   it('should be able to call IDeleteUserRepository with success', async () => {

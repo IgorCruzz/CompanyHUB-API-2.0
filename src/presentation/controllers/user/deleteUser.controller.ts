@@ -12,10 +12,10 @@ export class DeleteUserController implements IController {
 
       const deleteUser = await this.deleteUser.delete(id)
 
-      if (!deleteUser) {
+      if (deleteUser.error) {
         return {
           statusCode: 400,
-          body: { message: 'Não existe um usuário com este ID' }
+          body: { message: deleteUser.error }
         }
       }
 

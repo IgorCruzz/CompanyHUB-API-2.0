@@ -53,14 +53,13 @@ describe('DbAddUser  Data', () => {
 
   it('returns null if already has a user with email passed on request', async () => {
 
-
     const res = await dbAddUser.add({
       email: 'user@mail.com',
       name: 'name',
       password_hash: 'password'
     })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Já existe um usuário com este e-mail.'})
 
   })
 

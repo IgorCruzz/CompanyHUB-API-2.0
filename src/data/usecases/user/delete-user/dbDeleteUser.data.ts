@@ -1,6 +1,6 @@
 import { IDeleteUserRepository } from "@/data/protocols/db/user/deleteUserRepository.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
-import { IDeleteUser } from "@/domain/usecases/user/deleteUser.interface";
+import { IDeleteUser, IDeleteResult } from "@/domain/usecases/user/deleteUser.interface";
 
 export class DbDeleteUser implements IDeleteUser {
   constructor (
@@ -8,11 +8,13 @@ export class DbDeleteUser implements IDeleteUser {
     private readonly deleteUserRepository: IDeleteUserRepository
   ) {}
 
-  async delete (id: number): Promise<boolean> {
+  async delete (id: number): Promise<IDeleteResult> {
     const user = await this.findUserByIdRepository.findId(id)
 
-    if(!user) return null
+    if(!user) return { error: 'Não existe um usuário com este ID'}
 
-    return this.deleteUserRepository.delete(user.id)
+    const deleted = await this.deleteUserRepository.delete(user.id)
+
+    return { deleted }
   }
 }

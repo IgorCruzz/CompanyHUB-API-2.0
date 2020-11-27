@@ -2,8 +2,7 @@ import { IFindUserByEmailRepository, IHasher } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IUpdateUserDTO, IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
-import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
-
+import { IUpdateResult, IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
 
 export class DbUpdateUser implements IUpdateUser {
   constructor (
@@ -14,12 +13,12 @@ export class DbUpdateUser implements IUpdateUser {
     private readonly hasher: IHasher
   ) {}
 
-  async update (id: number, data: IUpdateUserDTO): Promise<boolean> {
+  async update (id: number, data: IUpdateUserDTO): Promise<IUpdateResult> {
 
 
     const user = await this.findUserByIdRepository.findId(id)
 
-    if(!user) return null
+    if(!user) return { error: 'Não existe um usuário com este ID.'}
 
     const { password, confirmPassword, ...rest } = data
 
@@ -27,7 +26,7 @@ export class DbUpdateUser implements IUpdateUser {
       if(user.email !== rest.email) {
          const findMail = await this.findUserByEmailRepo.findEmail(rest.email)
 
-         if(findMail) return null
+         if(findMail) return { error: 'Este e-mail já está em uso, escolha outro' }
       }
     }
 
@@ -35,19 +34,23 @@ export class DbUpdateUser implements IUpdateUser {
 
       const comparePassword = await this.bcryptCompare.compare(data.oldPassword, user.password_hash)
 
-      if (!comparePassword) return null
+      if (!comparePassword) return { error: 'A senha está incorreta' }
 
       const { oldPassword, ...rest } = data
 
-      return await this.UpdateUserRepo.update(user.id, {
+      const updated =await this.UpdateUserRepo.update(user.id, {
         password_hash: await this.hasher.hash(password),
         ...rest,
       })
+
+      return { updated }
     }
 
-    return await this.UpdateUserRepo.update(user.id, {
+    const updated =  await this.UpdateUserRepo.update(user.id, {
       ...data
     })
+
+    return { updated }
   }
 
 }

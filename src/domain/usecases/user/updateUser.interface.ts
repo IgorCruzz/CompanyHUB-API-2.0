@@ -6,6 +6,12 @@ export interface IUpdateUserDTO {
   password?: string
   confirmPassword?: string
 }
+
+export interface IUpdateResult {
+  error?: string
+  updated?: boolean
+}
+
 export interface IUpdateUser {
-  update (id: number, data: IUpdateUserDTO): Promise<boolean>
+  update (id: number, data: IUpdateUserDTO): Promise<IUpdateResult>
 }

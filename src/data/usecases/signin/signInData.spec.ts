@@ -84,7 +84,7 @@ describe('SigIn Data', () => {
       password: 'password'
     })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Não existe um usuário com este email.'})
   })
 
   it('should be able to call mockCompare with success', async () => {
@@ -120,7 +120,7 @@ describe('SigIn Data', () => {
       password: 'password'
     })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'A senha está incorreta.'})
   })
 
   it('return null if user activation is false', async () => {
@@ -137,7 +137,7 @@ describe('SigIn Data', () => {
       password: 'password'
     })
 
-    expect(res).toBeNull()
+    expect(res).toEqual({ error: 'Por favor, ative a sua conta.'})
 
   })
 });

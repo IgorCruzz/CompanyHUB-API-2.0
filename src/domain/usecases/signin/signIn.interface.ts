@@ -5,10 +5,12 @@ export interface ISignInDTO {
 }
 
 export interface ISignInResult {
-  id: number
-  name: string
-  token: string
-  email: string
+  id?: number
+  name?: string
+  administrator?: boolean
+  token?: string
+  email?: string
+  error?: string
 }
 
 export interface ISignIn {

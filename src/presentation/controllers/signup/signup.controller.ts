@@ -16,11 +16,11 @@ export class SignupController implements IController {
         password_hash: password
       })
 
-      if (!user) {
+      if (user.error) {
         return {
           statusCode: 401,
           body: {
-            message: 'Este e-mail já está em uso, escolha outro.'
+            message: user.error
           }
         }
       }

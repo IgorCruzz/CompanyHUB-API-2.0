@@ -10,10 +10,10 @@ export class SignInController implements IController {
     try {
       const signIn = await this.dbSignInData.signIn(httpRequest.body)
 
-      if (!signIn) {
+      if (signIn.error) {
         return {
           statusCode: 401,
-          body: { message: 'Erro ao fazer o login' }
+          body: { message: signIn?.error }
         }
       }
 
