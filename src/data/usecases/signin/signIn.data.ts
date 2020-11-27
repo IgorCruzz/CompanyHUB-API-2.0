@@ -27,7 +27,7 @@ export class DbSignIn implements ISignIn {
       id: user.id,
       email: user.email,
       name: user.name,
-      token: this.Sign.sign(1)
+      token: this.Sign.sign(user.id)
     }
   }
 }
