@@ -37,12 +37,15 @@ describe('Auth Middleware', () => {
     const req: IHttpRequest = {
       headers: {
         authorization: 'Bearer token'
+      },
+      params: {
+        id: 1
       }
     }
 
     await authController.handle(req)
 
-    expect(res).toHaveBeenCalledWith({ token: 'token', role: false })
+    expect(res).toHaveBeenCalledWith({ token: 'token', role: false, params: { id: 1 } })
   })
 
   it('should  return statusCode 401 if User try to update an data from another user', async () => {
@@ -71,7 +74,8 @@ describe('Auth Middleware', () => {
     const req: IHttpRequest = {
       headers: {
         authorization: 'Bearer token'
-      }
+      },
+      params: { id: 1 }
     }
 
     const res = await authController.handle(req)
