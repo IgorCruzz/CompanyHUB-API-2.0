@@ -6,7 +6,8 @@ export const adapMiddleware = (middleware: IMiddleware) => {
   return async (req: Request, res: Response, next: NextFunction) => {
     const httpRequest: IHttpRequest = {
       headers: req.headers,
-      body: req.body
+      body: req.body,
+      params: req.params
     }
 
     const httpResponse = await middleware.handle(httpRequest)
