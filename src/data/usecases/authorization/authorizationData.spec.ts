@@ -1,15 +1,19 @@
 import { MockJwtVerifyAdapter } from "@/data/mocks/jwt.mock";
+import { MockUserFindByIdRepository } from "@/data/mocks/user.mock";
+import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IVerify } from "@/data/protocols/jwtAdapter/verifyJwt.interface";
 import { IAuthorization } from "@/domain/usecases/authorization/authorization.interface";
 import { DbAuthorization } from "./authorization.data";
 
 let authorizationData: IAuthorization
 let verifyRepository: IVerify
+let userFindIdRepository: IFindUserByIdRepository
 
 describe('Authorization Data', () => {
   beforeEach(() => {
     verifyRepository = MockJwtVerifyAdapter()
-    authorizationData =  new DbAuthorization(verifyRepository)
+    userFindIdRepository = MockUserFindByIdRepository()
+    authorizationData =  new DbAuthorization(verifyRepository, userFindIdRepository)
   })
 
   it('should be defined', () => {
@@ -41,5 +45,14 @@ describe('Authorization Data', () => {
     expect(res).toEqual({
      error: 'Token inválido.'
     })
+  })
+
+  it('should be able to call userFindIdRepository with success', async () => {
+    const res = jest.spyOn(userFindIdRepository, 'findId')
+
+    await authorizationData.auth({ token: 'token'})
+
+    expect(res).toHaveBeenCalledWith(1)
+
   })
 });
