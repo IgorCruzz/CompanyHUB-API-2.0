@@ -60,4 +60,17 @@ describe('DbAddCompany Data', () => {
     expect(res).toHaveBeenCalledWith('11111111111')
   })
 
+  it('should returns an error message if FindCnpjRepository not return an user', async () => {
+    jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
+    jest.spyOn(findCnpjRepository, 'findCnpj').mockResolvedValue(undefined)
+
+    const res = await dbAddCompanyData.add({
+      name: 'name',
+      cnpj: '11111111111',
+      user: 1
+    })
+
+    expect(res).toEqual({ error: 'Já existe uma empresa cadastrada com esse cnpj' })
+  })
+
 });
