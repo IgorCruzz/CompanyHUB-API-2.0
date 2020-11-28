@@ -1,7 +1,7 @@
 import { IValidation, IValidationResult } from '@/data/protocols/yup/validation.interface'
 import * as Yup from 'yup'
 
-export class UpdateUserValidation implements IValidation {
+export class AddCompanyValidation implements IValidation {
   async validate (data: any): Promise<IValidationResult> {
     const schema = Yup.object().shape({
       name: Yup.string()
