@@ -37,4 +37,23 @@ describe('CreateCompany Conroller', () => {
       }
     })
   })
+
+  it('should be returns statusCode 401 if addCompany returns an error', async () => {
+    jest.spyOn(addCompany, 'add').mockResolvedValue({ error: 'Você já possui uma empresa cadastrada' })
+
+    const req: IHttpRequest = {
+      userId: '1',
+      body: {
+        name: 'company',
+        cnpj: '1111111111'
+      }
+    }
+
+    const res = await createCompanyController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 401,
+      body: { message: 'Você já possui uma empresa cadastrada' }
+    })
+  })
 })
