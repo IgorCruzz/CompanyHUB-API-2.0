@@ -7,18 +7,32 @@ export class CreateCompanyController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const { name, cnpj } = httpRequest.body
-    const { userId } = httpRequest
+    try {
+      const { name, cnpj } = httpRequest.body
+      const { userId } = httpRequest
 
-    const company = await this.addCompany.add({
-      name,
-      user: userId,
-      cnpj
-    })
+      const company = await this.addCompany.add({
+        name,
+        user: userId,
+        cnpj
+      })
 
-    return {
-      statusCode: 200,
-      body: company
+      if (company.error) {
+        return {
+          statusCode: 401,
+          body: { message: company.error }
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: company
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
