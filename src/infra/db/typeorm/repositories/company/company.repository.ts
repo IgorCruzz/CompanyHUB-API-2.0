@@ -17,7 +17,7 @@ export class CompanyRepository implements
   async findCnpj (cnpj: string): Promise<Company> {
     const orm = getRepository(Company)
 
-    return await orm.findOne({ cnpj })
+    return await orm.findOne({ cnpj: cnpj })
   }
 
   async create (date: ICreateCompanyDTO): Promise<Company> {

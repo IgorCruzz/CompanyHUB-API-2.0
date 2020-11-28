@@ -27,7 +27,7 @@ export class DbAddCompany implements IAddCompany {
 
     const companyCnpj = await this.FindCnpjRepository.findCnpj(cnpjFormat)
 
-    if (!companyCnpj) return { error: 'Já existe uma empresa cadastrada com esse cnpj' }
+    if (companyCnpj) return { error: 'Já existe uma empresa cadastrada com esse cnpj' }
 
     const companyCreate =  await this.CreateCompanyRepository.create({
       name: name.toLowerCase().trim(),
