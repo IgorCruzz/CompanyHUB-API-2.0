@@ -22,4 +22,16 @@ describe('DbAddCompany Data', () => {
     expect(dbAddCompanyData).toBeDefined()
   })
 
+  it('should call FindUserIdRepository with success', async () => {
+    const res = jest.spyOn(findUserIdRepository, 'findUserId')
+
+    await dbAddCompanyData.add({
+      name: 'name',
+      cnpj: '11111111111',
+      user: 1
+    })
+
+    expect(res).toHaveBeenCalledWith(1)
+  })
+
 });
