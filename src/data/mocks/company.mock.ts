@@ -1,5 +1,6 @@
 import { Company } from "@/infra/db/typeorm/entities/Company.entity"
 import { ICreateCompanyDTO, ICreateCompanyRepository } from "../protocols/db/company/createCompanyRepository"
+import { IFindByIdRepository } from "../protocols/db/company/findByIdRepository.interface"
 import { IFindCnpjRepository } from "../protocols/db/company/findCnpjRepository.interface"
 import { IFindUserIdRepository } from "../protocols/db/company/findUserIdRepository.interface"
 
@@ -53,4 +54,17 @@ export const MockCreateCompanyRepository = (): ICreateCompanyRepository => {
     }
 }
   return new CreateCompanyRepositoryStub()
+}
+
+export class FindByIdRepositoryStub  implements IFindByIdRepository {
+  async findId (id: number): Promise<Company> {
+    return Promise.resolve({
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      name: 'company',
+      created_at: new Date(),
+      updated_at: new Date()
+    })
+  }
 }
