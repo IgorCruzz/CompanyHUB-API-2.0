@@ -26,9 +26,9 @@ describe('DbAddCompany Data', () => {
     const res = jest.spyOn(findUserIdRepository, 'findUserId')
 
     await dbAddCompanyData.add({
-      name: 'name',
+      name: 'company',
       cnpj: '11111111111',
-      user: 1
+      user: "1"
     })
 
     expect(res).toHaveBeenCalledWith(1)
@@ -38,9 +38,9 @@ describe('DbAddCompany Data', () => {
     jest.spyOn(findUserIdRepository, 'findUserId')
 
     const res = await dbAddCompanyData.add({
-      name: 'name',
+      name: 'company',
       cnpj: '11111111111',
-      user: 1
+      user: "1"
     })
 
     expect(res).toEqual({ error: 'Você já possui uma empresa cadastrada' })
@@ -52,9 +52,9 @@ describe('DbAddCompany Data', () => {
     const res = jest.spyOn(findCnpjRepository, 'findCnpj')
 
     await dbAddCompanyData.add({
-      name: 'name',
+      name: 'company',
       cnpj: '11111111111',
-      user: 1
+      user: "1"
     })
 
     expect(res).toHaveBeenCalledWith('11111111111')
@@ -65,9 +65,9 @@ describe('DbAddCompany Data', () => {
     jest.spyOn(findCnpjRepository, 'findCnpj').mockResolvedValue(undefined)
 
     const res = await dbAddCompanyData.add({
-      name: 'name',
+      name: 'company',
       cnpj: '11111111111',
-      user: 1
+      user: "1"
     })
 
     expect(res).toEqual({ error: 'Já existe uma empresa cadastrada com esse cnpj' })
@@ -75,15 +75,31 @@ describe('DbAddCompany Data', () => {
 
   it('should call CreateCompanyRepository with success', async () => {
     jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
-    const res = jest.spyOn(createCompanyRepository, 'create').mockResolvedValue(undefined)
+    const res = jest.spyOn(createCompanyRepository, 'create')
 
     await dbAddCompanyData.add({
-      name: 'name',
+      name: 'company',
       cnpj: '11111111111',
-      user: 1
+      user: "1"
     })
 
-    expect(res).toHaveBeenCalledWith({"cnpj": "11111111111", "name": "name", "user_id": 1})
+    expect(res).toHaveBeenCalledWith({cnpj: "11111111111", name: "company", user_id: 1})
   })
 
+  it('should be return a Company registered', async () => {
+    jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
+
+    const res =  await dbAddCompanyData.add({
+      name: 'company',
+      cnpj: '11111111111',
+      user: "1"
+    })
+
+    expect(res).toEqual({
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      name: 'company'
+    })
+  })
 });
