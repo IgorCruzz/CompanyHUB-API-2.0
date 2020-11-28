@@ -56,4 +56,23 @@ describe('CreateCompany Conroller', () => {
       body: { message: 'Você já possui uma empresa cadastrada' }
     })
   })
+
+  it('throw error 500 if addCompany throws', async () => {
+    const req: IHttpRequest = {
+      userId: '1',
+      body: {
+        name: 'company',
+        cnpj: '1111111111'
+      }
+    }
+
+    jest.spyOn(addCompany, 'add').mockRejectedValue(new Error())
+
+    const res = await createCompanyController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
