@@ -29,10 +29,17 @@ export class DbAddCompany implements IAddCompany {
 
     if (!companyCnpj) return { error: 'Já existe uma empresa cadastrada com esse cnpj' }
 
-    return await this.CreateCompanyRepository.create({
+    const companyCreate =  await this.CreateCompanyRepository.create({
       name: name.toLowerCase().trim(),
       cnpj: cnpjFormat,
       user_id: Number(data.user),
     })
+
+    return {
+      user_id: companyCreate.user_id,
+      cnpj: companyCreate.cnpj,
+      id: companyCreate.id,
+      name: companyCreate.name
+    }
   }
 }

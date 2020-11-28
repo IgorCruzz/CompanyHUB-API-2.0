@@ -1,10 +1,8 @@
 
 export interface IAddCompanyDTO {
-  user: number
-  email: string
+  user: string
   name: string
   cnpj?: string
-  password_hash: string
 }
 
 export interface IAddCompanyResult {

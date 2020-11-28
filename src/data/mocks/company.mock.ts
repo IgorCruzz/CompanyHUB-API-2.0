@@ -9,7 +9,7 @@ export const MockfindUserIdRepository = (): IFindUserIdRepository => {
     async findUserId (id: number): Promise<Company> {
       return Promise.resolve({
         user_id: 1,
-        cnpj: '999999999999',
+        cnpj: '11111111111',
         id: 1,
         name: 'company',
         created_at: new Date(),
@@ -26,7 +26,7 @@ export const MockCnpjRepository = (): IFindCnpjRepository => {
     async findCnpj (cnpj: string): Promise<Company> {
       return  Promise.resolve({
         user_id: 1,
-        cnpj: '999999999999',
+        cnpj: '11111111111',
         id: 1,
         name: 'company',
         created_at: new Date(),
@@ -44,7 +44,7 @@ export const MockCreateCompanyRepository = (): ICreateCompanyRepository => {
 
       return Promise.resolve({
         user_id: 1,
-        cnpj: '999999999999',
+        cnpj: '11111111111',
         id: 1,
         name: 'company',
         created_at: new Date(),
