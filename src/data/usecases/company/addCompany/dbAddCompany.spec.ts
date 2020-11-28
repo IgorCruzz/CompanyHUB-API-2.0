@@ -62,7 +62,6 @@ describe('DbAddCompany Data', () => {
 
   it('should returns an error message if FindCnpjRepository not return an user', async () => {
     jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
-    jest.spyOn(findCnpjRepository, 'findCnpj').mockResolvedValue(undefined)
 
     const res = await dbAddCompanyData.add({
       name: 'company',
@@ -75,6 +74,7 @@ describe('DbAddCompany Data', () => {
 
   it('should call CreateCompanyRepository with success', async () => {
     jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
+    jest.spyOn(findCnpjRepository, 'findCnpj').mockResolvedValue(undefined)
     const res = jest.spyOn(createCompanyRepository, 'create')
 
     await dbAddCompanyData.add({
@@ -88,6 +88,7 @@ describe('DbAddCompany Data', () => {
 
   it('should be return a Company registered', async () => {
     jest.spyOn(findUserIdRepository, 'findUserId').mockResolvedValue(undefined)
+    jest.spyOn(findCnpjRepository, 'findCnpj').mockResolvedValue(undefined)
 
     const res =  await dbAddCompanyData.add({
       name: 'company',
