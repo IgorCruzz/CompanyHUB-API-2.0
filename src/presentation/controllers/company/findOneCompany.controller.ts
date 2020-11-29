@@ -7,20 +7,27 @@ export class FindOneCompanyController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const { userId } = httpRequest
+    try {
+      const { userId } = httpRequest
 
-    const company = await this.dbFindOneCompany.findOne(userId)
+      const company = await this.dbFindOneCompany.findOne(userId)
 
-    if (company.error) {
-      return {
-        statusCode: 400,
-        body: { message: company.error }
+      if (company.error) {
+        return {
+          statusCode: 400,
+          body: { message: company.error }
+        }
       }
-    }
 
-    return {
-      statusCode: 200,
-      body: company
+      return {
+        statusCode: 200,
+        body: company
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
