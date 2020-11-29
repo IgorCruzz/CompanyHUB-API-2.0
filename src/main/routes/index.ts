@@ -5,8 +5,15 @@ import signupRoute from './signup.routes'
 import updateUser from './updateUser.routes'
 import singinRoute from './signin.routes'
 import createCompany from './createCompany.routes'
+import deleteCompany from './deleteCompany.routes'
 
-const routes = [deleUserRoute, signupRoute, updateUser, singinRoute, createCompany]
+const routes = [
+  deleUserRoute,
+  signupRoute,
+  updateUser,
+  singinRoute,
+  createCompany,
+  deleteCompany]
 
 const router = Router()
 

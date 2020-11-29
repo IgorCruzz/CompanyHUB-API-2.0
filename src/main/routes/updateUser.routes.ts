@@ -6,6 +6,6 @@ import { makeAuthMiddleware } from '../factories/middlewares/authMiddleware'
 
 const routes = Router()
 
-routes.put('/users/:id', adapMiddleware(makeAuthMiddleware(true)), makeUpdateUserValidation(), makeUpdateUserController())
+routes.put('/users/:id', adapMiddleware(makeAuthMiddleware(false)), makeUpdateUserValidation(), makeUpdateUserController())
 
 export default routes
