@@ -33,4 +33,6 @@ describe('DbFindOneCompany Data', () => {
 
     expect(res).toEqual({ error: 'Você não cadastrou sua empresa ainda.' })
   })
+
+
 });

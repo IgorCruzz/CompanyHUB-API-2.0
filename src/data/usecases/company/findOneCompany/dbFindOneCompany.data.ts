@@ -8,9 +8,12 @@ export class DbFindOneCompany implements IDbFindOneCompany {
   ) {}
 
   async findOne(id: string): Promise<IDbFindOneCompanyResult> {
-    const company = await this.findOneCompanyRepository.findOne(Number(id))
+    const findCompany = await this.findOneCompanyRepository.findOne(Number(id))
+
+    if(!findCompany) return { error: 'Você não cadastrou sua empresa ainda.' }
+
+    const { created_at, updated_at, ...company } = findCompany
 
     return company
   }
-
 }
