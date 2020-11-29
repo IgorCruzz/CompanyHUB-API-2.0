@@ -1,19 +1,18 @@
-import { FindByIdRepositoryStub } from "@/data/mocks/company.mock";
-import { MockUserFindByIdRepository } from "@/data/mocks/user.mock";
+import { DeleteUserRepositoryStub, FindByIdRepositoryStub } from "@/data/mocks/company.mock";
+import { IDeleteCompanyRepository } from "@/data/protocols/db/company/deleteCompanyRepository.interface";
 import { IFindByIdRepository } from "@/data/protocols/db/company/findByIdRepository.interface";
-import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IDbDeleteCompany } from "@/domain/usecases/company/deleteCompany.interface";
 import { DbDeleteCompany } from "./dbDeleteCompany.data";
 
 let dbDeleteCompany: IDbDeleteCompany
 let findByIdRepository: IFindByIdRepository
-let userFindIdRepository: IFindUserByIdRepository
+let deleteCompanyRepository: IDeleteCompanyRepository
 
 describe('dbDeleteCompany Data', () => {
   beforeEach(() => {
-    userFindIdRepository = MockUserFindByIdRepository()
+    deleteCompanyRepository = new DeleteUserRepositoryStub()
     findByIdRepository = new FindByIdRepositoryStub()
-    dbDeleteCompany = new DbDeleteCompany(findByIdRepository, userFindIdRepository)
+    dbDeleteCompany = new DbDeleteCompany(findByIdRepository, deleteCompanyRepository)
   })
 
     it('should be defined', () => {
@@ -31,7 +30,7 @@ describe('dbDeleteCompany Data', () => {
       expect(res).toHaveBeenCalledWith(1)
     })
 
-    it('should returns an error message if findByIdRepository return an user', async () => {
+    it('should returns an error message if findByIdRepository return undefined', async () => {
       jest.spyOn(findByIdRepository, 'findId').mockResolvedValue(undefined)
 
       const res =   await dbDeleteCompany.delete({
@@ -42,16 +41,24 @@ describe('dbDeleteCompany Data', () => {
       expect(res).toEqual({ error: 'Não existe uma empresa com este ID.'})
     })
 
-    it('should be able to call userFindIdRepository with success', async () => {
+    it('should returns an error message if an user try to delete a company that belongs to other user', async () => {
 
-      const res = jest.spyOn(userFindIdRepository, 'findId')
+      const res =   await dbDeleteCompany.delete({
+        params: { id: "1" },
+        user: "2"
+      })
+
+      expect(res).toEqual({ error: 'Você não tem permissão parar alterar dados de outra empresa.'})
+    })
+
+    it('should call deleteCompanyRepository with success', async () => {
+      const res = jest.spyOn(deleteCompanyRepository, 'delete')
 
       await dbDeleteCompany.delete({
         params: { id: "1" },
         user: "1"
       })
 
-     expect(res).toHaveBeenCalledWith(1)
+      expect(res).toHaveBeenCalledWith(1)
     })
-
 });
