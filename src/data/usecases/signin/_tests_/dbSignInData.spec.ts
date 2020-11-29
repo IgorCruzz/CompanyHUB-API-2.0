@@ -5,7 +5,7 @@ import { IFindUserByEmailRepository } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { ISign } from "@/data/protocols/jwtAdapter/signJwt.interface";
 import { ISignIn } from "@/domain/usecases/signin/signIn.interface"
-import { DbSignIn } from "../signIn.data";
+import { DbSignIn } from "../dbSignIn.data"
 
 let signInData: ISignIn
 let jwtSignAdapter: ISign

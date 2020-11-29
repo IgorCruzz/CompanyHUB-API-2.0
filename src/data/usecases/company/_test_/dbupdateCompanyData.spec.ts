@@ -1,8 +1,8 @@
 import { FindOneCompanyRepositoryStub, UpdateCompanyRepositoryStub } from "@/data/mocks/company.mock";
 import { IFindOneCompanyRepository } from "@/data/protocols/db/company/findOneCompanyRepository.interface";
 import { IUpdateCompanyRepository } from "@/data/protocols/db/company/updateCompanyRepository.interface";
-import { IUpdateCompany } from "@/domain/usecases/company/updateCompany.interace";
-import { DbUpdateCompany } from "../updateCompany.data";
+import { IUpdateCompany } from "@/domain/usecases/company/updateCompany.interface"
+import { DbUpdateCompany } from "../dbUpdateCompany.data"
 
 let dbUpdateCompany: IUpdateCompany
 let findOneCompanyRepository: IFindOneCompanyRepository

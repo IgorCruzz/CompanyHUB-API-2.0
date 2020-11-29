@@ -1,4 +1,4 @@
-import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interace'
+import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateCompanyController implements IController {

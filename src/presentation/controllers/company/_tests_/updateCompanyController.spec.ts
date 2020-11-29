@@ -1,5 +1,5 @@
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interace'
+import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interface'
 import { UpdateCompanyController } from '../updateCompany.controller'
 import { DbUpdateCompanyStub } from '@/presentation/mocks/company.mock'
 

@@ -1,7 +1,7 @@
 import { CompanyRepository } from '../../../../infra/db/typeorm/repositories/company/company.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
-import { DbUpdateCompany } from '../../../../data/usecases/company/updateCompany.data'
-import { UpdateCompanyController } from '@/presentation/controllers/company/updateCompany.controller'
+import { DbUpdateCompany } from '../../../../data/usecases/company/dbUpdateCompany.data'
+import { UpdateCompanyController } from '../../../../presentation/controllers/company/updateCompany.controller'
 
 export const makeUpdateCompanyController = () => {
   const companyRepository = new CompanyRepository()

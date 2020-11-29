@@ -1,6 +1,6 @@
 import { IFindOneCompanyRepository } from "@/data/protocols/db/company/findOneCompanyRepository.interface";
 import { IUpdateCompanyRepository } from "@/data/protocols/db/company/updateCompanyRepository.interface";
-import { IUpdateCompany, IUpdateCompanyDTO, IUpdateCompanyResult } from "@/domain/usecases/company/updateCompany.interace";
+import { IUpdateCompany, IUpdateCompanyDTO, IUpdateCompanyResult } from "@/domain/usecases/company/updateCompany.interface"
 
 export class DbUpdateCompany implements IUpdateCompany {
   constructor (

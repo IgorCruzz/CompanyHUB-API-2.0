@@ -1,5 +1,5 @@
 import { AuthMiddleware } from '../../../presentation/middlewares/auth.middleware'
-import { DbAuthorization } from '../../../data/usecases/authorization/authorization.data'
+import { DbAuthorization } from '../../../data/usecases/authorization/dbAuthorization.data'
 import { UserRepository } from '../../../infra/db/typeorm/repositories/user/user.repository'
 import { JwtAdapter } from '../../../infra/jwtAdapter/jwt.adapter'
 
