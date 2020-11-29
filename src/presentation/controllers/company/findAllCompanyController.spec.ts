@@ -1,7 +1,7 @@
 
 import { IDbFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
 import { DbFindAllCompanyStub } from '@/presentation/mocks/company.mock'
-import { IController, IHttpRequest } from '@/presentation/protocols'
+import { IController } from '@/presentation/protocols'
 import { FindAllCompanyController } from './findAllCompany.controller'
 
 let findAllCompanyController: IController
@@ -41,13 +41,6 @@ describe('DeleteCompany Controller', () => {
   })
 
   it('return statusCode 500 if DbFindAllCompany throws', async () => {
-    const req: IHttpRequest = {
-      params: {
-        id: 1
-      },
-      userId: '1'
-    }
-
     jest.spyOn(DbFindAllCompany, 'findAll').mockRejectedValue(new Error())
 
     const res = await findAllCompanyController.handle({})
