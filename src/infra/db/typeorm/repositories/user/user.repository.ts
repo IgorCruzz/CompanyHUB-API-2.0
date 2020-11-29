@@ -1,7 +1,6 @@
 import { IAddUserDTO, ICreateUserRepository, IFindUserByEmailRepository } from '@/data/protocols'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
 import { IUpdateUserDTO, IUpdateUserRepository } from '@/data/protocols/db/user/updateUserRepository.interface'
-import { IUser } from '@/domain/models/user.interface'
 import { getRepository } from 'typeorm'
 import { User } from '../../entities/User.entity'
 
@@ -17,7 +16,7 @@ IUpdateUserRepository {
     })
   }
 
-  async findId (id: number): Promise<IUser> {
+  async findId (id: number): Promise<User> {
     const orm = getRepository(User)
 
     return await orm.findOne({ id })
