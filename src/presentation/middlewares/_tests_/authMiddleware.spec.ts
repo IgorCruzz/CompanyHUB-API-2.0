@@ -1,5 +1,5 @@
 import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
-import { mockAuthorization } from '../../mocks/authorization.mock'
+import { DbAuthorizationStub } from '@/presentation/mocks/authorization.mock'
 import { IHttpRequest, IMiddleware } from '../../protocols'
 import { AuthMiddleware } from '../auth.middleware'
 
@@ -8,7 +8,7 @@ let authController: IMiddleware
 
 describe('Auth Middleware', () => {
   beforeEach(() => {
-    authData = mockAuthorization()
+    authData = new DbAuthorizationStub()
     authController = new AuthMiddleware(authData, false)
   })
 

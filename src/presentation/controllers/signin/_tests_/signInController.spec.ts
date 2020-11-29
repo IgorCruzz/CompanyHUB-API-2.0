@@ -1,5 +1,5 @@
 import { ISignIn } from '@/domain/usecases/signin/signIn.interface'
-import { mockDbSignIn } from '@/presentation/mocks/signIn.mock'
+import { DbSignInStub } from '@/presentation/mocks/signIn.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { SignInController } from '../signIn.controller'
 
@@ -8,7 +8,7 @@ let dbSignInData: ISignIn
 
 describe('SignIn Controller', () => {
   beforeEach(() => {
-    dbSignInData = mockDbSignIn()
+    dbSignInData = new DbSignInStub()
     signInController = new SignInController(dbSignInData)
   })
 

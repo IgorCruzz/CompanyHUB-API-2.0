@@ -2,7 +2,7 @@ import { IAddCompany, IAddCompanyDTO, IAddCompanyResult } from '@/domain/usecase
 import { IDbDeleteCompany, IDbDeleteCompanyDTO, IDbDeleteCompanyResult } from '@/domain/usecases/company/deleteCompany.interface'
 import { IDbFindAllCompany, IDbFindAllCompanyResult } from '@/domain/usecases/company/findAllCompanies.interface'
 import { IDbFindOneCompany, IDbFindOneCompanyResult } from '@/domain/usecases/company/findOneCompany.interface'
-import { IUpdateCompany, IUpdateCompanyDTO, IUpdateCompanyResult } from '@/domain/usecases/company/updateCompany.interace'
+import { IUpdateCompany, IUpdateCompanyDTO, IUpdateCompanyResult } from '@/domain/usecases/company/updateCompany.interface'
 
 export class DbAddCompanyStub implements IAddCompany {
   async add (data: IAddCompanyDTO): Promise<IAddCompanyResult> {

@@ -1,6 +1,6 @@
 import { IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
+import { DbDeleteUserStub } from '@/presentation/mocks/user.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { mockDeleteUser } from '@/presentation/mocks/user.mock'
 import { DeleteUserController } from '../deleteUser.controller'
 
 let deleteUserController: IController
@@ -8,7 +8,7 @@ let deleteUserData: IDeleteUser
 
 describe('DeleteUser Controller', () => {
   beforeEach(() => {
-    deleteUserData = mockDeleteUser()
+    deleteUserData = new DbDeleteUserStub()
     deleteUserController = new DeleteUserController(deleteUserData)
   })
 

@@ -8,8 +8,8 @@ import { IFindOneCompanyRepository } from "../protocols/db/company/findOneCompan
 import { IFindUserIdRepository } from "../protocols/db/company/findUserIdRepository.interface"
 import { IUpdateCompanyRepository } from "../protocols/db/company/updateCompanyRepository.interface"
 
-export const MockfindUserIdRepository = (): IFindUserIdRepository => {
-  class FindUserIdRepositorytub  implements IFindUserIdRepository {
+
+export class FindUserIdRepositorytub  implements IFindUserIdRepository {
 
     async findUserId (id: number): Promise<Company> {
       return Promise.resolve({
@@ -22,11 +22,8 @@ export const MockfindUserIdRepository = (): IFindUserIdRepository => {
       })
     }
 }
-  return new FindUserIdRepositorytub()
-}
 
-export const MockCnpjRepository = (): IFindCnpjRepository => {
-  class FindCnpjRepositoryStub  implements IFindCnpjRepository {
+export class FindCnpjRepositoryStub  implements IFindCnpjRepository {
 
     async findCnpj (cnpj: string): Promise<Company> {
       return  Promise.resolve({
@@ -39,11 +36,10 @@ export const MockCnpjRepository = (): IFindCnpjRepository => {
       })
     }
 }
-  return new FindCnpjRepositoryStub()
-}
 
-export const MockCreateCompanyRepository = (): ICreateCompanyRepository => {
-  class CreateCompanyRepositoryStub  implements ICreateCompanyRepository {
+
+
+export class CreateCompanyRepositoryStub  implements ICreateCompanyRepository {
 
     async create (date: ICreateCompanyDTO): Promise<Company> {
 
@@ -56,8 +52,6 @@ export const MockCreateCompanyRepository = (): ICreateCompanyRepository => {
         updated_at: new Date()
       })
     }
-}
-  return new CreateCompanyRepositoryStub()
 }
 
 export class FindByIdRepositoryStub  implements IFindByIdRepository {

@@ -1,6 +1,6 @@
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
+import { DbAddUserStub } from '@/presentation/mocks/user.mock'
 import { IHttpRequest } from '@/presentation/protocols'
-import { MockAddUser } from '@/presentation/mocks/user.mock'
 import { SignupController } from '../signup.controller'
 
 let signupController: SignupController
@@ -8,7 +8,7 @@ let dbAddUser: IAddUser
 
 describe('SignupController', () => {
   beforeEach(() => {
-    dbAddUser = MockAddUser()
+    dbAddUser = new DbAddUserStub()
     signupController = new SignupController(dbAddUser)
   })
   it('should be defined', () => {

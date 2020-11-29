@@ -1,6 +1,6 @@
+import { DeleteUserRepositoryStub, UserFindByIdRepositoryStub } from "@/data/mocks/user.mock";
 import { IDeleteUserRepository } from "@/data/protocols/db/user/deleteUserRepository.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
-import { MockUserDeleteRepository, MockUserFindByIdRepository } from "@/data/mocks/user.mock";
 import { IDeleteUser } from "@/domain/usecases/user/deleteUser.interface";
 import { DbDeleteUser } from "../dbDeleteUser.data";
 
@@ -10,8 +10,8 @@ let userDeleteRepository: IDeleteUserRepository
 
 describe('DbDeleteUser', () => {
   beforeEach(() => {
-    userFindIdRepository = MockUserFindByIdRepository()
-    userDeleteRepository = MockUserDeleteRepository()
+    userFindIdRepository = new UserFindByIdRepositoryStub()
+    userDeleteRepository = new DeleteUserRepositoryStub()
     dbDeleteUser = new DbDeleteUser(
       userFindIdRepository,
       userDeleteRepository)
