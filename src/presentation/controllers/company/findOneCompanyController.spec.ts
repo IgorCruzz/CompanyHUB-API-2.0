@@ -46,4 +46,17 @@ describe('FindOneCompany Controller', () => {
       body: { message: 'Você não cadastrou sua empresa ainda.' }
     })
   })
+
+  it('return statusCode 500 if DbFindAllCompany throws', async () => {
+    jest.spyOn(dbFindOneCompany, 'findOne').mockRejectedValue(new Error())
+
+    const req: IHttpRequest = { userId: '1' }
+
+    const res = await findOneCompanyController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
