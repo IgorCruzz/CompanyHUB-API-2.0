@@ -11,6 +11,13 @@ export class FindOneCompanyController implements IController {
 
     const company = await this.dbFindOneCompany.findOne(userId)
 
+    if (company.error) {
+      return {
+        statusCode: 400,
+        body: { message: company.error }
+      }
+    }
+
     return {
       statusCode: 200,
       body: company

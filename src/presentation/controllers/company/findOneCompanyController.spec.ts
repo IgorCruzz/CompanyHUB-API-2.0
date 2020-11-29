@@ -33,4 +33,17 @@ describe('FindOneCompany Controller', () => {
         }
     })
   })
+
+  it('should be returns statusCode 400 if dbFindOneCompany returns an error', async () => {
+    jest.spyOn(dbFindOneCompany, 'findOne').mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
+
+    const req: IHttpRequest = { userId: '1' }
+
+    const res = await findOneCompanyController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 400,
+      body: { message: 'Você não cadastrou sua empresa ainda.' }
+    })
+  })
 })
