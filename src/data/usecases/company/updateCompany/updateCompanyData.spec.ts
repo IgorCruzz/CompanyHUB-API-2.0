@@ -21,7 +21,8 @@ describe('DbUpdateCompany Data', () => {
 
       await dbUpdateCompany.update(1, {
         name: 'company',
-        cnpj: "111111111"
+        cnpj: "111111111",
+        user: "1"
       })
 
       expect(res).toHaveBeenCalledWith(1)
@@ -32,10 +33,22 @@ describe('DbUpdateCompany Data', () => {
 
       const res = await dbUpdateCompany.update(1, {
         name: 'company',
-        cnpj: "111111111"
+        cnpj: "111111111",
+        user: "1"
       })
 
 
       expect(res).toEqual({ error: 'Você não cadastrou sua empresa ainda.' })
+    })
+
+    it('should returns an error message if company belongs to another user', async () => {
+      const res = await dbUpdateCompany.update(2, {
+        name: 'company',
+        cnpj: "111111111",
+        user: "2"
+      })
+
+      expect(res).toEqual({ error: 'Você não tem permissão parar alterar dados de outra empresa.' })
+
     })
 });
