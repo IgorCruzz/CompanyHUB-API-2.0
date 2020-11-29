@@ -1,5 +1,6 @@
-import { IUser } from "@/domain/models/user.interface";
+import { User } from "@/infra/db/typeorm/entities/User.entity";
+
 
 export interface IFindUserByIdRepository {
-  findId (id: number): Promise<IUser>
+  findId (id: number): Promise<User>
 }
