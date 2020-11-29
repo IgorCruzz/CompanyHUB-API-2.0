@@ -11,6 +11,7 @@ export class DbDeleteCompany implements IDbDeleteCompany {
   ) {}
 
   async delete (data: IDbDeleteCompanyDTO): Promise<IDbDeleteCompanyResult> {
+
     const { user, params } = data
 
     const findCompany = await this.findByIdRepository.findId(Number(params.id))
