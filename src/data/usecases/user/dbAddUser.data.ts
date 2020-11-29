@@ -2,7 +2,6 @@ import { IAddUserDTO, ICreateTokenRepository, ICreateUserRepository, IFindUserBy
 import { IHasher } from "@/data/protocols/bcryptAdapter/IHasher.interface"
 import { IAddResult, IAddUser } from "@/domain/usecases/user/addUser.interface"
 
-
 export class DbAddUser implements IAddUser {
   constructor (
     private readonly generateCrypto: IGenerateCrypto,
