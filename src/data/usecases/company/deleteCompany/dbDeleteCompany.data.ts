@@ -1,3 +1,4 @@
+import { IDeleteCompanyRepository } from "@/data/protocols/db/company/deleteCompanyRepository.interface";
 import { IFindByIdRepository } from "@/data/protocols/db/company/findByIdRepository.interface";
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { IDbDeleteCompany, IDbDeleteCompanyDTO, IDbDeleteCompanyResult } from "@/domain/usecases/company/deleteCompany.interface";
@@ -5,7 +6,7 @@ import { IDbDeleteCompany, IDbDeleteCompanyDTO, IDbDeleteCompanyResult } from "@
 export class DbDeleteCompany implements IDbDeleteCompany {
   constructor (
     private readonly findByIdRepository: IFindByIdRepository,
-    private readonly findUserByIdRepository: IFindUserByIdRepository,
+    private readonly deleteCompanyRepository: IDeleteCompanyRepository
 
   ) {}
 
@@ -16,11 +17,10 @@ export class DbDeleteCompany implements IDbDeleteCompany {
 
     if (!findCompany) return { error: 'Não existe uma empresa com este ID.'}
 
-    const findUser = await this.findUserByIdRepository.findId(Number(user))
+    if (Number(user) !== findCompany.user_id) return { error: 'Você não tem permissão parar alterar dados de outra empresa.'}
 
-    if (findUser.id !== findCompany.user_id) return { error: 'Não existe uma empresa com este ID.'}
+    const deleted = await this.deleteCompanyRepository.delete(Number(params.id))
 
-    return null
+    return { deleted }
   }
-
 }
