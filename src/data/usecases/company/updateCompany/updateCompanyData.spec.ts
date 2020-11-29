@@ -76,6 +76,6 @@ describe('DbUpdateCompany Data', () => {
         user: "1"
       })
 
-      expect(res).toHaveBeenCalledWith(1, {"cnpj": "111111111", "name": "company", "user": "1"})
+      expect(res).toHaveBeenCalledWith(1, {cnpj: "111111111", name: "company", user: "1"})
     })
 });

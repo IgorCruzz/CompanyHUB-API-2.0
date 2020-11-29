@@ -2,7 +2,7 @@
 export interface IUpdateCompanyDTO {
   cnpj?: string
   name?: string
-  user: string
+  user?: string
 }
 
 export interface IUpdateCompanyResult {

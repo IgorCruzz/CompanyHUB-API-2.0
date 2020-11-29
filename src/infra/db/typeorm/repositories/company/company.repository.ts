@@ -5,6 +5,8 @@ import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdReposit
 import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjRepository.interface'
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
+import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
+import { IUpdateCompanyDTO } from '@/domain/usecases/company/updateCompany.interace'
 import { getRepository } from 'typeorm'
 import { Company } from '../../entities/Company.entity'
 
@@ -15,7 +17,8 @@ export class CompanyRepository implements
   ICreateCompanyRepository,
   IDeleteCompanyRepository,
   IFindAllCompaniesRepository,
-  IFindOneCompanyRepository {
+  IFindOneCompanyRepository,
+  IUpdateCompanyRepository {
   async findUserId (id: number): Promise<Company> {
     const orm = getRepository(Company)
 
@@ -63,5 +66,13 @@ export class CompanyRepository implements
     const deleteCompany = await orm.delete(id)
 
     return deleteCompany && true
+  }
+
+  async update (id: number, data: any): Promise<boolean> {
+    const orm = getRepository(Company)
+
+    const updateCompany = await orm.update(id, data)
+
+    return updateCompany && true
   }
 }

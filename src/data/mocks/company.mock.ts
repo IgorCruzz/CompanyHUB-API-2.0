@@ -6,6 +6,7 @@ import { IFindByIdRepository } from "../protocols/db/company/findByIdRepository.
 import { IFindCnpjRepository } from "../protocols/db/company/findCnpjRepository.interface"
 import { IFindOneCompanyRepository } from "../protocols/db/company/findOneCompanyRepository.interface"
 import { IFindUserIdRepository } from "../protocols/db/company/findUserIdRepository.interface"
+import { IUpdateCompanyRepository } from "../protocols/db/company/updateCompanyRepository.interface"
 
 export const MockfindUserIdRepository = (): IFindUserIdRepository => {
   class FindUserIdRepositorytub  implements IFindUserIdRepository {
@@ -114,5 +115,13 @@ export class FindOneCompanyRepositoryStub  implements IFindOneCompanyRepository 
       created_at: new Date(),
       updated_at: new Date()
     })
+  }
+}
+
+
+export class UpdateCompanyRepositoryStub  implements IUpdateCompanyRepository {
+
+  update (id: number, data: any): Promise<boolean> {
+    return Promise.resolve(true)
   }
 }
