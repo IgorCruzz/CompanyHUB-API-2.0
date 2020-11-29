@@ -1,6 +1,6 @@
 import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
+import { DbUpdateUserStub } from '@/presentation/mocks/user.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { mockUpdateUser } from '@/presentation/mocks/user.mock'
 import { UpdateUserController } from '../updateUser.controller'
 
 let updateUserController: IController
@@ -8,7 +8,7 @@ let updateUserData: IUpdateUser
 
 describe('UpdateUser Controller', () => {
   beforeEach(() => {
-    updateUserData = mockUpdateUser()
+    updateUserData = new DbUpdateUserStub()
     updateUserController = new UpdateUserController(updateUserData)
   })
 

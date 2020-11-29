@@ -1,4 +1,4 @@
-import { DbAddUser } from '../../../../data/usecases/user/dbAddUser'
+import { DbAddUser } from '../../../../data/usecases/user/dbAddUser.data'
 import { TokenRepository } from '../../../../infra/db/typeorm/repositories/token/token.repository'
 import { UserRepository } from '../../../../infra/db/typeorm/repositories/user/user.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'

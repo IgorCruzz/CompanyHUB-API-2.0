@@ -1,4 +1,4 @@
-import { MockCnpjRepository, MockCreateCompanyRepository, MockfindUserIdRepository } from "@/data/mocks/company.mock";
+import { CreateCompanyRepositoryStub, FindCnpjRepositoryStub, FindUserIdRepositorytub } from "@/data/mocks/company.mock";
 import { ICreateCompanyRepository } from "@/data/protocols/db/company/createCompanyRepository";
 import { IFindCnpjRepository } from "@/data/protocols/db/company/findCnpjRepository.interface";
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
@@ -12,9 +12,9 @@ let createCompanyRepository: ICreateCompanyRepository
 
 describe('DbAddCompany Data', () => {
   beforeEach(() => {
-    findUserIdRepository = MockfindUserIdRepository()
-    findCnpjRepository = MockCnpjRepository()
-    createCompanyRepository = MockCreateCompanyRepository()
+    findUserIdRepository = new FindUserIdRepositorytub()
+    findCnpjRepository = new FindCnpjRepositoryStub()
+    createCompanyRepository = new CreateCompanyRepositoryStub()
     dbAddCompanyData = new DbAddCompany(findUserIdRepository, findCnpjRepository, createCompanyRepository )
   })
 

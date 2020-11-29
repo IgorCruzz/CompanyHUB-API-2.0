@@ -1,6 +1,6 @@
-import { mockCompare } from "@/data/mocks/bcrypt.mock";
-import { MockJwtSignAdapter } from "@/data/mocks/jwt.mock";
-import { MockUserFindByEmailRepository } from "@/data/mocks/user.mock";
+import { BcryptCompareStub } from "@/data/mocks/bcrypt.mock";
+import { JwtSignAdapterStub } from "@/data/mocks/jwt.mock";
+import { UserFindByEmailRepositoryStub } from "@/data/mocks/user.mock";
 import { IFindUserByEmailRepository } from "@/data/protocols";
 import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
 import { ISign } from "@/data/protocols/jwtAdapter/signJwt.interface";
@@ -14,9 +14,9 @@ let bcryptCompare: ICompare
 
 describe('SigIn Data', () => {
   beforeEach(() => {
-    jwtSignAdapter = MockJwtSignAdapter()
-    userFindByEmailRepository = MockUserFindByEmailRepository()
-    bcryptCompare = mockCompare()
+    jwtSignAdapter = new JwtSignAdapterStub()
+    userFindByEmailRepository = new UserFindByEmailRepositoryStub()
+    bcryptCompare = new BcryptCompareStub()
     signInData = new DbSignIn(jwtSignAdapter, userFindByEmailRepository, bcryptCompare)
   })
 

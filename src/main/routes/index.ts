@@ -1,17 +1,17 @@
 import { Router } from 'express'
 
-import deleUserRoute from './deleteUser.routes'
-import signupRoute from './signup.routes'
-import updateUser from './updateUser.routes'
-import singinRoute from './signin.routes'
-import createCompany from './createCompany.routes'
-import deleteCompany from './deleteCompany.routes'
-import findAllCompanies from './findAllCompanies.routes'
-import findOneCompany from './findOneCompany.routes'
-import updateCompany from './updateCompany.routes'
+import deleteUserRoute from './user/deleteUser.routes'
+import signupRoute from './auth/signup.routes'
+import updateUser from './user/updateUser.routes'
+import singinRoute from './auth/signin.routes'
+import createCompany from './company/createCompany.routes'
+import deleteCompany from './company/deleteCompany.routes'
+import findAllCompanies from './company/findAllCompanies.routes'
+import findOneCompany from './company/findOneCompany.routes'
+import updateCompany from './company/updateCompany.routes'
 
 const routes = [
-  deleUserRoute,
+  deleteUserRoute,
   signupRoute,
   updateUser,
   singinRoute,
