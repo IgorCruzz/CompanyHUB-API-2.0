@@ -3,6 +3,7 @@ import { IDeleteCompanyRepository } from '@/data/protocols/db/company/deleteComp
 import { IFindAllCompaniesRepository } from '@/data/protocols/db/company/findAllCompanies.repository'
 import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
 import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjRepository.interface'
+import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
 import { getRepository } from 'typeorm'
 import { Company } from '../../entities/Company.entity'
@@ -13,7 +14,8 @@ export class CompanyRepository implements
   IFindCnpjRepository,
   ICreateCompanyRepository,
   IDeleteCompanyRepository,
-  IFindAllCompaniesRepository {
+  IFindAllCompaniesRepository,
+  IFindOneCompanyRepository {
   async findUserId (id: number): Promise<Company> {
     const orm = getRepository(Company)
 
@@ -44,6 +46,15 @@ export class CompanyRepository implements
     const orm = getRepository(Company)
 
     return await orm.save(date)
+  }
+
+  async findOne (id: number): Promise<Company> {
+    const orm = getRepository(Company)
+
+    return await orm.findOne({
+      where: { user_id: id },
+      relations: ['productConnection']
+    })
   }
 
   async delete (id: number): Promise<boolean> {

@@ -4,6 +4,7 @@ import { IDeleteCompanyRepository } from "../protocols/db/company/deleteCompanyR
 import { IFindAllCompaniesRepository } from "../protocols/db/company/findAllCompanies.repository"
 import { IFindByIdRepository } from "../protocols/db/company/findByIdRepository.interface"
 import { IFindCnpjRepository } from "../protocols/db/company/findCnpjRepository.interface"
+import { IFindOneCompanyRepository } from "../protocols/db/company/findOneCompanyRepository.interface"
 import { IFindUserIdRepository } from "../protocols/db/company/findUserIdRepository.interface"
 
 export const MockfindUserIdRepository = (): IFindUserIdRepository => {
@@ -98,5 +99,20 @@ export class FindAllCompaniesRepositoryStub  implements IFindAllCompaniesReposit
       created_at: new Date(),
       updated_at: new Date()
     }])
+  }
+}
+
+export class FindOneCompanyRepositoryStub  implements IFindOneCompanyRepository {
+
+  async findOne(id: number): Promise<Company>{
+    return Promise.resolve({
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      productConnection: [],
+      name: 'company',
+      created_at: new Date(),
+      updated_at: new Date()
+    })
   }
 }
