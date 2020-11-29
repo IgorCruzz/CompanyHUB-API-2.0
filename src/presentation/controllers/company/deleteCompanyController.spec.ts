@@ -50,4 +50,22 @@ describe('DeleteCompany Controller', () => {
       body: { message: 'Não existe uma empresa com este ID.' }
     })
   })
+
+  it('return statusCode 500 if deleteCompany throws', async () => {
+    const req: IHttpRequest = {
+      params: {
+        id: 1
+      },
+      userId: '1'
+    }
+
+    jest.spyOn(deleteCompany, 'delete').mockRejectedValue(new Error())
+
+    const res = await deleteCompanyController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
