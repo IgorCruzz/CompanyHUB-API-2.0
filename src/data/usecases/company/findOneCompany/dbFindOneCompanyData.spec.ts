@@ -25,4 +25,12 @@ describe('DbFindOneCompany Data', () => {
 
     expect(res).toHaveBeenCalledWith(1)
   })
+
+  it('should returns an error message if findOneCompanyRepository returns undefined', async () => {
+    jest.spyOn(findOneCompanyRepository, 'findOne').mockResolvedValue(undefined)
+
+    const res = await dbFindOneCompany.findOne("1")
+
+    expect(res).toEqual({ error: 'Você não cadastrou sua empresa ainda.' })
+  })
 });
