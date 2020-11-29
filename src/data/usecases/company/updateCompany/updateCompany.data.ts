@@ -11,6 +11,7 @@ export class DbUpdateCompany implements IUpdateCompany {
 
     if(!findCompany) return { error: 'Você não cadastrou sua empresa ainda.' }
 
+    if (Number(data.user) !== findCompany.user_id) return  { error: 'Você não tem permissão parar alterar dados de outra empresa.' }
 
     return await null
   }
