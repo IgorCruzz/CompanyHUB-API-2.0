@@ -1,5 +1,6 @@
 import { ICreateCompanyDTO, ICreateCompanyRepository } from '@/data/protocols/db/company/createCompanyRepository'
 import { IDeleteCompanyRepository } from '@/data/protocols/db/company/deleteCompanyRepository.interface'
+import { IFindAllCompaniesRepository } from '@/data/protocols/db/company/findAllCompanies.repository'
 import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
 import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
@@ -11,7 +12,8 @@ export class CompanyRepository implements
   IFindByIdRepository,
   IFindCnpjRepository,
   ICreateCompanyRepository,
-  IDeleteCompanyRepository {
+  IDeleteCompanyRepository,
+  IFindAllCompaniesRepository {
   async findUserId (id: number): Promise<Company> {
     const orm = getRepository(Company)
 
@@ -22,6 +24,14 @@ export class CompanyRepository implements
     const orm = getRepository(Company)
 
     return await orm.findOne({ id })
+  }
+
+  async findAll (): Promise<Company[]> {
+    const orm = getRepository(Company)
+
+    return await orm.find({
+      relations: ['productConnection']
+    })
   }
 
   async findCnpj (cnpj: string): Promise<Company> {

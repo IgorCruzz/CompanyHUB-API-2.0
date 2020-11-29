@@ -1,6 +1,7 @@
 import { Company } from "@/infra/db/typeorm/entities/Company.entity"
 import { ICreateCompanyDTO, ICreateCompanyRepository } from "../protocols/db/company/createCompanyRepository"
 import { IDeleteCompanyRepository } from "../protocols/db/company/deleteCompanyRepository.interface"
+import { IFindAllCompaniesRepository } from "../protocols/db/company/findAllCompanies.repository"
 import { IFindByIdRepository } from "../protocols/db/company/findByIdRepository.interface"
 import { IFindCnpjRepository } from "../protocols/db/company/findCnpjRepository.interface"
 import { IFindUserIdRepository } from "../protocols/db/company/findUserIdRepository.interface"
@@ -74,5 +75,28 @@ export class DeleteUserRepositoryStub  implements IDeleteCompanyRepository {
 
   async delete (id: number): Promise<boolean> {
     return Promise.resolve(true)
+  }
+}
+
+export class FindAllCompaniesRepositoryStub  implements IFindAllCompaniesRepository {
+
+  async findAll(): Promise<Company[]>{
+    return Promise.resolve([{
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      productConnection: [],
+      name: 'company',
+      created_at: new Date(),
+      updated_at: new Date()
+    },{
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      productConnection: [],
+      name: 'company',
+      created_at: new Date(),
+      updated_at: new Date()
+    }])
   }
 }
