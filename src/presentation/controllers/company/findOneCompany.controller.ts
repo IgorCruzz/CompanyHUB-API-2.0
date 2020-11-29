@@ -8,9 +8,9 @@ export class FindOneCompanyController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { userId } = httpRequest
+      const { id } = httpRequest.params
 
-      const company = await this.dbFindOneCompany.findOne(userId)
+      const company = await this.dbFindOneCompany.findOne(id)
 
       if (company.error) {
         return {
