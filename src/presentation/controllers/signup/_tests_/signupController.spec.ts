@@ -1,7 +1,7 @@
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
 import { IHttpRequest } from '@/presentation/protocols'
 import { MockAddUser } from '@/presentation/mocks/user.mock'
-import { SignupController } from './signup.controller'
+import { SignupController } from '../signup.controller'
 
 let signupController: SignupController
 let dbAddUser: IAddUser

@@ -1,7 +1,6 @@
 import { IAddUserDTO, ICreateTokenRepository, ICreateUserRepository, IFindUserByEmailRepository, IGenerateCrypto } from "@/data/protocols"
 import { IHasher } from "@/data/protocols/bcryptAdapter/IHasher.interface"
-import {  IAddResult, IUser } from "@/domain/models/user.interface"
-import { IAddUser } from "@/domain/usecases/user/addUser.interface"
+import { IAddResult, IAddUser } from "@/domain/usecases/user/addUser.interface"
 
 
 export class DbAddUser implements IAddUser {

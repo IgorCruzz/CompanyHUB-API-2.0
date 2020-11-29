@@ -1,7 +1,7 @@
 import { IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { mockDeleteUser } from '@/presentation/mocks/user.mock'
-import { DeleteUserController } from './deleteUser.controller'
+import { DeleteUserController } from '../deleteUser.controller'
 
 let deleteUserController: IController
 let deleteUserData: IDeleteUser

@@ -1,7 +1,7 @@
 import { ISignIn } from '@/domain/usecases/signin/signIn.interface'
 import { mockDbSignIn } from '@/presentation/mocks/signIn.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { SignInController } from './signIn.controller'
+import { SignInController } from '../signIn.controller'
 
 let signInController: IController
 let dbSignInData: ISignIn

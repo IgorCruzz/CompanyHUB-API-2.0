@@ -1,7 +1,7 @@
 import { IAddCompany } from '@/domain/usecases/company/addCompany.interface'
 import { DbAddCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { CreateCompanyController } from './createCompany.controller'
+import { CreateCompanyController } from '../createCompany.controller'
 
 let createCompanyController: IController
 let addCompany: IAddCompany

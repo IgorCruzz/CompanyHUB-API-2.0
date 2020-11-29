@@ -2,7 +2,7 @@ import { FindOneCompanyRepositoryStub, UpdateCompanyRepositoryStub } from "@/dat
 import { IFindOneCompanyRepository } from "@/data/protocols/db/company/findOneCompanyRepository.interface";
 import { IUpdateCompanyRepository } from "@/data/protocols/db/company/updateCompanyRepository.interface";
 import { IUpdateCompany } from "@/domain/usecases/company/updateCompany.interace";
-import { DbUpdateCompany } from "./updateCompany.data";
+import { DbUpdateCompany } from "../updateCompany.data";
 
 let dbUpdateCompany: IUpdateCompany
 let findOneCompanyRepository: IFindOneCompanyRepository

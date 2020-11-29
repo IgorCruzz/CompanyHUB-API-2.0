@@ -1,7 +1,7 @@
 import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
-import { mockAuthorization } from '../mocks/authorization.mock'
-import { IHttpRequest, IMiddleware } from '../protocols'
-import { AuthMiddleware } from './auth.middleware'
+import { mockAuthorization } from '../../mocks/authorization.mock'
+import { IHttpRequest, IMiddleware } from '../../protocols'
+import { AuthMiddleware } from '../auth.middleware'
 
 let authData: IAuthorization
 let authController: IMiddleware

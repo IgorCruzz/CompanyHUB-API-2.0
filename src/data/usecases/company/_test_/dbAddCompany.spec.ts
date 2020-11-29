@@ -3,7 +3,7 @@ import { ICreateCompanyRepository } from "@/data/protocols/db/company/createComp
 import { IFindCnpjRepository } from "@/data/protocols/db/company/findCnpjRepository.interface";
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
 import { IAddCompany } from "@/domain/usecases/company/addCompany.interface";
-import { DbAddCompany } from "./dbAddCompany.data";
+import { DbAddCompany } from "../dbAddCompany.data";
 
 let dbAddCompanyData: IAddCompany
 let findUserIdRepository: IFindUserIdRepository

@@ -1,7 +1,7 @@
 import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { mockUpdateUser } from '@/presentation/mocks/user.mock'
-import { UpdateUserController } from './updateUser.controller'
+import { UpdateUserController } from '../updateUser.controller'
 
 let updateUserController: IController
 let updateUserData: IUpdateUser

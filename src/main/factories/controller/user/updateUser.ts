@@ -1,7 +1,7 @@
 import { UserRepository } from '../../../../infra/db/typeorm/repositories/user/user.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
 import { BcryptAdapter } from '../../../../infra/bcryptAdapter/bcrypt.adapter'
-import { DbUpdateUser } from '../../../../data/usecases/user/update-user/dbUpdateUser.data'
+import { DbUpdateUser } from '../../../../data/usecases/user/dbUpdateUser.data'
 import { UpdateUserController } from '../../../../presentation/controllers/user/updateUser.controller'
 
 export const makeUpdateUserController = () => {

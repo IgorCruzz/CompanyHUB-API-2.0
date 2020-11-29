@@ -2,7 +2,7 @@ import { IDeleteUserRepository } from "@/data/protocols/db/user/deleteUserReposi
 import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
 import { MockUserDeleteRepository, MockUserFindByIdRepository } from "@/data/mocks/user.mock";
 import { IDeleteUser } from "@/domain/usecases/user/deleteUser.interface";
-import { DbDeleteUser } from "./dbDeleteUser.data";
+import { DbDeleteUser } from "../dbDeleteUser.data";
 
 let dbDeleteUser: IDeleteUser
 let userFindIdRepository: IFindUserByIdRepository

@@ -2,7 +2,7 @@
 import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
 import { DbAddCompanyStub, DbDeleteCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { DeleteCompanyController } from './deleteCompany.controller'
+import { DeleteCompanyController } from '../deleteCompany.controller'
 
 let deleteCompanyController: IController
 let deleteCompany: IDbDeleteCompany

@@ -5,7 +5,7 @@ import { IUpdateUserRepository } from "@/data/protocols/db/user/updateUserReposi
 import { mockCompare, mockHasher } from "@/data/mocks/bcrypt.mock";
 import { MockUserFindByEmailRepository, MockUserFindByIdRepository, MockUserUpdateRepository } from "@/data/mocks/user.mock";
 import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
-import { DbUpdateUser } from "./dbUpdateUser.data";
+import { DbUpdateUser } from "../dbUpdateUser.data";
 
 let updateUserData: IUpdateUser
 let userFindIdRepository: IFindUserByIdRepository

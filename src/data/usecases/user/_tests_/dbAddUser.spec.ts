@@ -3,7 +3,7 @@ import { mockHasher } from "@/data/mocks/bcrypt.mock";
 import { mockCryptoAdapter } from "@/data/mocks/crypto.mock";
 import { mockTokenCreateRepository } from "@/data/mocks/token.mock";
 import { MockUserCreateRepository, MockUserFindByEmailRepository } from "@/data/mocks/user.mock";
-import { DbAddUser } from "./dbAddUser";
+import { DbAddUser } from "../dbAddUser";
 
 let dbAddUser: DbAddUser
 let cryptoAdapter: IGenerateCrypto

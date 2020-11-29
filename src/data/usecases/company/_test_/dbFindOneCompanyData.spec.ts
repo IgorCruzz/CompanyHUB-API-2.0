@@ -1,7 +1,7 @@
 import { FindOneCompanyRepositoryStub } from "@/data/mocks/company.mock";
 import { IFindOneCompanyRepository } from "@/data/protocols/db/company/findOneCompanyRepository.interface";
 import { IDbFindOneCompany } from "@/domain/usecases/company/findOneCompany.interface";
-import { DbFindOneCompany } from "./dbFindOneCompany.data";
+import { DbFindOneCompany } from "../dbFindOneCompany.data";
 
 
 let dbFindOneCompany: IDbFindOneCompany

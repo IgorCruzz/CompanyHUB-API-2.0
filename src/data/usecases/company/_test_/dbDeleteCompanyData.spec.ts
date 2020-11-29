@@ -2,7 +2,7 @@ import { DeleteUserRepositoryStub, FindByIdRepositoryStub } from "@/data/mocks/c
 import { IDeleteCompanyRepository } from "@/data/protocols/db/company/deleteCompanyRepository.interface";
 import { IFindByIdRepository } from "@/data/protocols/db/company/findByIdRepository.interface";
 import { IDbDeleteCompany } from "@/domain/usecases/company/deleteCompany.interface";
-import { DbDeleteCompany } from "./dbDeleteCompany.data";
+import { DbDeleteCompany } from "../dbDeleteCompany.data";
 
 let dbDeleteCompany: IDbDeleteCompany
 let findByIdRepository: IFindByIdRepository

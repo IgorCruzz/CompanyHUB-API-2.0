@@ -1,7 +1,7 @@
 import { IDbFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
 import { DbFindOneCompanyCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
-import { FindOneCompanyController } from './findOneCompany.controller'
+import { FindOneCompanyController } from '../findOneCompany.controller'
 
 let findOneCompanyController: IController
 let dbFindOneCompany: IDbFindOneCompany

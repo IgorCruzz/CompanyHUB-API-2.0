@@ -2,7 +2,7 @@
 import { IDbFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
 import { DbFindAllCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController } from '@/presentation/protocols'
-import { FindAllCompanyController } from './findAllCompany.controller'
+import { FindAllCompanyController } from '../findAllCompany.controller'
 
 let findAllCompanyController: IController
 let DbFindAllCompany: IDbFindAllCompany

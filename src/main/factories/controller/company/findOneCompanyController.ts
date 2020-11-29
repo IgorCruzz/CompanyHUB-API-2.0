@@ -1,6 +1,6 @@
 import { CompanyRepository } from '../../../../infra/db/typeorm/repositories/company/company.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
-import { DbFindOneCompany } from '../../../../data/usecases/company/findOneCompany/dbFindOneCompany.data'
+import { DbFindOneCompany } from '../../../../data/usecases/company/dbFindOneCompany.data'
 import { FindOneCompanyController } from '@/presentation/controllers/company/findOneCompany.controller'
 
 export const makeFindOneCompanyController = () => {
