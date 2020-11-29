@@ -6,9 +6,8 @@ import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjReposit
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
 import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
-import { IUpdateCompanyDTO } from '@/domain/usecases/company/updateCompany.interace'
-import { getRepository } from 'typeorm'
 import { Company } from '../../entities/Company.entity'
+import { getRepository } from 'typeorm'
 
 export class CompanyRepository implements
   IFindUserIdRepository,
