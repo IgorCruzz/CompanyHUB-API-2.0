@@ -10,7 +10,6 @@ export class DbAuthorization implements IAuthorization {
 
   async auth (data: IAuthorizationDTO): Promise<IAuthorizationResult> {
 
-
     const decoded = await this.Verify.verify(data.token)
 
     if(!decoded) return { error: 'Token inválido.' }
@@ -20,8 +19,7 @@ export class DbAuthorization implements IAuthorization {
     if(!user) return {  error: 'Este token não pertence a nenhum usuário.' }
 
     if(data.role) {
-      if(!user.administrator && data.params.id !== decoded.id ) {
-
+      if(!user.administrator) {
         return { error: 'Você não tem permissão para fazer isto.'}
       }
     }
