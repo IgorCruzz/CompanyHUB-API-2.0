@@ -14,7 +14,7 @@ export class DbDeleteProduct implements IDbDeleteProduct {
 
    const company =  await this.findUserIdRepository.findUserId(data.user)
 
-    if(company.id !== data.company_id) return { error: 'Você não tem permissão para cadastrar um produto em outra empresa.'}
+    if(company.id !== data.company_id) return { error: 'Você não tem permissão para deletar um produto em outra empresa.'}
 
     const product = await this.findByIdRepository.findId(data.params.id)
 

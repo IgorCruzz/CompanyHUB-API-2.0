@@ -15,6 +15,13 @@ export class DeleteProductController implements IController {
       }
     })
 
+    if (product.error) {
+      return {
+        statusCode: 400,
+        body: { message: product.error }
+      }
+    }
+
     return {
       statusCode: 200,
       body: { message: 'Produto deletado com sucesso!' }

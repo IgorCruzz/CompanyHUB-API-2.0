@@ -47,7 +47,7 @@ describe('DbDeleteProduct Data', () => {
       user: 1
     })
 
-    expect(res).toEqual({ error: 'Você não tem permissão para cadastrar um produto em outra empresa.'})
+    expect(res).toEqual({ error: 'Você não tem permissão para deletar um produto em outra empresa.'})
 })
 
 
