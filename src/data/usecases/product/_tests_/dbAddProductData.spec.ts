@@ -54,5 +54,15 @@ describe('DbAddProduct Data', () => {
     expect(res).toHaveBeenCalledWith('company')
   })
 
+  it('should return an error message if FindByProductNameRepository returns a product', async () => {
+
+     const res = await dbAddProductData.add({
+      name: 'company',
+      company_id: 1,
+      user: '1',
+    })
+    expect(res).toEqual({ error: 'Este nome ja está em uso, escolha outro.'})
+  })
+
 
 })
