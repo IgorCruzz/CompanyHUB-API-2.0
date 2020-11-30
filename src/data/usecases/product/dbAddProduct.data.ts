@@ -25,7 +25,11 @@ export class DbAddProduct implements IAddProduct {
       company_id: data.company_id
     })
 
-    return product
+    return {
+      company_id: product.company_id,
+      id: product.id,
+      name: product.name
+    }
   }
 }
 
