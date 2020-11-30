@@ -1,3 +1,3 @@
 export interface IHasher {
-  hash (value: string): Promise<string>
+  hash(value: string): Promise<string>
 }

@@ -1,5 +1,5 @@
-import { Company } from "@/infra/db/typeorm/entities/Company.entity"
+import { Company } from '@/infra/db/typeorm/entities/Company.entity'
 
 export interface IFindUserIdRepository {
-  findUserId (id: number): Promise<Company>
+  findUserId(id: number): Promise<Company>
 }

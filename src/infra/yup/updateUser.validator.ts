@@ -1,4 +1,7 @@
-import { IValidation, IValidationResult } from '@/data/protocols/yup/validation.interface'
+import {
+  IValidation,
+  IValidationResult
+} from '@/data/protocols/yup/validation.interface'
 import * as Yup from 'yup'
 
 export class UpdateUserValidation implements IValidation {
@@ -17,15 +20,18 @@ export class UpdateUserValidation implements IValidation {
       )
     })
 
-    return await schema.validate(data.body, { abortEarly: false }).then(() => {
-      return { validate: true }
-    }).catch(err => {
-      if (err) {
-        return {
-          validate: false,
-          err
+    return await schema
+      .validate(data.body, { abortEarly: false })
+      .then(() => {
+        return { validate: true }
+      })
+      .catch((err) => {
+        if (err) {
+          return {
+            validate: false,
+            err
+          }
         }
-      }
-    })
+      })
   }
 }

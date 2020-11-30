@@ -5,7 +5,9 @@ import { IVerify } from '@/data/protocols/jwtAdapter/verifyJwt.interface'
 
 export class JwtAdapter implements ISign, IVerify {
   sign (id: number): string {
-    return jwt.sign({ id: id }, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRESIN })
+    return jwt.sign({ id: id }, process.env.JWT_SECRET, {
+      expiresIn: process.env.JWT_EXPIRESIN
+    })
   }
 
   verify (token: any): any {

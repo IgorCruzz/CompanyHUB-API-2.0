@@ -1,8 +1,11 @@
-import { DeleteUserRepositoryStub, UserFindByIdRepositoryStub } from "@/data/mocks/user.mock";
-import { IDeleteUserRepository } from "@/data/protocols/db/user/deleteUserRepository.interface";
-import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
-import { IDeleteUser } from "@/domain/usecases/user/deleteUser.interface";
-import { DbDeleteUser } from "../dbDeleteUser.data"
+import {
+  DeleteUserRepositoryStub,
+  UserFindByIdRepositoryStub,
+} from '@/data/mocks/user.mock'
+import { IDeleteUserRepository } from '@/data/protocols/db/user/deleteUserRepository.interface'
+import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
+import { DbDeleteUser } from '../dbDeleteUser.data'
 
 let dbDeleteUser: IDeleteUser
 let userFindIdRepository: IFindUserByIdRepository
@@ -12,9 +15,7 @@ describe('DbDeleteUser', () => {
   beforeEach(() => {
     userFindIdRepository = new UserFindByIdRepositoryStub()
     userDeleteRepository = new DeleteUserRepositoryStub()
-    dbDeleteUser = new DbDeleteUser(
-      userFindIdRepository,
-      userDeleteRepository)
+    dbDeleteUser = new DbDeleteUser(userFindIdRepository, userDeleteRepository)
   })
 
   it('should be defined', async () => {
@@ -24,17 +25,17 @@ describe('DbDeleteUser', () => {
   it('should be able to call IFindUserByIdRepository with success', async () => {
     const res = jest.spyOn(userFindIdRepository, 'findId')
 
-     await dbDeleteUser.delete(1)
+    await dbDeleteUser.delete(1)
 
     expect(res).toHaveBeenCalledWith(1)
   })
 
-   it('return null if IFindUserByIdRepository not find a user with ID passed on request', async () => {
+  it('return null if IFindUserByIdRepository not find a user with ID passed on request', async () => {
     jest.spyOn(userFindIdRepository, 'findId').mockResolvedValue(undefined)
 
     const res = await dbDeleteUser.delete(1)
 
-    expect(res).toEqual({ error: 'Não existe um usuário com este ID'})
+    expect(res).toEqual({ error: 'Não existe um usuário com este ID' })
   })
 
   it('should be able to call IDeleteUserRepository with success', async () => {
@@ -44,4 +45,4 @@ describe('DbDeleteUser', () => {
 
     expect(res).toHaveBeenCalledWith(1)
   })
-});
+})

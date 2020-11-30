@@ -1,5 +1,5 @@
 {
-  "name": "companyHUB",
+  "name": "companyhub",
   "version": "2.8.0",
   "description": "",
   "main": "index.js",
@@ -19,7 +19,8 @@
     "lint": "eslint 'src/**' --fix",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand"
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\""
   },
   "author": "Igor",
   "license": "ISC",

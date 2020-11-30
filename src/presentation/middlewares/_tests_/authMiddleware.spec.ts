@@ -45,11 +45,17 @@ describe('Auth Middleware', () => {
 
     await authController.handle(req)
 
-    expect(res).toHaveBeenCalledWith({ token: 'token', role: false, params: { id: 1 } })
+    expect(res).toHaveBeenCalledWith({
+      token: 'token',
+      role: false,
+      params: { id: 1 }
+    })
   })
 
   it('should  return statusCode 401 if User try to update an data from another user', async () => {
-    jest.spyOn(authData, 'auth').mockResolvedValue({ error: 'Você não tem permissão para fazer isto.' })
+    jest
+      .spyOn(authData, 'auth')
+      .mockResolvedValue({ error: 'Você não tem permissão para fazer isto.' })
 
     const req: IHttpRequest = {
       headers: {

@@ -5,8 +5,13 @@ import { UpdateCompanyController } from '../../../../presentation/controllers/co
 
 export const makeUpdateCompanyController = () => {
   const companyRepository = new CompanyRepository()
-  const dbUpdateCompany = new DbUpdateCompany(companyRepository, companyRepository)
-  const updateCompanyCompanyController = new UpdateCompanyController(dbUpdateCompany)
+  const dbUpdateCompany = new DbUpdateCompany(
+    companyRepository,
+    companyRepository
+  )
+  const updateCompanyController = new UpdateCompanyController(
+    dbUpdateCompany
+  )
 
-  return adapRoute(updateCompanyCompanyController)
+  return adapRoute(updateCompanyController)
 }

@@ -1,4 +1,3 @@
-
 export interface ISignInDTO {
   email: string
   password: string
@@ -14,5 +13,5 @@ export interface ISignInResult {
 }
 
 export interface ISignIn {
-  signIn (data: ISignInDTO): Promise<ISignInResult>
+  signIn(data: ISignInDTO): Promise<ISignInResult>
 }
