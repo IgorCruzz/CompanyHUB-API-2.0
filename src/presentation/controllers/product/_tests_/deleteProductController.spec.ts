@@ -53,4 +53,23 @@ describe('DeleteProduct Controller', () => {
       body: { message: 'Você não tem permissão para deletar um produto em outra empresa.' }
     })
   })
+
+  it('throw error 500 if deleteProduct throws', async () => {
+    const req: IHttpRequest = {
+      userId: '1',
+      body: {
+        company_id: 1
+      },
+      params: { id: 1 }
+    }
+
+    jest.spyOn(deleteProduct, 'delete').mockRejectedValue(new Error())
+
+    const res = await deleteProductController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
