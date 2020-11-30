@@ -9,7 +9,7 @@ import {
   OneToMany
 } from 'typeorm'
 import { User } from './User.entity'
-import { Products } from './Products.entity'
+import { Product } from './Product.entity'
 
 @Entity({ name: 'companies' })
 export class Company {
@@ -29,8 +29,8 @@ export class Company {
   @JoinColumn({ name: 'user_id' })
   user?: User
 
-  @OneToMany(() => Products, (product) => product.companyConnection)
-  productConnection?: Products[]
+  @OneToMany(() => Product, (product) => product.companyConnection)
+  productConnection?: Product[]
 
   @CreateDateColumn()
   created_at: Date

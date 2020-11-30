@@ -7,7 +7,7 @@ import {
   ManyToOne,
   JoinColumn
 } from 'typeorm'
-import { Products } from './Products.entity'
+import { Product } from './Product.entity'
 
 @Entity({ name: 'services' })
 export class Services {
@@ -23,9 +23,9 @@ export class Services {
   @Column()
   product_id: number
 
-  @ManyToOne(() => Products, (product) => product.serviceConnection)
+  @ManyToOne(() => Product, (product) => product.serviceConnection)
   @JoinColumn({ name: 'product_id', referencedColumnName: 'id' })
-  productConnection?: Products
+  productConnection?: Product
 
   @CreateDateColumn()
   created_at: Date
