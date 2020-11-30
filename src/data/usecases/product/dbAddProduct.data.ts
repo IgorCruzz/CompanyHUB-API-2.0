@@ -16,6 +16,8 @@ export class DbAddProduct implements IAddProduct {
 
     const productName = await this.findByProductNameRepository.findName(data.name)
 
+    if(productName) return { error: 'Este nome ja está em uso, escolha outro.' }
+
     return await null
   }
 }
