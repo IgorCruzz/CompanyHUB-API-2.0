@@ -19,7 +19,7 @@ export class DbUpdateCompany implements IUpdateCompany {
 
     const findCompany = await this.findByIdRepository.findId(Number(id))
 
-    if (!findCompany) return { error: 'Você não cadastrou sua empresa ainda.' }
+    if (!findCompany) return { error: 'Insira um ID válido.' }
 
     if (Number(data.user) !== findCompany.user_id)
       return {
