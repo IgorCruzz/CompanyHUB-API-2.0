@@ -19,8 +19,9 @@ const routes = [
   deleteCompany,
   findAllCompanies,
   findOneCompany,
-  updateCompany]
+  updateCompany
+]
 
 const router = Router()
 
-export const exposeRoutes = routes.map(r => router.use(r))
+export const exposeRoutes = routes.map((r) => router.use(r))

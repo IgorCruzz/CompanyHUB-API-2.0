@@ -1,4 +1,3 @@
-
 export interface IAddCompanyDTO {
   user: string
   name: string
@@ -14,5 +13,5 @@ export interface IAddCompanyResult {
 }
 
 export interface IAddCompany {
-  add (data: IAddCompanyDTO): Promise<IAddCompanyResult>
+  add(data: IAddCompanyDTO): Promise<IAddCompanyResult>
 }

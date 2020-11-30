@@ -1,10 +1,10 @@
-import { IHttpRequest } from "@/presentation/protocols";
+import { IHttpRequest } from '@/presentation/protocols'
 
 export interface IValidationResult {
-  validate: boolean,
+  validate: boolean
   err?: any
 }
 
 export interface IValidation {
-   validate (data: IHttpRequest): Promise<IValidationResult>
+  validate(data: IHttpRequest): Promise<IValidationResult>
 }

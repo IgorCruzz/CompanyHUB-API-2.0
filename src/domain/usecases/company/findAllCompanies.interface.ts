@@ -10,5 +10,5 @@ export interface IDbFindAllCompanyResult {
 }
 
 export interface IDbFindAllCompany {
-  findAll (): Promise<IDbFindAllCompanyResult[]>
+  findAll(): Promise<IDbFindAllCompanyResult[]>
 }

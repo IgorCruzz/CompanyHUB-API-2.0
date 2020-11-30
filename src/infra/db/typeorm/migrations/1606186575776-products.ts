@@ -34,13 +34,15 @@ export class createProducts1596748845029 implements MigrationInterface {
         isNullable: false
       }
     ],
-    foreignKeys: [{
-      columnNames: ['company_id'],
-      referencedColumnNames: ['id'],
-      referencedTableName: 'companies',
-      onDelete: 'CASCADE',
-      onUpdate: 'CASCADE'
-    }]
+    foreignKeys: [
+      {
+        columnNames: ['company_id'],
+        referencedColumnNames: ['id'],
+        referencedTableName: 'companies',
+        onDelete: 'CASCADE',
+        onUpdate: 'CASCADE'
+      }
+    ]
   })
 
   public async up (queryRunner: QueryRunner): Promise<void> {

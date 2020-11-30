@@ -1,10 +1,12 @@
 import { IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class DeleteUserController implements IController {
-  constructor (
-    private readonly deleteUser: IDeleteUser
-  ) {}
+  constructor (private readonly deleteUser: IDeleteUser) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

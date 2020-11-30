@@ -1,4 +1,3 @@
-
 export interface IAddUserDTO {
   email: string
   name: string
@@ -13,5 +12,5 @@ export interface IAddResult {
 }
 
 export interface IAddUser {
-  add (data: IAddUserDTO): Promise<IAddResult>
+  add(data: IAddUserDTO): Promise<IAddResult>
 }

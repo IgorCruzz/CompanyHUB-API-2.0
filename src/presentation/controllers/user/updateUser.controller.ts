@@ -1,10 +1,12 @@
 import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class UpdateUserController implements IController {
-  constructor (
-    private readonly updateUser: IUpdateUser
-  ) {}
+  constructor (private readonly updateUser: IUpdateUser) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

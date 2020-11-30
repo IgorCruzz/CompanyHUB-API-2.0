@@ -1,3 +1,3 @@
 export interface IDeleteCompanyRepository {
-   delete (id: number): Promise<boolean>
+  delete(id: number): Promise<boolean>
 }

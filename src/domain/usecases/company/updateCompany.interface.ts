@@ -1,4 +1,3 @@
-
 export interface IUpdateCompanyDTO {
   cnpj?: string
   name?: string
@@ -11,5 +10,5 @@ export interface IUpdateCompanyResult {
 }
 
 export interface IUpdateCompany {
-  update (id: number, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult>
+  update(id: number, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult>
 }

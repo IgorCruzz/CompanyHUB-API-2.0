@@ -23,19 +23,20 @@ describe('FindOneCompany Controller', () => {
 
     expect(res).toEqual({
       statusCode: 200,
-      body:
-        {
-          user_id: 1,
-          cnpj: '11111111111',
-          id: 1,
-          productConnection: [],
-          name: 'company'
-        }
+      body: {
+        user_id: 1,
+        cnpj: '11111111111',
+        id: 1,
+        productConnection: [],
+        name: 'company'
+      }
     })
   })
 
   it('should be returns statusCode 400 if dbFindOneCompany returns an error', async () => {
-    jest.spyOn(dbFindOneCompany, 'findOne').mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
+    jest
+      .spyOn(dbFindOneCompany, 'findOne')
+      .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
 
     const req: IHttpRequest = { params: { id: 1 } }
 

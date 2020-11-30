@@ -6,6 +6,11 @@ import { makeUpdateCompanyValidation } from '../../factories/validation/updateCo
 
 const routes = Router()
 
-routes.put('/companies/:id', adapMiddleware(makeAuthMiddleware(false)), makeUpdateCompanyValidation(), makeUpdateCompanyController())
+routes.put(
+  '/companies/:id',
+  adapMiddleware(makeAuthMiddleware(false)),
+  makeUpdateCompanyValidation(),
+  makeUpdateCompanyController()
+)
 
 export default routes

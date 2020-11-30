@@ -32,7 +32,9 @@ describe('DeleteUser Controller', () => {
   })
 
   it('throw an error 400 if id passed on params doesnt belongs to a user registered', async () => {
-    jest.spyOn(deleteUserData, 'delete').mockResolvedValue({ error: 'Não existe um usuário com este ID' })
+    jest
+      .spyOn(deleteUserData, 'delete')
+      .mockResolvedValue({ error: 'Não existe um usuário com este ID' })
 
     const req: IHttpRequest = {
       params: {

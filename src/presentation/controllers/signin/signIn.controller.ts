@@ -1,10 +1,12 @@
 import { ISignIn } from '@/domain/usecases/signin/signIn.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class SignInController implements IController {
-  constructor (
-    private readonly dbSignInData: ISignIn
-  ) {}
+  constructor (private readonly dbSignInData: ISignIn) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

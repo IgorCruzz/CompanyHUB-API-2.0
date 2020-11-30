@@ -34,7 +34,9 @@ describe('UpdateCompany Controller', () => {
   })
 
   it('should be returns statusCode 400 if dbUpdateCompany returns an error', async () => {
-    jest.spyOn(dbUpdateCompany, 'update').mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
+    jest
+      .spyOn(dbUpdateCompany, 'update')
+      .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
 
     const req: IHttpRequest = {
       params: { id: 1 },

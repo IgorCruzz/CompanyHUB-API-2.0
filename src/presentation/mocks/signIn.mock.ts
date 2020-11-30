@@ -1,4 +1,8 @@
-import { ISignIn, ISignInDTO, ISignInResult } from '@/domain/usecases/signin/signIn.interface'
+import {
+  ISignIn,
+  ISignInDTO,
+  ISignInResult
+} from '@/domain/usecases/signin/signIn.interface'
 
 export class DbSignInStub implements ISignIn {
   async signIn (data: ISignInDTO): Promise<ISignInResult> {

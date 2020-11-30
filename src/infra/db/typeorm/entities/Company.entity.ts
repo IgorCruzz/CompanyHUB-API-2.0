@@ -23,16 +23,13 @@ export class Company {
   cnpj: string
 
   @Column()
-  user_id: number
+  user_id?: number
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id' })
   user?: User
 
-  @OneToMany(
-    () => Products,
-    product => product.companyConnection
-  )
+  @OneToMany(() => Products, (product) => product.companyConnection)
   productConnection?: Products[]
 
   @CreateDateColumn()

@@ -1,4 +1,3 @@
-
 import { IDbFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
 import { DbFindAllCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController } from '@/presentation/protocols'
@@ -22,21 +21,22 @@ describe('DeleteCompany Controller', () => {
 
     expect(res).toEqual({
       statusCode: 200,
-      body:
-        [{
+      body: [
+        {
           user_id: 1,
           cnpj: '11111111111',
           id: 1,
           productConnection: [],
           name: 'company'
-        }, {
+        },
+        {
           user_id: 1,
           cnpj: '11111111111',
           id: 1,
           productConnection: [],
           name: 'company'
-        }]
-
+        }
+      ]
     })
   })
 

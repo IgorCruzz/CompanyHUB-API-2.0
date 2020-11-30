@@ -1,10 +1,12 @@
 import { IDbFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class FindOneCompanyController implements IController {
-  constructor (
-    private readonly dbFindOneCompany: IDbFindOneCompany
-  ) {}
+  constructor (private readonly dbFindOneCompany: IDbFindOneCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

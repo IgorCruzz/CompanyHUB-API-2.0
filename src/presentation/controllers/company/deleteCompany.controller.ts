@@ -1,10 +1,12 @@
 import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class DeleteCompanyController implements IController {
-  constructor (
-    private readonly deleteCompany: IDbDeleteCompany
-  ) {}
+  constructor (private readonly deleteCompany: IDbDeleteCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
