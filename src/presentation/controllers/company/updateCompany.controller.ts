@@ -1,10 +1,12 @@
 import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class UpdateCompanyController implements IController {
-  constructor (
-    private readonly dbUpdateCompany: IUpdateCompany
-  ) {}
+  constructor (private readonly dbUpdateCompany: IUpdateCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

@@ -56,7 +56,9 @@ describe('SignIn Controller', () => {
   })
 
   it('should be returns statusCode 401 with user is not authorized to signin', async () => {
-    jest.spyOn(dbSignInData, 'signIn').mockResolvedValue({ error: 'Por favor, ative a sua conta.' })
+    jest
+      .spyOn(dbSignInData, 'signIn')
+      .mockResolvedValue({ error: 'Por favor, ative a sua conta.' })
 
     const req: IHttpRequest = {
       body: {

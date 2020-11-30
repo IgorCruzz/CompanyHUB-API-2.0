@@ -5,10 +5,7 @@ import { DbDeleteCompany } from '../../../../data/usecases/company/dbDeleteCompa
 
 export const makeDeleteController = () => {
   const companyRepository = new CompanyRepository()
-  const dbAddUser = new DbDeleteCompany(
-    companyRepository,
-    companyRepository
-  )
+  const dbAddUser = new DbDeleteCompany(companyRepository, companyRepository)
 
   const deleteController = new DeleteCompanyController(dbAddUser)
 

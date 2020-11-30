@@ -6,7 +6,9 @@ import { FindOneCompanyController } from '../../../../presentation/controllers/c
 export const makeFindOneCompanyController = () => {
   const companyRepository = new CompanyRepository()
   const dbFindOneCompany = new DbFindOneCompany(companyRepository)
-  const findOneCompanyController = new FindOneCompanyController(dbFindOneCompany)
+  const findOneCompanyController = new FindOneCompanyController(
+    dbFindOneCompany
+  )
 
   return adapRoute(findOneCompanyController)
 }

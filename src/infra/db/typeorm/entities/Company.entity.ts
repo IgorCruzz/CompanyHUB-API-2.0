@@ -29,10 +29,7 @@ export class Company {
   @JoinColumn({ name: 'user_id' })
   user?: User
 
-  @OneToMany(
-    () => Products,
-    product => product.companyConnection
-  )
+  @OneToMany(() => Products, (product) => product.companyConnection)
   productConnection?: Products[]
 
   @CreateDateColumn()

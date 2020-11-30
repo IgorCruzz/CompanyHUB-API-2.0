@@ -7,7 +7,9 @@ export const makeFindAllCompaniesController = () => {
   const companyRepository = new CompanyRepository()
   const dbFindAllCompany = new DbFindAllCompany(companyRepository)
 
-  const findAllCompaniesController = new FindAllCompanyController(dbFindAllCompany)
+  const findAllCompaniesController = new FindAllCompanyController(
+    dbFindAllCompany
+  )
 
   return adapRoute(findAllCompaniesController)
 }

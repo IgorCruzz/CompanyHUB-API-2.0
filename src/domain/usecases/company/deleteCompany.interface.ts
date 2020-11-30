@@ -1,4 +1,3 @@
-
 export interface IDbDeleteCompanyDTO {
   user: string
   params: { id: string }
@@ -10,5 +9,5 @@ export interface IDbDeleteCompanyResult {
 }
 
 export interface IDbDeleteCompany {
-  delete (data: IDbDeleteCompanyDTO): Promise<IDbDeleteCompanyResult>
+  delete(data: IDbDeleteCompanyDTO): Promise<IDbDeleteCompanyResult>
 }

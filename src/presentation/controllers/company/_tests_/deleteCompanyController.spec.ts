@@ -1,4 +1,3 @@
-
 import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
 import { DbDeleteCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
@@ -34,7 +33,9 @@ describe('DeleteCompany Controller', () => {
   })
 
   it('return statusCode 400 if deleteCompany returns an error', async () => {
-    jest.spyOn(deleteCompany, 'delete').mockResolvedValue({ error: 'Não existe uma empresa com este ID.' })
+    jest
+      .spyOn(deleteCompany, 'delete')
+      .mockResolvedValue({ error: 'Não existe uma empresa com este ID.' })
 
     const req: IHttpRequest = {
       params: {

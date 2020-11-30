@@ -1,4 +1,7 @@
-import { ICreateCompanyDTO, ICreateCompanyRepository } from '@/data/protocols/db/company/createCompanyRepository'
+import {
+  ICreateCompanyDTO,
+  ICreateCompanyRepository
+} from '@/data/protocols/db/company/createCompanyRepository'
 import { IDeleteCompanyRepository } from '@/data/protocols/db/company/deleteCompanyRepository.interface'
 import { IFindAllCompaniesRepository } from '@/data/protocols/db/company/findAllCompanies.repository'
 import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
@@ -9,15 +12,16 @@ import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateComp
 import { Company } from '../../entities/Company.entity'
 import { getRepository } from 'typeorm'
 
-export class CompanyRepository implements
-  IFindUserIdRepository,
-  IFindByIdRepository,
-  IFindCnpjRepository,
-  ICreateCompanyRepository,
-  IDeleteCompanyRepository,
-  IFindAllCompaniesRepository,
-  IFindOneCompanyRepository,
-  IUpdateCompanyRepository {
+export class CompanyRepository
+implements
+    IFindUserIdRepository,
+    IFindByIdRepository,
+    IFindCnpjRepository,
+    ICreateCompanyRepository,
+    IDeleteCompanyRepository,
+    IFindAllCompaniesRepository,
+    IFindOneCompanyRepository,
+    IUpdateCompanyRepository {
   async findUserId (id: number): Promise<Company> {
     const orm = getRepository(Company)
 

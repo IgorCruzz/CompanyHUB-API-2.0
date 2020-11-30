@@ -5,8 +5,10 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 
 const routes = Router()
 
-routes.delete('/companies',
+routes.delete(
+  '/companies',
   adapMiddleware(makeAuthMiddleware(true)),
-  makeFindAllCompaniesController())
+  makeFindAllCompaniesController()
+)
 
 export default routes

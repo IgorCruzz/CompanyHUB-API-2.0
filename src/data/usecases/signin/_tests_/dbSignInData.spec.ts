@@ -1,11 +1,11 @@
-import { BcryptCompareStub } from "@/data/mocks/bcrypt.mock";
-import { JwtSignAdapterStub } from "@/data/mocks/jwt.mock";
-import { UserFindByEmailRepositoryStub } from "@/data/mocks/user.mock";
-import { IFindUserByEmailRepository } from "@/data/protocols";
-import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
-import { ISign } from "@/data/protocols/jwtAdapter/signJwt.interface";
-import { ISignIn } from "@/domain/usecases/signin/signIn.interface"
-import { DbSignIn } from "../dbSignIn.data"
+import { BcryptCompareStub } from '@/data/mocks/bcrypt.mock'
+import { JwtSignAdapterStub } from '@/data/mocks/jwt.mock'
+import { UserFindByEmailRepositoryStub } from '@/data/mocks/user.mock'
+import { IFindUserByEmailRepository } from '@/data/protocols'
+import { ICompare } from '@/data/protocols/bcryptAdapter/ICompare.interface'
+import { ISign } from '@/data/protocols/jwtAdapter/signJwt.interface'
+import { ISignIn } from '@/domain/usecases/signin/signIn.interface'
+import { DbSignIn } from '../dbSignIn.data'
 
 let signInData: ISignIn
 let jwtSignAdapter: ISign
@@ -17,7 +17,11 @@ describe('SigIn Data', () => {
     jwtSignAdapter = new JwtSignAdapterStub()
     userFindByEmailRepository = new UserFindByEmailRepositoryStub()
     bcryptCompare = new BcryptCompareStub()
-    signInData = new DbSignIn(jwtSignAdapter, userFindByEmailRepository, bcryptCompare)
+    signInData = new DbSignIn(
+      jwtSignAdapter,
+      userFindByEmailRepository,
+      bcryptCompare
+    )
   })
 
   it('should be defined', () => {
@@ -27,79 +31,91 @@ describe('SigIn Data', () => {
   it('should be able to signin', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
+      name: 'user',
       email: 'user@mail.com',
-      name: 'name',
       password_hash: 'hashed_password',
-      activation: true
+      administrator: true,
+      activation: true,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
     const res = await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
     expect(res).toEqual({
       id: 1,
-      name: 'name',
+      name: 'user',
+      administrator: true,
       email: 'user@mail.com',
-      token: 'token'
+      token: 'token',
     })
-
   })
 
   it('should be able to call Sign with success', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
+      name: 'user',
       email: 'user@mail.com',
-      name: 'name',
       password_hash: 'hashed_password',
-      activation: true
+      administrator: false,
+      activation: true,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
     const res = jest.spyOn(jwtSignAdapter, 'sign')
 
     await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
     expect(res).toHaveBeenCalledWith(1)
   })
 
   it('should be able to call findUserByEmail with success', async () => {
-    const res =  jest.spyOn(userFindByEmailRepository, 'findEmail')
+    const res = jest.spyOn(userFindByEmailRepository, 'findEmail')
 
     await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
     expect(res).toHaveBeenCalledWith('user@mail.com')
   })
 
   it('return null with findUserByEmail returns undefined', async () => {
-    jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue(undefined)
+    jest
+      .spyOn(userFindByEmailRepository, 'findEmail')
+      .mockResolvedValue(undefined)
 
-     const res =  await signInData.signIn({
+    const res = await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
-    expect(res).toEqual({ error: 'Não existe um usuário com este email.'})
+    expect(res).toEqual({ error: 'Não existe um usuário com este email.' })
   })
 
   it('should be able to call mockCompare with success', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
+      name: 'user',
       email: 'user@mail.com',
-      name: 'name',
-      password_hash: 'hashed_password'
+      password_hash: 'hashed_password',
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
     const res = jest.spyOn(bcryptCompare, 'compare')
 
     await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
     expect(res).toHaveBeenCalledWith('password', 'hashed_password')
@@ -108,36 +124,42 @@ describe('SigIn Data', () => {
   it('return null if mockCompare returns false', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
+      name: 'user',
       email: 'user@mail.com',
-      name: 'name',
-      password_hash: 'hashed_password'
+      password_hash: 'hashed_password',
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
     jest.spyOn(bcryptCompare, 'compare').mockResolvedValue(false)
 
-    const res =  await signInData.signIn({
+    const res = await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
-    expect(res).toEqual({ error: 'A senha está incorreta.'})
+    expect(res).toEqual({ error: 'A senha está incorreta.' })
   })
 
   it('return null if user activation is false', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
+      name: 'user',
       email: 'user@mail.com',
-      name: 'name',
       password_hash: 'hashed_password',
-      activation: false
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
-    const res =  await signInData.signIn({
+    const res = await signInData.signIn({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
 
-    expect(res).toEqual({ error: 'Por favor, ative a sua conta.'})
-
+    expect(res).toEqual({ error: 'Por favor, ative a sua conta.' })
   })
-});
+})

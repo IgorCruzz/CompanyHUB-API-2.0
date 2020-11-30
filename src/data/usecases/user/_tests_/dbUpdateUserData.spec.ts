@@ -1,11 +1,15 @@
-import { BcryptAdapterStub, BcryptCompareStub } from "@/data/mocks/bcrypt.mock";
-import { UpdateUserRepositoryStub, UserFindByEmailRepositoryStub, UserFindByIdRepositoryStub } from "@/data/mocks/user.mock";
-import { IFindUserByEmailRepository, IHasher } from "@/data/protocols";
-import { ICompare } from "@/data/protocols/bcryptAdapter/ICompare.interface";
-import { IFindUserByIdRepository } from "@/data/protocols/db/user/findUserByIdRepository.interface";
-import { IUpdateUserRepository } from "@/data/protocols/db/user/updateUserRepository.interface";
-import { IUpdateUser } from "@/domain/usecases/user/updateUser.interface";
-import { DbUpdateUser } from "../dbUpdateUser.data";
+import { BcryptAdapterStub, BcryptCompareStub } from '@/data/mocks/bcrypt.mock'
+import {
+  UpdateUserRepositoryStub,
+  UserFindByEmailRepositoryStub,
+  UserFindByIdRepositoryStub,
+} from '@/data/mocks/user.mock'
+import { IFindUserByEmailRepository, IHasher } from '@/data/protocols'
+import { ICompare } from '@/data/protocols/bcryptAdapter/ICompare.interface'
+import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IUpdateUserRepository } from '@/data/protocols/db/user/updateUserRepository.interface'
+import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
+import { DbUpdateUser } from '../dbUpdateUser.data'
 
 let updateUserData: IUpdateUser
 let userFindIdRepository: IFindUserByIdRepository
@@ -14,11 +18,10 @@ let userUpdateRepository: IUpdateUserRepository
 let bcryptCompare: ICompare
 let bcryptHasher: IHasher
 
-
 describe('UpdateUser Data', () => {
   beforeEach(() => {
     userFindIdRepository = new UserFindByIdRepositoryStub()
-    userFindByEmailRepository = new  UserFindByEmailRepositoryStub()
+    userFindByEmailRepository = new UserFindByEmailRepositoryStub()
     userUpdateRepository = new UpdateUserRepositoryStub()
     bcryptCompare = new BcryptCompareStub()
     bcryptHasher = new BcryptAdapterStub()
@@ -27,7 +30,8 @@ describe('UpdateUser Data', () => {
       userFindByEmailRepository,
       userUpdateRepository,
       bcryptCompare,
-      bcryptHasher)
+      bcryptHasher
+    )
   })
 
   it('should be defined', () => {
@@ -35,12 +39,11 @@ describe('UpdateUser Data', () => {
   })
 
   it('should be able to call usersRepository with success', async () => {
-
     const res = jest.spyOn(userFindIdRepository, 'findId')
 
     await updateUserData.update(1, { name: 'name' })
 
-   expect(res).toHaveBeenCalledWith(1)
+    expect(res).toHaveBeenCalledWith(1)
   })
 
   it('return null if usersRepository returns undefined', async () => {
@@ -48,46 +51,53 @@ describe('UpdateUser Data', () => {
 
     const res = await updateUserData.update(1, { name: 'name' })
 
-    expect(res).toEqual({ error: 'Não existe um usuário com este ID.'})
-
+    expect(res).toEqual({ error: 'Não existe um usuário com este ID.' })
   })
 
   it('return null if userFindByEmailRepository return an user with email passed on request', async () => {
     jest.spyOn(userFindByEmailRepository, 'findEmail').mockResolvedValue({
       id: 1,
-      email: 'other@mail.com',
-      name: 'name',
-      password_hash: 'hashed_password'
+      name: 'user',
+      email: 'user@mail.com',
+      password_hash: 'hashed_password',
+      administrator: false,
+      activation: false,
+      created_at: new Date(),
+      updated_at: new Date(),
     })
 
-    const res = await updateUserData.update(1, { name: 'name', email: 'other@mail.com' })
+    const res = await updateUserData.update(1, {
+      name: 'name',
+      email: 'other@mail.com',
+    })
 
     expect(res).toEqual({ error: 'Este e-mail já está em uso, escolha outro' })
   })
 
   it('should be able to call mockCompare with success', async () => {
-
     const res = jest.spyOn(bcryptCompare, 'compare')
 
-    await updateUserData.update(1,
-        { name: 'name',
-          email: 'user@mail.com',
-          oldPassword: 'password',
-          password: 'password',
-          confirmPassword: 'password' })
+    await updateUserData.update(1, {
+      name: 'name',
+      email: 'user@mail.com',
+      oldPassword: 'password',
+      password: 'password',
+      confirmPassword: 'password',
+    })
 
     expect(res).toHaveBeenCalledWith('password', 'hashed_password')
-  } )
+  })
 
   it('should return null if mockCompare returns false', async () => {
     jest.spyOn(bcryptCompare, 'compare').mockResolvedValue(false)
 
-    const res = await updateUserData.update(1,
-      { name: 'name',
-        email: 'user@mail.com',
-        oldPassword: 'password',
-        password: 'password',
-        confirmPassword: 'password' })
+    const res = await updateUserData.update(1, {
+      name: 'name',
+      email: 'user@mail.com',
+      oldPassword: 'password',
+      password: 'password',
+      confirmPassword: 'password',
+    })
 
     expect(res).toEqual({ error: 'A senha está incorreta' })
   })
@@ -103,14 +113,12 @@ describe('UpdateUser Data', () => {
   it('should be able to call to UpdateUserRepository and changed the password', async () => {
     const res = jest.spyOn(userUpdateRepository, 'update')
 
-    await updateUserData.update(1,
-      {
-        oldPassword: 'password',
-        password: 'newPassword',
-        confirmPassword: 'newPassword'
-      })
+    await updateUserData.update(1, {
+      oldPassword: 'password',
+      password: 'newPassword',
+      confirmPassword: 'newPassword',
+    })
 
     expect(res).toBeTruthy()
   })
-
-});
+})

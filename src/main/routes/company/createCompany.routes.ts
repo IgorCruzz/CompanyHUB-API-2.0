@@ -6,9 +6,11 @@ import { makeAddCompanyValidation } from '../../factories/validation/addCompany'
 
 const routes = Router()
 
-routes.post('/companies',
+routes.post(
+  '/companies',
   makeAddCompanyValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
-  makeAddCompanyController())
+  makeAddCompanyController()
+)
 
 export default routes

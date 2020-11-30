@@ -1,4 +1,3 @@
-
 export interface ISign {
-  sign (id: number): string
+  sign(id: number): string
 }

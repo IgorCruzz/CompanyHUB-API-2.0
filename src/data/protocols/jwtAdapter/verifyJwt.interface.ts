@@ -1,3 +1,3 @@
 export interface IVerify {
-  verify (token: any): any
+  verify(token: any): any
 }

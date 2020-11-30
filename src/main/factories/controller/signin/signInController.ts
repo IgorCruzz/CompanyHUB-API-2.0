@@ -9,11 +9,7 @@ export const makeSignInController = () => {
   const jwtAdapter = new JwtAdapter()
   const userRepository = new UserRepository()
   const bcryptAdapter = new BcryptAdapter()
-  const dbAddUser = new DbSignIn(
-    jwtAdapter,
-    userRepository,
-    bcryptAdapter
-  )
+  const dbAddUser = new DbSignIn(jwtAdapter, userRepository, bcryptAdapter)
 
   const signinController = new SignInController(dbAddUser)
 

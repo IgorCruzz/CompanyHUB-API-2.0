@@ -22,17 +22,11 @@ export class Products {
   @Column()
   company_id: number
 
-  @ManyToOne(
-    () => Company,
-    companies => companies.productConnection
-  )
+  @ManyToOne(() => Company, (companies) => companies.productConnection)
   @JoinColumn({ name: 'company_id', referencedColumnName: 'id' })
   companyConnection?: Company
 
-  @OneToMany(
-    () => Services,
-    services => services.productConnection
-  )
+  @OneToMany(() => Services, (services) => services.productConnection)
   serviceConnection?: Services[]
 
   @CreateDateColumn()

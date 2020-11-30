@@ -1,6 +1,13 @@
 import { IAddUser, IAddUserDTO } from '@/domain/usecases/user/addUser.interface'
-import { IDeleteResult, IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
-import { IUpdateResult, IUpdateUser, IUpdateUserDTO } from '@/domain/usecases/user/updateUser.interface'
+import {
+  IDeleteResult,
+  IDeleteUser
+} from '@/domain/usecases/user/deleteUser.interface'
+import {
+  IUpdateResult,
+  IUpdateUser,
+  IUpdateUserDTO
+} from '@/domain/usecases/user/updateUser.interface'
 
 export class DbAddUserStub implements IAddUser {
   async add (data: IAddUserDTO): Promise<any> {

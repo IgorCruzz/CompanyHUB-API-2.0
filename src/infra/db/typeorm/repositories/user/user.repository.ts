@@ -1,14 +1,22 @@
-import { IAddUserDTO, ICreateUserRepository, IFindUserByEmailRepository } from '@/data/protocols'
+import {
+  IAddUserDTO,
+  ICreateUserRepository,
+  IFindUserByEmailRepository
+} from '@/data/protocols'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
-import { IUpdateUserDTO, IUpdateUserRepository } from '@/data/protocols/db/user/updateUserRepository.interface'
+import {
+  IUpdateUserDTO,
+  IUpdateUserRepository
+} from '@/data/protocols/db/user/updateUserRepository.interface'
 import { getRepository } from 'typeorm'
 import { User } from '../../entities/User.entity'
 
-export class UserRepository implements
-IFindUserByEmailRepository,
-ICreateUserRepository,
-IFindUserByIdRepository,
-IUpdateUserRepository {
+export class UserRepository
+implements
+    IFindUserByEmailRepository,
+    ICreateUserRepository,
+    IFindUserByIdRepository,
+    IUpdateUserRepository {
   async findEmail (email: string): Promise<User | undefined> {
     const orm = getRepository(User)
     return await orm.findOne({

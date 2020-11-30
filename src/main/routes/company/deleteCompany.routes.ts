@@ -5,8 +5,10 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 
 const routes = Router()
 
-routes.delete('/companies/:id',
+routes.delete(
+  '/companies/:id',
   adapMiddleware(makeAuthMiddleware(false)),
-  makeDeleteController())
+  makeDeleteController()
+)
 
 export default routes

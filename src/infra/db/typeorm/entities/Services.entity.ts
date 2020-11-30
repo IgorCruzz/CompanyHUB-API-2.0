@@ -23,10 +23,7 @@ export class Services {
   @Column()
   product_id: number
 
-  @ManyToOne(
-    () => Products,
-    product => product.serviceConnection
-  )
+  @ManyToOne(() => Products, (product) => product.serviceConnection)
   @JoinColumn({ name: 'product_id', referencedColumnName: 'id' })
   productConnection?: Products
 

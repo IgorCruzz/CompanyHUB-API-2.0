@@ -33,7 +33,9 @@ describe('UpdateUser Controller', () => {
   })
 
   it('return statusCode 400 if UpdateUser returns null', async () => {
-    jest.spyOn(updateUserData, 'update').mockResolvedValue({ error: 'Não existe um usuário com este ID.' })
+    jest
+      .spyOn(updateUserData, 'update')
+      .mockResolvedValue({ error: 'Não existe um usuário com este ID.' })
 
     const req: IHttpRequest = {
       params: { id: 1 },

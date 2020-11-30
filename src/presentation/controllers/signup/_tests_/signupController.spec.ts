@@ -68,7 +68,9 @@ describe('SignupController', () => {
       }
     }
 
-    jest.spyOn(dbAddUser, 'add').mockResolvedValue({ error: 'Já existe um usuário com este e-mail.' })
+    jest
+      .spyOn(dbAddUser, 'add')
+      .mockResolvedValue({ error: 'Já existe um usuário com este e-mail.' })
 
     const res = await signupController.handle(req)
 

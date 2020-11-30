@@ -1,4 +1,3 @@
-
 export interface IUpdateUserDTO {
   email?: string
   name?: string
@@ -9,5 +8,5 @@ export interface IUpdateUserDTO {
 }
 
 export interface IUpdateUserRepository {
-  update (id: number, data: IUpdateUserDTO): Promise<boolean>
+  update(id: number, data: IUpdateUserDTO): Promise<boolean>
 }

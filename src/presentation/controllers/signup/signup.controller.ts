@@ -1,10 +1,12 @@
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse
+} from '@/presentation/protocols'
 
 export class SignupController implements IController {
-  constructor (
-    private readonly AddUser: IAddUser
-  ) {}
+  constructor (private readonly AddUser: IAddUser) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

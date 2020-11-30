@@ -1,4 +1,3 @@
-
 export interface IUpdateUserDTO {
   email?: string
   name?: string
@@ -13,5 +12,5 @@ export interface IUpdateResult {
 }
 
 export interface IUpdateUser {
-  update (id: number, data: IUpdateUserDTO): Promise<IUpdateResult>
+  update(id: number, data: IUpdateUserDTO): Promise<IUpdateResult>
 }
