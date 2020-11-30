@@ -7,24 +7,31 @@ export class DeleteProductController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const product = await this.deleteProduct.delete({
-      company_id: httpRequest.body.company_id,
-      user: Number(httpRequest.userId),
-      params: {
-        id: httpRequest.params.id
-      }
-    })
+    try {
+      const product = await this.deleteProduct.delete({
+        company_id: httpRequest.body.company_id,
+        user: Number(httpRequest.userId),
+        params: {
+          id: httpRequest.params.id
+        }
+      })
 
-    if (product.error) {
+      if (product.error) {
+        return {
+          statusCode: 400,
+          body: { message: product.error }
+        }
+      }
+
       return {
-        statusCode: 400,
-        body: { message: product.error }
+        statusCode: 200,
+        body: { message: 'Produto deletado com sucesso!' }
       }
-    }
-
-    return {
-      statusCode: 200,
-      body: { message: 'Produto deletado com sucesso!' }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
