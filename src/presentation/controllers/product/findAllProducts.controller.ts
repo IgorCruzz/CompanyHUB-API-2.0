@@ -7,11 +7,18 @@ export class FindAllProductsController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const products = await this.findAllProduct.findAll()
+    try {
+      const products = await this.findAllProduct.findAll()
 
-    return {
-      statusCode: 200,
-      body: products
+      return {
+        statusCode: 200,
+        body: products
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
