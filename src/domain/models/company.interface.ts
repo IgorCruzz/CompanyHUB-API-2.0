@@ -5,7 +5,7 @@ export interface ICompanyModel {
   id: number
   name: string
   cnpj: string
-  user_id: number
+  user_id?: number
   user?: IUserModel
   productConnection?: IProductModel[]
   created_at: Date
