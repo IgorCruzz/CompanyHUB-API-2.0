@@ -1,11 +1,11 @@
-import { Products } from '@/infra/db/typeorm/entities/Products.entity'
+import { IProductModel } from '@/domain/models/product.interface'
 
 export interface IDbFindOneCompanyResult {
   error?: string
   user_id?: number
   cnpj?: string
   id?: number
-  productConnection?: Products[]
+  productConnection?: IProductModel[]
   name?: string
 }
 
