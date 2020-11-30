@@ -1,7 +1,7 @@
 export interface IDbDeleteProductDTO {
-  user: string
-  params: { id: string }
-  company_id: string
+  user: number
+  params: { id: number }
+  company_id: number
 }
 
 export interface IDbDeleteProductResult {
