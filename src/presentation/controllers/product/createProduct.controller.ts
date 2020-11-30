@@ -7,14 +7,28 @@ export class CreateProductController implements IController {
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
-    const product = await this.addProduct.add({
-      user: httpRequest.userId,
-      ...httpRequest.body
-    })
+    try {
+      const product = await this.addProduct.add({
+        user: httpRequest.userId,
+        ...httpRequest.body
+      })
 
-    return {
-      statusCode: 200,
-      body: product
+      if (product.error) {
+        return {
+          statusCode: 401,
+          body: { message: product.error }
+        }
+      }
+
+      return {
+        statusCode: 200,
+        body: product
+      }
+    } catch (err) {
+      return {
+        statusCode: 500,
+        body: err
+      }
     }
   }
 }
