@@ -32,4 +32,25 @@ describe('DeleteProduct Controller', () => {
       body: { message: 'Produto deletado com sucesso!' }
     })
   })
+
+  it('should be returns statusCode 401 if deleteProduct returns an error', async () => {
+    jest
+      .spyOn(deleteProduct, 'delete')
+      .mockResolvedValue({ error: 'Você não tem permissão para deletar um produto em outra empresa.' })
+
+    const req: IHttpRequest = {
+      userId: '1',
+      body: {
+        company_id: 1
+      },
+      params: { id: 1 }
+    }
+
+    const res = await deleteProductController.handle(req)
+
+    expect(res).toEqual({
+      statusCode: 400,
+      body: { message: 'Você não tem permissão para deletar um produto em outra empresa.' }
+    })
+  })
 })
