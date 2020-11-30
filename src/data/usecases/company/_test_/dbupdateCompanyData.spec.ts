@@ -1,22 +1,22 @@
 import {
-  FindOneCompanyRepositoryStub,
+  FindByIdRepositoryStub,
   UpdateCompanyRepositoryStub,
 } from '@/data/mocks/company.mock'
-import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
+import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
 import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
 import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interface'
 import { DbUpdateCompany } from '../dbUpdateCompany.data'
 
 let dbUpdateCompany: IUpdateCompany
-let findOneCompanyRepository: IFindOneCompanyRepository
+let findByIdRepository: IFindByIdRepository
 let updateCompanyRepository: IUpdateCompanyRepository
 
 describe('DbUpdateCompany Data', () => {
   beforeEach(() => {
-    findOneCompanyRepository = new FindOneCompanyRepositoryStub()
+    findByIdRepository = new FindByIdRepositoryStub()
     updateCompanyRepository = new UpdateCompanyRepositoryStub()
     dbUpdateCompany = new DbUpdateCompany(
-      findOneCompanyRepository,
+      findByIdRepository,
       updateCompanyRepository
     )
   })
@@ -25,8 +25,8 @@ describe('DbUpdateCompany Data', () => {
     expect(dbUpdateCompany).toBeDefined()
   })
 
-  it('should call findOneCompanyRepository with success', async () => {
-    const res = jest.spyOn(findOneCompanyRepository, 'findOne')
+  it('should call findByIdRepository with success', async () => {
+    const res = jest.spyOn(findByIdRepository, 'findId')
 
     await dbUpdateCompany.update(1, {
       name: 'company',
@@ -37,8 +37,8 @@ describe('DbUpdateCompany Data', () => {
     expect(res).toHaveBeenCalledWith(1)
   })
 
-  it('should returns an error message if findOneCompanyRepository returns undefined', async () => {
-    jest.spyOn(findOneCompanyRepository, 'findOne').mockResolvedValue(undefined)
+  it('should returns an error message if findByIdRepository returns undefined', async () => {
+    jest.spyOn(findByIdRepository, 'findId').mockResolvedValue(undefined)
 
     const res = await dbUpdateCompany.update(1, {
       name: 'company',
@@ -62,7 +62,7 @@ describe('DbUpdateCompany Data', () => {
   })
 
   it('should call updateCompanyRepository with success', async () => {
-    const res = jest.spyOn(findOneCompanyRepository, 'findOne')
+    const res = jest.spyOn(findByIdRepository, 'findId')
 
     await dbUpdateCompany.update(1, {
       name: 'company',
@@ -84,8 +84,7 @@ describe('DbUpdateCompany Data', () => {
 
     expect(res).toHaveBeenCalledWith(1, {
       cnpj: '111111111',
-      name: 'company',
-      user: '1',
+      name: 'company'
     })
   })
 })

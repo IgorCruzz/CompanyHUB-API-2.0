@@ -12,12 +12,15 @@ export class UpdateCompanyController implements IController {
     try {
       const { id } = httpRequest.params
 
-      const company = await this.dbUpdateCompany.update(id, httpRequest.body)
+      const company = await this.dbUpdateCompany.update(id, {
+        ...httpRequest.body,
+        user: httpRequest.userId
+      })
 
       if (company.error) {
         return {
           statusCode: 400,
-          body: { message: 'Você não cadastrou sua empresa ainda.' }
+          body: { message: company.error }
         }
       }
 

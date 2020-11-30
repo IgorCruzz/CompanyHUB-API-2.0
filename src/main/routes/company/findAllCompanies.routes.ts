@@ -5,7 +5,7 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 
 const routes = Router()
 
-routes.delete(
+routes.get(
   '/companies',
   adapMiddleware(makeAuthMiddleware(true)),
   makeFindAllCompaniesController()

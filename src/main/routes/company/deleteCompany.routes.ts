@@ -1,6 +1,6 @@
 import { Router } from 'express'
 import { adapMiddleware } from '../../adapters/expressMiddleware.adapter'
-import { makeDeleteController } from '../../factories/controller/user/deleteUser'
+import { makeDeleteController } from '../../factories/controller/company/deleteCompanyController'
 import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 
 const routes = Router()

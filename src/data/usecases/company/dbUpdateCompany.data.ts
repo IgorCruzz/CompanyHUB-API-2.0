@@ -1,4 +1,4 @@
-import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
+import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
 import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
 import {
   IUpdateCompany,
@@ -8,7 +8,7 @@ import {
 
 export class DbUpdateCompany implements IUpdateCompany {
   constructor(
-    private readonly findOneCompanyRepository: IFindOneCompanyRepository,
+    private readonly findByIdRepository: IFindByIdRepository,
     private readonly updateCompanyRepository: IUpdateCompanyRepository
   ) {}
 
@@ -16,7 +16,8 @@ export class DbUpdateCompany implements IUpdateCompany {
     id: number,
     data: IUpdateCompanyDTO
   ): Promise<IUpdateCompanyResult> {
-    const findCompany = await this.findOneCompanyRepository.findOne(Number(id))
+
+    const findCompany = await this.findByIdRepository.findId(Number(id))
 
     if (!findCompany) return { error: 'Você não cadastrou sua empresa ainda.' }
 
@@ -27,10 +28,15 @@ export class DbUpdateCompany implements IUpdateCompany {
 
     const request = JSON.stringify(data).toLowerCase()
 
+    const { user, ...companyUpdatedData } = JSON.parse(request)
+
     const updated = await this.updateCompanyRepository.update(
-      id,
-      JSON.parse(request)
+      Number(id),
+      {
+        ...companyUpdatedData
+      }
     )
+
 
     return { updated }
   }

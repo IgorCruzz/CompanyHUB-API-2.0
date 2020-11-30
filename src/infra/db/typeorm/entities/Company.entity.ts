@@ -23,7 +23,7 @@ export class Company {
   cnpj: string
 
   @Column()
-  user_id: number
+  user_id?: number
 
   @OneToOne(() => User)
   @JoinColumn({ name: 'user_id' })
