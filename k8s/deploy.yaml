@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: companyhubbackend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: companyhubbackend
+  template:
+    metadata:
+      labels:
+        app: companyhubbackend
+    spec:
+      containers:
+        - name: companyhubbackend
+          image: 'gcr.io/airy-cortex-291920/backend:latest'
+          ports:
+            - containerPort: 8080
