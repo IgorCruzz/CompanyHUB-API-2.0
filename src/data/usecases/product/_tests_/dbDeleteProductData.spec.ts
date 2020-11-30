@@ -10,10 +10,21 @@ let findUserIdRepository: IFindUserIdRepository
 describe('DbDeleteProduct Data', () => {
   beforeEach(() => {
     findUserIdRepository = new FindUserIdRepositorytub()
-    dbDeleteProductData = new DbDeleteProduct()
+    dbDeleteProductData = new DbDeleteProduct(findUserIdRepository)
   })
 
   it('should be defined', () => {
     expect(dbDeleteProductData).toBeDefined()
+  })
+
+  it('should call FindUserIdRepository with success', async () => {
+    const res = jest.spyOn(findUserIdRepository, 'findUserId')
+
+    await dbDeleteProductData.delete({
+      company_id: 1,
+      params: { id: 1 },
+      user: 1
+    })
+    expect(res).toHaveBeenCalledWith(1)
   })
 })
