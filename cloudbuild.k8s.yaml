@@ -1,0 +1,62 @@
+steps:
+   
+- id: BUILD
+  name: 'gcr.io/cloud-builders/docker'
+  args: [ 'build',  
+         '--build-arg', 
+         'URL=${_URL}',
+         '--build-arg',
+         'DB_HOST=${_DB_HOST}', 
+         '--build-arg',
+         'DB_USER=${_DB_USER}',
+         '--build-arg',
+         'DB_PASSWORD=${_DB_PASSWORD}',
+         '--build-arg',
+         'DB_NAME=${_DB_NAME}', 
+         '--build-arg',
+         'MAIL_PASS=${_MAIL_PASS}',
+         '--build-arg',
+         'MAIL_USER=${_MAIL_USER}',
+         '--build-arg',
+         'MAIL_SERVICE=${_MAIL_SERVICE}',            
+         '-t', 
+         'gcr.io/$PROJECT_ID/backend:latest', 
+         '-t', 
+         'gcr.io/$PROJECT_ID/backend:$SHORT_SHA', '.']   
+
+- id: RUN
+  name: 'docker'
+  args: ['run', '-d','--name', 'companyHUB', '-t', 'gcr.io/$PROJECT_ID/backend:latest']  
+
+- id: ESLINT
+  name: 'docker'
+  args: ['exec', 'companyHUB', 'yarn', 'lint']
+
+- id: TEST
+  name: 'docker'
+  args: ['exec', 'companyHUB', 'yarn', 'test']
+ 
+- id: PUSH:LATEST
+  name: 'docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/backend:latest']
+
+- id: PUSH:VERSION
+  name: 'docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/backend:$SHORT_SHA'] 
+
+- id: DEPLOY
+  name: 'gcr.io/cloud-builders/kubectl'
+  args: [
+    'set',
+    'image',
+    'deployment',
+    'companyhubbackend',
+    'companyhubbackend=gcr.io/$PROJECT_ID/backend:$SHORT_SHA'
+  ]    
+  env:
+  - 'CLOUDSDK_COMPUTE_ZONE=us-central1-c'
+  - 'CLOUDSDK_CONTAINER_CLUSTER=companyhub'
+    
+  
+
+ 
