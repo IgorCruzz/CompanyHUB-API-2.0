@@ -79,5 +79,20 @@ describe('DbAddProduct Data', () => {
     expect(res).toHaveBeenCalledWith({ name: 'product', company_id: 1})
   })
 
+    it('should return an new product', async () => {
+    jest.spyOn(findByProductNameRepository, 'findName').mockResolvedValue(undefined)
+
+    const res = await dbAddProductData.add({
+      name: 'product',
+      company_id: 1,
+      user: '1',
+    })
+    expect(res).toEqual({
+      name: 'product',
+      company_id: 1,
+      id: 1
+    })
+  })
+
 
 })
