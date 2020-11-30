@@ -3,7 +3,7 @@ import { ICreateProductDTO, ICreateProductRepository } from "../protocols/db/pro
 import { IFindByProductNameRepository } from "../protocols/db/product/findByNameProductRepository.interface";
 
 
-export class FindByProductNameRepository implements IFindByProductNameRepository {
+export class FindByProductNameRepositoryStub implements IFindByProductNameRepository {
   async findName (name: string): Promise<IProductModel> {
     return Promise.resolve({
       id: 1,
@@ -15,7 +15,7 @@ export class FindByProductNameRepository implements IFindByProductNameRepository
   }
 }
 
-export class CreateProductRepository implements ICreateProductRepository {
+export class CreateProductRepositoryStub implements ICreateProductRepository {
   async create(date: ICreateProductDTO): Promise<IProductModel> {
     return Promise.resolve({
       id: 1,
