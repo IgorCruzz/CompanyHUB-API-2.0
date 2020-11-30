@@ -1,6 +1,7 @@
 import { FindUserIdRepositorytub } from "@/data/mocks/company.mock"
-import { FindByProductNameRepository } from "@/data/mocks/product.mock"
+import { CreateProductRepositoryStub, FindByProductNameRepositoryStub } from "@/data/mocks/product.mock"
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
+import { ICreateProductRepository } from "@/data/protocols/db/product/createProductRepository.interface"
 import { IFindByProductNameRepository } from "@/data/protocols/db/product/findByNameProductRepository.interface"
 import { IAddProduct } from "@/domain/usecases/product/addProductinterface"
 import { DbAddProduct } from "../dbAddProduct.data"
@@ -8,12 +9,14 @@ import { DbAddProduct } from "../dbAddProduct.data"
 let dbAddProductData: IAddProduct
 let findUserIdRepository: IFindUserIdRepository
 let findByProductNameRepository: IFindByProductNameRepository
+let createProductRepository: ICreateProductRepository
 
 describe('DbAddProduct Data', () => {
   beforeEach(() => {
     findUserIdRepository = new FindUserIdRepositorytub()
-    findByProductNameRepository = new FindByProductNameRepository()
-    dbAddProductData = new DbAddProduct(findUserIdRepository, findByProductNameRepository)
+    findByProductNameRepository = new FindByProductNameRepositoryStub()
+    createProductRepository = new CreateProductRepositoryStub()
+    dbAddProductData = new DbAddProduct(findUserIdRepository, findByProductNameRepository, createProductRepository)
   })
 
   it('should be defined', () => {
@@ -24,7 +27,7 @@ describe('DbAddProduct Data', () => {
     const res = jest.spyOn(findUserIdRepository, 'findUserId')
 
     await dbAddProductData.add({
-      name: 'company',
+      name: 'product',
       company_id: 2,
       user: '1',
     })
@@ -35,7 +38,7 @@ describe('DbAddProduct Data', () => {
     jest.spyOn(findUserIdRepository, 'findUserId')
 
     const res = await dbAddProductData.add({
-      name: 'company',
+      name: 'product',
       company_id: 2,
       user: '1',
     })
@@ -47,21 +50,33 @@ describe('DbAddProduct Data', () => {
     const res = jest.spyOn(findByProductNameRepository, 'findName')
 
     await dbAddProductData.add({
-      name: 'company',
+      name: 'product',
       company_id: 1,
       user: '1',
     })
-    expect(res).toHaveBeenCalledWith('company')
+    expect(res).toHaveBeenCalledWith('product')
   })
 
   it('should return an error message if FindByProductNameRepository returns a product', async () => {
 
      const res = await dbAddProductData.add({
-      name: 'company',
+      name: 'product',
       company_id: 1,
       user: '1',
     })
-    expect(res).toEqual({ error: 'Este nome ja está em uso, escolha outro.'})
+    expect(res).toEqual({ error: 'Este nome já está em uso, escolha outro.'})
+  })
+
+  it('should call CreateProductRepository with success', async () => {
+    const res = jest.spyOn(createProductRepository, 'create')
+    jest.spyOn(findByProductNameRepository, 'findName').mockResolvedValue(undefined)
+
+    await dbAddProductData.add({
+      name: 'product',
+      company_id: 1,
+      user: '1',
+    })
+    expect(res).toHaveBeenCalledWith({ name: 'product', company_id: 1})
   })
 
 
