@@ -12,11 +12,11 @@
     "start:debug": "nodemon -L --watch ./dist --inspect=0.0.0.0:9222 --nolazy ./dist/main/server.js",
     "lint": "eslint 'src/**' --fix",
     "format": "prettier --write \"src/**/*.ts\"",
-    "test": "jest",
+    "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:integration": "jest --config jest-integration-config.js",
-    "test:staged": "jest -- --findRelatedTests",
+    "test:staged": "yarn test -- --findRelatedTests",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
   },
   "author": "Igor",
@@ -102,23 +102,6 @@
     "typeorm": "^0.2.25",
     "validator": "^13.1.17",
     "yup": "^0.29.3"
-  },
-  "jest": {
-    "moduleFileExtensions": [
-      "js",
-      "json",
-      "ts"
-    ],
-    "roots": ["<rootDir>/src"],
-    "testRegex": ".spec.ts$",
-    "transform": {
-      "^.+\\.(t|j)s$": "ts-jest"
-    },
-    "moduleNameMapper": {
-      "@/(.*)": "<rootDir>/src/$1"
-    },
-    "coverageDirectory": "coverage",
-    "testEnvironment": "node"
   },
   "_moduleAliases": {
     "@": "dist"
