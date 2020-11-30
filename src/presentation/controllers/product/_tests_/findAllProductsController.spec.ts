@@ -53,4 +53,15 @@ describe('FindAllProducts Controller', () => {
       ]
     })
   })
+
+  it('throw error 500 if findAllProduct throws', async () => {
+    jest.spyOn(findAllProduct, 'findAll').mockRejectedValue(new Error())
+
+    const res = await findAllProductController.handle({})
+
+    expect(res).toEqual({
+      statusCode: 500,
+      body: new Error()
+    })
+  })
 })
