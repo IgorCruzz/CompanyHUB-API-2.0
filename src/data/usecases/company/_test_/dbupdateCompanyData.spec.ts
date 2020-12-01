@@ -46,7 +46,7 @@ describe('DbUpdateCompany Data', () => {
       user: '1',
     })
 
-    expect(res).toEqual({ error: 'Você não cadastrou sua empresa ainda.' })
+    expect(res).toEqual({ error: 'Insira um ID válido.' })
   })
 
   it('should returns an error message if company belongs to another user', async () => {

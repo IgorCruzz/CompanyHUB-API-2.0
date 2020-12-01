@@ -1,0 +1,31 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: backend-ingress
+  annotations:
+    kubernetes.io/ingress.global-static-ip-name: backend-ip
+    networking.gke.io/managed-certificates: backend-certificate
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/force-ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/ssl-redirect: 'true'
+    nginx.ingress.kubernetes.io/from-to-www-redirect: 'true'
+spec:
+  tls:
+    - hosts:
+        - www.companyhub.tk
+        - companyhub.tk
+        - api.companyhub.tk
+  rules:
+    - http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: companyhub-service
+              servicePort: 80
+    - host: api.companyhub.tk
+      http:
+        paths:
+          - path: /*
+            backend:
+              serviceName: companyhubbackend-service
+              servicePort: 80
