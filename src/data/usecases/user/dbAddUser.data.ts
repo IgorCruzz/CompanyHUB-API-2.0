@@ -17,6 +17,8 @@ export class DbAddUser implements IAddUser {
     private readonly hasher: IHasher
   ) {}
 
+
+
   async add(data: IAddUserDTO): Promise<IAddResult> {
     const { email, password_hash } = data
 

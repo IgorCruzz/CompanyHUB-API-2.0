@@ -11,6 +11,7 @@ import findOneCompany from './company/findOneCompany.routes'
 import updateCompany from './company/updateCompany.routes'
 import createProduct from './product/createProduct.routes'
 import deleteProduct from './product/deleteProduct.routes'
+import findAllProducts from './product/findAllProducts.routes'
 
 const routes = [
   deleteUserRoute,
@@ -23,7 +24,8 @@ const routes = [
   findOneCompany,
   updateCompany,
   createProduct,
-  deleteProduct
+  deleteProduct,
+  findAllProducts
 ]
 
 const router = Router()
