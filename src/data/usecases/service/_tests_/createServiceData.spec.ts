@@ -93,4 +93,20 @@ describe('AddService Data', () => {
     })
   })
 
+  it('should return a new service', async () => {
+    const res =  await addService.add({
+      name: 'service',
+      description: 'description',
+      user: '1',
+      product_id: 1
+    })
+
+    expect(res).toEqual({
+      id: 1,
+      name: 'service',
+      description: 'description',
+      product_id: 1
+    })
+  })
+
 })
