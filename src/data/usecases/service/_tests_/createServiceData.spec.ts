@@ -1,7 +1,9 @@
 import { FindByUserRelationStub, FindUserIdRepositorytub } from "@/data/mocks/company.mock";
 import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
+import { CreateServiceRepositoryStub } from "@/data/mocks/service.mock";
 import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
+import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository";
 import { IAddService } from "@/domain/usecases/service/addService.interface";
 import { AddService } from "../createService.data";
 
@@ -9,6 +11,7 @@ import { AddService } from "../createService.data";
 let addService: IAddService
 let findByUserRelation: IFindByUserRelationRepository
 let findByProductCompanyId: IFindByProductCompanyId
+let createService: ICreateServiceRepository
 
 
 
@@ -16,7 +19,11 @@ describe('AddService Data', () => {
   beforeEach(() => {
     findByUserRelation = new FindByUserRelationStub()
     findByProductCompanyId = new FindByProductCompanyIdStub()
-    addService = new AddService(findByUserRelation, findByProductCompanyId)
+    createService = new CreateServiceRepositoryStub()
+    addService = new AddService(
+        findByUserRelation,
+        findByProductCompanyId,
+        createService)
   });
 
   it('should be defined', () => {
@@ -68,4 +75,22 @@ describe('AddService Data', () => {
       error: 'Você não tem permissão para cadastrar um serviço neste produto.'
     })
   })
+
+  it('should call createService with success', async () => {
+    const res = jest.spyOn(createService, 'create')
+
+    await addService.add({
+      name: 'service',
+      description: 'description',
+      user: '1',
+      product_id: 1
+    })
+
+    expect(res).toHaveBeenCalledWith({
+      name: 'service',
+      description: 'description',
+      product_id: 1
+    })
+  })
+
 })
