@@ -3,6 +3,7 @@ import { IDeleteProductRepository } from '@/data/protocols/db/product/deleteProd
 import { IProductFindAllRepository } from '@/data/protocols/db/product/findAllProductsRepository.interface'
 import { IFindByIdRepository } from '@/data/protocols/db/product/findByIdRepository.interface'
 import { IFindByProductNameRepository } from '@/data/protocols/db/product/findByNameProductRepository.interface'
+import { IProductFindOneRepository } from '@/data/protocols/db/product/findOneProductRepository.interface'
 import { IProductModel } from '@/domain/models/product.interface'
 import { getRepository } from 'typeorm'
 import { Product } from '../../entities/Product.entity'
@@ -13,7 +14,8 @@ implements
   IFindByProductNameRepository,
   IFindByIdRepository,
   IDeleteProductRepository,
-  IProductFindAllRepository {
+  IProductFindAllRepository,
+  IProductFindOneRepository {
   async create (date: ICreateProductDTO): Promise<IProductModel> {
     const orm = getRepository(Product)
 
@@ -29,7 +31,7 @@ implements
   async findId (id: number): Promise<IProductModel> {
     const orm = getRepository(Product)
 
-    return await orm.findOne({ name })
+    return await orm.findOne({ id })
   }
 
   async delete (id: number): Promise<boolean> {
@@ -48,6 +50,15 @@ implements
       order: {
         company_id: 'ASC'
       }
+    })
+  }
+
+  async findOne (id: number): Promise<IProductModel[]> {
+    const orm = getRepository(Product)
+
+    return await orm.find({
+      where: { company_id: id },
+      relations: ['serviceConnection']
     })
   }
 }
