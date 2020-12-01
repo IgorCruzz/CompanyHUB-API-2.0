@@ -31,7 +31,6 @@ describe('DbUpdateProduct Data', () => {
 
     await dbUpdateProduct.update(1, {
       company_id: 1,
-      id: 1,
       name: 'product',
       user: 1
     })
@@ -43,7 +42,6 @@ describe('DbUpdateProduct Data', () => {
 
     const res =   await dbUpdateProduct.update(1, {
       company_id: 2,
-      id: 1,
       name: 'product',
       user: 1
     })
@@ -56,7 +54,6 @@ it('should call FindByProductNameRepository with success', async () => {
 
    await dbUpdateProduct.update(1, {
     company_id: 1,
-    id: 1,
     name: 'product',
     user: 1
   })
@@ -68,7 +65,6 @@ it('should returns an error message if FindUserIdRepository return an user', asy
 
   const res =   await dbUpdateProduct.update(1, {
     company_id: 1,
-    id: 1,
     name: 'product',
     user: 1
   })
@@ -82,7 +78,6 @@ it('should call updateProductRepository with success', async () => {
 
    await dbUpdateProduct.update(1, {
     company_id: 1,
-    id: 1,
     name: 'product',
     user: 1
   })
