@@ -1,6 +1,7 @@
 import { IProductModel } from "@/domain/models/product.interface";
 import { ICreateProductDTO, ICreateProductRepository } from "../protocols/db/product/createProductRepository.interface";
 import { IDeleteProductRepository } from "../protocols/db/product/deleteProductRepository.interface";
+import { IProductFindAllRepository } from "../protocols/db/product/findAllProductsRepository.interface";
 import { IFindByIdRepository } from "../protocols/db/product/findByIdRepository.interface";
 import { IFindByProductNameRepository } from "../protocols/db/product/findByNameProductRepository.interface";
 
@@ -44,5 +45,31 @@ export class FindByIdRepositoryStub implements IFindByIdRepository {
       created_at: new Date(),
       updated_at: new Date(),
     })
+  }
+}
+
+
+export class FindAllProductsRepositoryStub
+  implements IProductFindAllRepository {
+  async findAll(): Promise<IProductModel[]> {
+    return Promise.resolve([
+      {
+        id: 1,
+        name: 'product',
+        company_id: 1,
+        companyConnection: {
+          user_id: 1,
+          cnpj: '11111111111',
+          id: 1,
+          productConnection: [],
+          name: 'company',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        serviceConnection: [],
+        created_at: new Date(),
+        updated_at: new Date()
+      }
+    ])
   }
 }
