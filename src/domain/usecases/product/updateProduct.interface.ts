@@ -1,6 +1,5 @@
 export interface IUpdateProductDTO {
   name?: string
-  id: number
   company_id: number
   user: number
 }
