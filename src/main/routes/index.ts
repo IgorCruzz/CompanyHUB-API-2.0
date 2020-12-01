@@ -14,6 +14,7 @@ import deleteProduct from './product/deleteProduct.routes'
 import findAllProducts from './product/findAllProducts.routes'
 import findOneProduct from './product/findOneProduct.routes'
 import updateProduct from './product/updateProduct.routes'
+import createService from './service/serviceProduct.routes'
 
 const routes = [
   deleteUserRoute,
@@ -29,7 +30,8 @@ const routes = [
   deleteProduct,
   findAllProducts,
   findOneProduct,
-  updateProduct
+  updateProduct,
+  createService
 ]
 
 const router = Router()
