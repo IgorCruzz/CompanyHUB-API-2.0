@@ -1,3 +1,4 @@
+import { ICompanyModel } from '@/domain/models/company.interface'
 import { Company } from '@/infra/db/typeorm/entities/Company.entity'
 import {
   ICreateCompanyDTO,
@@ -6,6 +7,7 @@ import {
 import { IDeleteCompanyRepository } from '../protocols/db/company/deleteCompanyRepository.interface'
 import { IFindAllCompaniesRepository } from '../protocols/db/company/findAllCompanies.repository'
 import { IFindByIdRepository } from '../protocols/db/company/findByIdRepository.interface'
+import { IFindByUserRelationRepository } from '../protocols/db/company/findByUserRelationRepository'
 import { IFindCnpjRepository } from '../protocols/db/company/findCnpjRepository.interface'
 import { IFindOneCompanyRepository } from '../protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '../protocols/db/company/findUserIdRepository.interface'
@@ -18,6 +20,29 @@ export class FindUserIdRepositorytub implements IFindUserIdRepository {
       cnpj: '11111111111',
       id: 1,
       name: 'company',
+      created_at: new Date(),
+      updated_at: new Date(),
+    })
+  }
+}
+
+export class FindByUserRelationStub implements IFindByUserRelationRepository {
+  async findByUserRelation (id: number): Promise<ICompanyModel> {
+    return Promise.resolve({
+      user_id: 1,
+      cnpj: '11111111111',
+      id: 1,
+      name: 'company',
+      user: {
+        id: 1,
+        name: 'name',
+        activation: true,
+        administrator: false,
+        email: 'user@mail.com',
+        password_hash: 'password',
+        created_at: new Date(),
+        updated_at: new Date()
+      },
       created_at: new Date(),
       updated_at: new Date(),
     })
