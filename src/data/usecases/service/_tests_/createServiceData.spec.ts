@@ -1,4 +1,4 @@
-import { FindByUserRelationStub, FindUserIdRepositorytub } from "@/data/mocks/company.mock";
+import { FindByUserRelationStub } from "@/data/mocks/company.mock";
 import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
 import { CreateServiceRepositoryStub } from "@/data/mocks/service.mock";
 import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";

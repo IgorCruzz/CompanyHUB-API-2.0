@@ -1,5 +1,6 @@
 import { IServiceModel } from "@/domain/models/service.interface";
 import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createServiceRepository";
+import { IDeleteServiceRepository } from "../protocols/db/service/deleteServiceRepository";
 
 
 export class CreateServiceRepositoryStub implements ICreateServiceRepository {
@@ -15,3 +16,8 @@ export class CreateServiceRepositoryStub implements ICreateServiceRepository {
   }
 }
 
+export class DeleteServiceRepositoryStub implements IDeleteServiceRepository {
+  async delete(id: number): Promise<boolean> {
+    return Promise.resolve(true)
+  }
+}
