@@ -4,6 +4,7 @@ import { IDeleteProductRepository } from "../protocols/db/product/deleteProductR
 import { IProductFindAllRepository } from "../protocols/db/product/findAllProductsRepository.interface";
 import { IFindByIdRepository } from "../protocols/db/product/findByIdRepository.interface";
 import { IFindByProductNameRepository } from "../protocols/db/product/findByNameProductRepository.interface";
+import { IProductFindOneRepository } from "../protocols/db/product/findOneProductRepository.interface";
 
 export class FindByProductNameRepositoryStub implements IFindByProductNameRepository {
   async findName (name: string): Promise<IProductModel> {
@@ -73,3 +74,29 @@ export class FindAllProductsRepositoryStub
     ])
   }
 }
+
+export class ProductFindOneRepository
+  implements IProductFindOneRepository {
+  async findOne(id: number): Promise<IProductModel[]> {
+    return Promise.resolve([
+      {
+        id: 1,
+        name: 'product',
+        company_id: 1,
+        companyConnection: {
+          user_id: 1,
+          cnpj: '11111111111',
+          id: 1,
+          productConnection: [],
+          name: 'company',
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        serviceConnection: [],
+        created_at: new Date(),
+        updated_at: new Date()
+      }
+    ])
+  }
+}
+

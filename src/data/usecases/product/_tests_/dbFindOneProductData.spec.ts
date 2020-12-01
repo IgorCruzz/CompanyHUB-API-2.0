@@ -12,7 +12,7 @@ let dbFindOneProduct: IDbFindOneProduct
 let productFindOneRepository: IProductFindOneRepository
 
 
-describe('DbFindAllProduct Data', () => {
+describe('DbFindOneProduct Data', () => {
   beforeEach(() => {
     productFindOneRepository = new ProductFindOneRepository()
     dbFindOneProduct = new DbFindOneProduct(productFindOneRepository)
