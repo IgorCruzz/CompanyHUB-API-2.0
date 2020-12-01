@@ -31,7 +31,7 @@ implements
   async findId (id: number): Promise<IProductModel> {
     const orm = getRepository(Product)
 
-    return await orm.findOne({ name })
+    return await orm.findOne({ id })
   }
 
   async delete (id: number): Promise<boolean> {
