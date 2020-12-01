@@ -2,6 +2,7 @@ import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecase
 import { IDbDeleteProduct, IDbDeleteProductDTO, IDbDeleteProductResult } from '@/domain/usecases/product/deleteProduct.interface'
 import { IDbFindAllProducts, IDbFindAllProductsResult } from '@/domain/usecases/product/findAllProduct.interface'
 import { IDbFindOneProduct, IDbFindOneProductResult } from '@/domain/usecases/product/findOneProduct.interface'
+import { IUpdateProduct, IUpdateProductDTO, IUpdateProductResult } from '@/domain/usecases/product/updateProduct.interface'
 
 export class DbAddProductStub implements IAddProduct {
   async add (data: IAddProductDTO): Promise<IAddProductResult> {
@@ -17,6 +18,14 @@ export class DbDeleteProductStub implements IDbDeleteProduct {
   async delete (data: IDbDeleteProductDTO): Promise<IDbDeleteProductResult> {
     return Promise.resolve({
       deleted: true
+    })
+  }
+}
+
+export class DbUpdateProductStub implements IUpdateProduct {
+  async update (id: number, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+    return Promise.resolve({
+      updated: true
     })
   }
 }

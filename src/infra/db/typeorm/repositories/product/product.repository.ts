@@ -4,6 +4,7 @@ import { IProductFindAllRepository } from '@/data/protocols/db/product/findAllPr
 import { IFindByIdRepository } from '@/data/protocols/db/product/findByIdRepository.interface'
 import { IFindByProductNameRepository } from '@/data/protocols/db/product/findByNameProductRepository.interface'
 import { IProductFindOneRepository } from '@/data/protocols/db/product/findOneProductRepository.interface'
+import { IUpdateProductDTO } from '@/data/protocols/db/product/updateProductRepository.interface'
 import { IProductModel } from '@/domain/models/product.interface'
 import { getRepository } from 'typeorm'
 import { Product } from '../../entities/Product.entity'
@@ -60,5 +61,13 @@ implements
       where: { company_id: id },
       relations: ['serviceConnection']
     })
+  }
+
+  async update (id: number, data: IUpdateProductDTO): Promise<boolean> {
+    const orm = getRepository(Product)
+
+    const updateProduct = await orm.update(id, data)
+
+    return updateProduct && true
   }
 }
