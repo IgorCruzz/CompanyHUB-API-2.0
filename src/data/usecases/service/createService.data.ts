@@ -29,6 +29,12 @@ export class AddService implements IAddService {
       product_id,
     })
 
+    return {
+      id: service.id,
+      name: service.name,
+      description: service.description,
+      product_id: service.product_id
+    }
   }
 
 
