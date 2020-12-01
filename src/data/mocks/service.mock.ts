@@ -1,5 +1,6 @@
 import { IServiceModel } from "@/domain/models/service.interface";
-import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createProductRepository";
+import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createServiceRepository";
+
 
 export class CreateServiceRepositoryStub implements ICreateServiceRepository {
   async create(date: ICreateServiceDTO): Promise<IServiceModel> {

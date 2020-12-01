@@ -1,17 +1,18 @@
 import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
-import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
+import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository";
 import { IAddService, IAddServiceDTO, IAddServiceResult } from "@/domain/usecases/service/addService.interface";
 
 export class AddService implements IAddService {
   constructor (
       private readonly findByUserRelation: IFindByUserRelationRepository,
-      private readonly findByProductCompanyId: IFindByProductCompanyId
+      private readonly findByProductCompanyId: IFindByProductCompanyId,
+      private readonly createService: ICreateServiceRepository
 
   ) {}
 
   async add(data: IAddServiceDTO): Promise<IAddServiceResult> {
-    const { user, product_id } = data
+    const { user, product_id, name, description } = data
 
     const company = await this.findByUserRelation.findByUserRelation(Number(user))
 
@@ -22,7 +23,12 @@ export class AddService implements IAddService {
 
     if (!product && !company.user.administrator) return { error: 'Você não tem permissão para cadastrar um serviço neste produto.'}
 
-    return await null
+    const service = await this.createService.create({
+      name: name.toLowerCase(),
+      description,
+      product_id,
+    })
+
   }
 
 
