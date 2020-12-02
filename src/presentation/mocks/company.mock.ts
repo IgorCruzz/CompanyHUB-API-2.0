@@ -75,10 +75,7 @@ export class DbFindOneCompanyCompanyStub implements IDbFindOneCompany {
 }
 
 export class DbUpdateCompanyStub implements IUpdateCompany {
-  async update (
-    id: number,
-    data: IUpdateCompanyDTO
-  ): Promise<IUpdateCompanyResult> {
+  async update (id: number, userId: string, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult> {
     return Promise.resolve({ updated: true })
   }
 }

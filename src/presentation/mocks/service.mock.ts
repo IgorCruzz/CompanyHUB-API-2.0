@@ -45,7 +45,7 @@ export class DbFindAllServicesStub implements IDbFindAllServices {
 }
 
 export class DbUpdateServiceStub implements IDbUpdateService {
-  async update (id: number, user: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
+  async update (id: number, userId: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
     return Promise.resolve({ updated: true })
   }
 }

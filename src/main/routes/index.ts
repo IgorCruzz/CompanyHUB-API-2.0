@@ -17,6 +17,7 @@ import updateProduct from './product/updateProduct.routes'
 import createService from './service/serviceProduct.routes'
 import deleteService from './service/deleteService.routes'
 import findAllServices from './service/findAllServices.routes'
+import updateService from './service/updateService.routes'
 
 const routes = [
   deleteUserRoute,
@@ -35,9 +36,10 @@ const routes = [
   updateProduct,
   createService,
   deleteService,
-  findAllServices
+  findAllServices,
+  updateService
 ]
 
 const router = Router()
 
-export const exposeRoutes = routes.map((r) => router.use(r))
+export const exposeRoutes = routes.map((r) => router.use('/fodase', r))

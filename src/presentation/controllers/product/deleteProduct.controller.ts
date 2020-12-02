@@ -8,11 +8,15 @@ export class DeleteProductController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
+      const { company_id } = httpRequest.body
+      const { id } = httpRequest.params
+      const { userId } = httpRequest
+
       const product = await this.deleteProduct.delete({
-        company_id: httpRequest.body.company_id,
-        user: Number(httpRequest.userId),
+        company_id,
+        user: Number(userId),
         params: {
-          id: httpRequest.params.id
+          id
         }
       })
 

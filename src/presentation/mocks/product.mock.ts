@@ -23,7 +23,7 @@ export class DbDeleteProductStub implements IDbDeleteProduct {
 }
 
 export class DbUpdateProductStub implements IUpdateProduct {
-  async update (id: number, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+  async update (id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
     return Promise.resolve({
       updated: true
     })

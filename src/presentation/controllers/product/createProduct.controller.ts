@@ -8,8 +8,10 @@ export class CreateProductController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
+      const { userId } = httpRequest
+
       const product = await this.addProduct.add({
-        user: httpRequest.userId,
+        user: userId,
         ...httpRequest.body
       })
 

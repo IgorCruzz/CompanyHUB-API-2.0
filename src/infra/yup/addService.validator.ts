@@ -8,7 +8,7 @@ export class AddServiceValidation implements IValidation {
   async validate (data: any): Promise<IValidationResult> {
     const schema = Yup.object().shape({
       name: Yup.string().min(5).max(100).required(),
-      cnpj: Yup.string().required()
+      description: Yup.string().required()
     })
 
     return await schema

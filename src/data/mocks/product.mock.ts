@@ -57,8 +57,7 @@ export class FindByIdRepositoryStub implements IFindByIdRepository {
 }
 
 
-export class FindAllProductsRepositoryStub
-  implements IProductFindAllRepository {
+export class FindAllProductsRepositoryStub implements IProductFindAllRepository {
   async findAll(): Promise<IProductModel[]> {
     return Promise.resolve([
       {
@@ -82,8 +81,7 @@ export class FindAllProductsRepositoryStub
   }
 }
 
-export class ProductFindOneRepository
-  implements IProductFindOneRepository {
+export class ProductFindOneRepositoryStub implements IProductFindOneRepository {
   async findOne(id: number): Promise<IProductModel[]> {
     return Promise.resolve([
       {

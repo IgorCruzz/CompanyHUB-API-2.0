@@ -10,8 +10,7 @@ import {
   IUpdateUserRepository,
 } from '../protocols/db/user/updateUserRepository.interface'
 
-export class UserFindByEmailRepositoryStub
-  implements IFindUserByEmailRepository {
+export class UserFindByEmailRepositoryStub implements IFindUserByEmailRepository {
   async findEmail(email: string): Promise<any> {
     return Promise.resolve({
       id: 1,

@@ -28,10 +28,9 @@ describe('DbUpdateCompany Data', () => {
   it('should call findByIdRepository with success', async () => {
     const res = jest.spyOn(findByIdRepository, 'findId')
 
-    await dbUpdateCompany.update(1, {
+    await dbUpdateCompany.update(1, '1', {
       name: 'company',
       cnpj: '111111111',
-      user: '1',
     })
 
     expect(res).toHaveBeenCalledWith(1)
@@ -40,20 +39,18 @@ describe('DbUpdateCompany Data', () => {
   it('should returns an error message if findByIdRepository returns undefined', async () => {
     jest.spyOn(findByIdRepository, 'findId').mockResolvedValue(undefined)
 
-    const res = await dbUpdateCompany.update(1, {
+    const res =   await dbUpdateCompany.update(1, '1', {
       name: 'company',
       cnpj: '111111111',
-      user: '1',
     })
 
     expect(res).toEqual({ error: 'Insira um ID válido.' })
   })
 
   it('should returns an error message if company belongs to another user', async () => {
-    const res = await dbUpdateCompany.update(2, {
+    const res =   await dbUpdateCompany.update(2, '2', {
       name: 'company',
       cnpj: '111111111',
-      user: '2',
     })
 
     expect(res).toEqual({
@@ -64,22 +61,19 @@ describe('DbUpdateCompany Data', () => {
   it('should call updateCompanyRepository with success', async () => {
     const res = jest.spyOn(findByIdRepository, 'findId')
 
-    await dbUpdateCompany.update(1, {
+    await dbUpdateCompany.update(1, '1', {
       name: 'company',
       cnpj: '111111111',
-      user: '1',
     })
-
     expect(res).toHaveBeenCalledWith(1)
   })
 
   it('should call updateCompanyRepository with success', async () => {
     const res = jest.spyOn(updateCompanyRepository, 'update')
 
-    await dbUpdateCompany.update(1, {
+    await dbUpdateCompany.update(1, '1', {
       name: 'company',
       cnpj: '111111111',
-      user: '1',
     })
 
     expect(res).toHaveBeenCalledWith(1, {

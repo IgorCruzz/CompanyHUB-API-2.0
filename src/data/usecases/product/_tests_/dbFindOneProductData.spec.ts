@@ -1,7 +1,4 @@
-import { FindAllProductsRepositoryStub, ProductFindOneRepository } from "@/data/mocks/product.mock"
-import { IProductFindAllRepository } from "@/data/protocols/db/product/findAllProductsRepository.interface"
-import { IDbFindAllProducts } from "@/domain/usecases/product/findAllProduct.interface"
-import { DbFindAllProducts } from "../dbFindAllProducts.data"
+import { ProductFindOneRepositoryStub } from "@/data/mocks/product.mock"
 import MockDate from 'mockdate'
 import { IDbFindOneProduct } from "@/domain/usecases/product/findOneProduct.interface"
 import { IProductFindOneRepository } from "@/data/protocols/db/product/findOneProductRepository.interface"
@@ -14,7 +11,7 @@ let productFindOneRepository: IProductFindOneRepository
 
 describe('DbFindOneProduct Data', () => {
   beforeEach(() => {
-    productFindOneRepository = new ProductFindOneRepository()
+    productFindOneRepository = new ProductFindOneRepositoryStub()
     dbFindOneProduct = new DbFindOneProduct(productFindOneRepository)
   })
 

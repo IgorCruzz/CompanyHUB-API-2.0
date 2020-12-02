@@ -10,10 +10,10 @@ export class DbUpdateService implements IDbUpdateService {
     private readonly updateService: IUpdateServiceRepository
   ) {}
 
-  async update(id: number, user: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
+  async update(id: number, userId: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
     const { product_id } = data
 
-    const company = await this.findByUserRelation.findByUserRelation(Number(user))
+    const company = await this.findByUserRelation.findByUserRelation(Number(userId))
 
     const product = await this.findByProductCompanyId.findProductCompanyId({
       company_id: company.id,

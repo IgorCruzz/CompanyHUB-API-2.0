@@ -11,13 +11,14 @@ export class DbUpdateProduct implements IUpdateProduct {
     private readonly updateProductRepository: IUpdateProductRepository
   ) {}
 
-  async  update(id: number, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+  async update(id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+    const { company_id, name } = data
 
-    const company = await this.findUserIdRepository.findUserId(data.user)
+    const company = await this.findUserIdRepository.findUserId(Number(userId))
 
-    if(company.id !== data.company_id) return {  error: 'Você não tem permissão para deletar um produto em outra empresa.' }
+    if(company.id !== company_id) return {  error: 'Você não tem permissão para deletar um produto em outra empresa.' }
 
-    const product = await this.findByProductNameRepository.findName(data.name)
+    const product = await this.findByProductNameRepository.findName(name)
 
     if(product) return { error: 'Este nome ja está em uso, escolha outro.'}
 

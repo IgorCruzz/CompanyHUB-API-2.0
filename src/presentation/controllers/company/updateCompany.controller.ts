@@ -11,11 +11,9 @@ export class UpdateCompanyController implements IController {
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
+      const { userId } = httpRequest
 
-      const company = await this.dbUpdateCompany.update(id, {
-        ...httpRequest.body,
-        user: httpRequest.userId
-      })
+      const company = await this.dbUpdateCompany.update(id, userId, { ...httpRequest.body })
 
       if (company.error) {
         return {

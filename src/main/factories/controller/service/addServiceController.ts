@@ -1,9 +1,9 @@
 import { CompanyRepository } from '../../../../infra/db/typeorm/repositories/company/company.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
-import { CreateCompanyController } from '../../../../presentation/controllers/company/createCompany.controller'
 import { AddService } from '../../../../data/usecases/service/createService.data'
 import { ProductRepository } from '../../../..//infra/db/typeorm/repositories/product/product.repository'
 import { ServiceRepository } from '../../../../infra/db/typeorm/repositories/service/service.repository'
+import { CreateServiceController } from '../../../../presentation/controllers/service/createService.controller'
 
 export const makeAddServiceController = () => {
   const companyRepository = new CompanyRepository()
@@ -16,7 +16,7 @@ export const makeAddServiceController = () => {
     serviceRepository
   )
 
-  const createServiceController = new CreateCompanyController(dbAddService)
+  const createServiceController = new CreateServiceController(dbAddService)
 
   return adapRoute(createServiceController)
 }

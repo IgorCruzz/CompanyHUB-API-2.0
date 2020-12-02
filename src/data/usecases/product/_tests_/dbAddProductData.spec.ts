@@ -1,4 +1,4 @@
-import { FindUserIdRepositorytub } from "@/data/mocks/company.mock"
+import { FindUserIdRepositoryStub } from "@/data/mocks/company.mock"
 import { CreateProductRepositoryStub, FindByProductNameRepositoryStub } from "@/data/mocks/product.mock"
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
 import { ICreateProductRepository } from "@/data/protocols/db/product/createProductRepository.interface"
@@ -13,7 +13,7 @@ let createProductRepository: ICreateProductRepository
 
 describe('DbAddProduct Data', () => {
   beforeEach(() => {
-    findUserIdRepository = new FindUserIdRepositorytub()
+    findUserIdRepository = new FindUserIdRepositoryStub()
     findByProductNameRepository = new FindByProductNameRepositoryStub()
     createProductRepository = new CreateProductRepositoryStub()
     dbAddProductData = new DbAddProduct(findUserIdRepository, findByProductNameRepository, createProductRepository)

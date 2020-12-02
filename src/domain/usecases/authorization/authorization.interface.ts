@@ -1,14 +1,14 @@
-export interface IAuthorizationResult {
+export interface IDbAuthorizationResult {
   id?: string
   error?: string
 }
 
-export interface IAuthorizationDTO {
+export interface IDbAuthorizationDTO {
   token: string
   params: { id: string }
   role: boolean
 }
 
-export interface IAuthorization {
-  auth(data: any): Promise<IAuthorizationResult>
+export interface IDbAuthorization {
+  auth(data: any): Promise<IDbAuthorizationResult>
 }
