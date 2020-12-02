@@ -1,6 +1,6 @@
 import { DbAddUser } from '../../../../data/usecases/user/dbAddUser.data'
-import { TokenRepository } from '../../../../infra/db/typeorm/repositories/token/token.repository'
-import { UserRepository } from '../../../../infra/db/typeorm/repositories/user/user.repository'
+import { TokenRepository } from '../../../../infra/db/typeorm/repositories/token.repository'
+import { UserRepository } from '../../../../infra/db/typeorm/repositories/user.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
 import { SignupController } from '../../../../presentation/controllers/signup/signup.controller'
 import { CryptoAdapter } from '../../../../infra/cyptoAdapter/crypto.adapter'

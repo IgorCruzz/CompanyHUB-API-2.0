@@ -8,7 +8,7 @@ import { IProductFindOneRepository } from '@/data/protocols/db/product/findOnePr
 import { IUpdateProductDTO } from '@/data/protocols/db/product/updateProductRepository.interface'
 import { IProductModel } from '@/domain/models/product.interface'
 import { getRepository } from 'typeorm'
-import { Product } from '../../entities/Product.entity'
+import { Product } from '../entities/Product.entity'
 
 export class ProductRepository
 implements

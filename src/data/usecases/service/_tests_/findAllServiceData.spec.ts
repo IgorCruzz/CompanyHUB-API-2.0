@@ -1,8 +1,8 @@
 import { FindAllservicesRepositoryStub } from '@/data/mocks/service.mock'
 import { IFindAllservicesRepository } from '@/data/protocols/db/service/findAllServicesRepository.interface'
 import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
-import { DbFindAllServices } from '../findAllService.data'
 import MockDate from 'mockdate'
+import { DbFindAllServices } from '../dbFindAllService.data'
 
 let findAllServices: IFindAllServices
 let findAllServicesRepository: IFindAllservicesRepository

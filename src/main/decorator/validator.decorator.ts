@@ -1,4 +1,4 @@
-import { IValidation } from '@/data/protocols'
+import { IValidation } from '@/data/protocols/yup/validation.interface'
 import { IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 import { IMiddleware } from '@/presentation/protocols/middleware'
 

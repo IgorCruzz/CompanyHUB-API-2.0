@@ -1,10 +1,10 @@
-import { ICreateServiceDTO, ICreateServiceRepository } from '@/data/protocols/db/service/createServiceRepository'
-import { IDeleteServiceRepository } from '@/data/protocols/db/service/deleteServiceRepository'
+import { ICreateServiceDTO, ICreateServiceRepository } from '@/data/protocols/db/service/createServiceRepository.interface'
+import { IDeleteServiceRepository } from '@/data/protocols/db/service/deleteServiceRepository.interface'
 import { IFindAllservicesRepository } from '@/data/protocols/db/service/findAllServicesRepository.interface'
-import { IUpdateServiceDTO, IUpdateServiceRepository } from '@/data/protocols/db/service/updateServiceRepository'
+import { IUpdateServiceDTO, IUpdateServiceRepository } from '@/data/protocols/db/service/updateServiceRepository.interface'
 import { IServiceModel } from '@/domain/models/service.interface'
 import { getRepository } from 'typeorm'
-import { Service } from '../../entities/Service.entity'
+import { Service } from '../entities/Service.entity'
 
 export class ServiceRepository implements
   ICreateServiceRepository,

@@ -5,7 +5,7 @@ import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findB
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
 import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository.interface";
 import { IAddService } from "@/domain/usecases/service/addService.interface";
-import { AddService } from "../createService.data";
+import { DbAddService } from "../dbCreateService.data";
 
 
 let addService: IAddService
@@ -20,7 +20,7 @@ describe('AddService Data', () => {
     findByUserRelation = new FindByUserRelationStub()
     findByProductCompanyId = new FindByProductCompanyIdStub()
     createService = new CreateServiceRepositoryStub()
-    addService = new AddService(
+    addService = new DbAddService(
         findByUserRelation,
         findByProductCompanyId,
         createService)

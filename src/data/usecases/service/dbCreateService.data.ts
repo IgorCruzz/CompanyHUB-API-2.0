@@ -3,7 +3,7 @@ import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProdu
 import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository.interface";
 import { IAddService, IAddServiceDTO, IAddServiceResult } from "@/domain/usecases/service/addService.interface";
 
-export class AddService implements IAddService {
+export class DbAddService implements IAddService {
   constructor (
       private readonly findByUserRelation: IFindByUserRelationRepository,
       private readonly findByProductCompanyId: IFindByProductCompanyId,

@@ -5,7 +5,7 @@ import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findB
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
 import { IDeleteServiceRepository } from "@/data/protocols/db/service/deleteServiceRepository.interface";
 import { IDeleteService } from "@/domain/usecases/service/deleteService.interface";
-import { DbDeleteService } from "../deleteService.data";
+import { DbDeleteService } from "../dbDeleteService.data";
 
 
 let dbDeleteService: IDeleteService

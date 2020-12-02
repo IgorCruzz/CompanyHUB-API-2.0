@@ -1,6 +1,6 @@
-import { CompanyRepository } from '../../../../infra/db/typeorm/repositories/company/company.repository'
+import { CompanyRepository } from '../../../../infra/db/typeorm/repositories/company.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
-import { ProductRepository } from '../../../../infra/db/typeorm/repositories/product/product.repository'
+import { ProductRepository } from '../../../../infra/db/typeorm/repositories/product.repository'
 import { DbUpdateProduct } from '../../../../data/usecases/product/dbUpdateProduct.data'
 import { UpdateProductController } from '../../../../presentation/controllers/product/updateProduct.controller'
 
