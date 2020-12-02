@@ -1,15 +1,15 @@
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import {
-  IDbFindOneCompany,
-  IDbFindOneCompanyResult,
+  IFindOneCompany,
+  IFindOneCompanyResult,
 } from '@/domain/usecases/company/findOneCompany.interface'
 
-export class DbFindOneCompany implements IDbFindOneCompany {
+export class DbFindOneCompany implements IFindOneCompany {
   constructor(
     private readonly findOneCompanyRepository: IFindOneCompanyRepository
   ) {}
 
-  async findOne(id: string): Promise<IDbFindOneCompanyResult> {
+  async findOne(id: string): Promise<IFindOneCompanyResult> {
     const findCompany = await this.findOneCompanyRepository.findOne(Number(id))
 
     if (!findCompany) return { error: 'Você não cadastrou sua empresa ainda.' }

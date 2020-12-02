@@ -1,5 +1,5 @@
 export interface IHttpResponse {
-  statusCode: number
+  status: number
   body: any
 }
 

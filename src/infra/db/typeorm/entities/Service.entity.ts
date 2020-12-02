@@ -10,7 +10,7 @@ import {
 import { Product } from './Product.entity'
 
 @Entity({ name: 'services' })
-export class Services {
+export class Service {
   @PrimaryGeneratedColumn('increment')
   id: number
 

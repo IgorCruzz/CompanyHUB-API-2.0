@@ -1,15 +1,13 @@
-import {
-  IAddUserDTO,
-  ICreateUserRepository,
-  IFindUserByEmailRepository
-} from '@/data/protocols'
+
+import { IAddUserDTO, ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import {
   IUpdateUserDTO,
   IUpdateUserRepository
 } from '@/data/protocols/db/user/updateUserRepository.interface'
 import { getRepository } from 'typeorm'
-import { User } from '../../entities/User.entity'
+import { User } from '../entities/User.entity'
 
 export class UserRepository
 implements

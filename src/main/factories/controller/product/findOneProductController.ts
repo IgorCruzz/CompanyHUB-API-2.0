@@ -1,5 +1,5 @@
 import { DbFindOneProduct } from '../../../../data/usecases/product/dbFindOneProduct.data'
-import { ProductRepository } from '../../../../infra/db/typeorm/repositories/product/product.repository'
+import { ProductRepository } from '../../../../infra/db/typeorm/repositories/product.repository'
 import { FindOneProductController } from '../../../../presentation/controllers/product/findOneProduct.controller'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
 

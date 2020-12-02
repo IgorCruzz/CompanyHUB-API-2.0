@@ -1,10 +1,10 @@
-import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { IDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
 import { DbDeleteCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { DeleteCompanyController } from '../deleteCompany.controller'
 
 let deleteCompanyController: IController
-let deleteCompany: IDbDeleteCompany
+let deleteCompany: IDeleteCompany
 
 describe('DeleteCompany Controller', () => {
   beforeEach(() => {
@@ -16,7 +16,7 @@ describe('DeleteCompany Controller', () => {
     expect(deleteCompanyController).toBeDefined()
   })
 
-  it('return statusCode 200 if deleteCompany returns true', async () => {
+  it('return status 200 if deleteCompany returns true', async () => {
     const req: IHttpRequest = {
       params: {
         id: 1
@@ -27,12 +27,12 @@ describe('DeleteCompany Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Empresa deletada com sucesso!.' }
     })
   })
 
-  it('return statusCode 400 if deleteCompany returns an error', async () => {
+  it('return status 400 if deleteCompany returns an error', async () => {
     jest
       .spyOn(deleteCompany, 'delete')
       .mockResolvedValue({ error: 'Não existe uma empresa com este ID.' })
@@ -47,12 +47,12 @@ describe('DeleteCompany Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Não existe uma empresa com este ID.' }
     })
   })
 
-  it('return statusCode 500 if deleteCompany throws', async () => {
+  it('return status 500 if deleteCompany throws', async () => {
     const req: IHttpRequest = {
       params: {
         id: 1
@@ -65,7 +65,7 @@ describe('DeleteCompany Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

@@ -1,24 +1,19 @@
-import { IDbFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { IFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllProductsController implements IController {
   constructor (
-    private readonly findAllProduct: IDbFindAllProducts
+    private readonly findAllProduct: IFindAllProducts
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const products = await this.findAllProduct.findAll()
 
-      return {
-        statusCode: 200,
-        body: products
-      }
+      return Ok(products)
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

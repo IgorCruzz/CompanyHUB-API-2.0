@@ -1,5 +1,5 @@
-import { Company } from '@/infra/db/typeorm/entities/Company.entity'
+import { ICompanyModel } from '@/domain/models/company.interface';
 
 export interface IFindOneCompanyRepository {
-  findOne(id: number): Promise<Company>
+  findOne(id: number): Promise<ICompanyModel>
 }

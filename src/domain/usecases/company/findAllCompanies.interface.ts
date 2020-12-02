@@ -1,6 +1,6 @@
 import { IProductModel } from '@/domain/models/product.interface'
 
-export interface IDbFindAllCompanyResult {
+export interface IFindAllCompanyResult {
   error?: string
   user_id?: number
   cnpj?: string
@@ -9,6 +9,6 @@ export interface IDbFindAllCompanyResult {
   name?: string
 }
 
-export interface IDbFindAllCompany {
-  findAll(): Promise<IDbFindAllCompanyResult[]>
+export interface IFindAllCompany {
+  findAll(): Promise<IFindAllCompanyResult[]>
 }

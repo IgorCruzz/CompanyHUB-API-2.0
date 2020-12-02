@@ -5,13 +5,12 @@ import {
   UserFindByEmailRepositoryStub,
   UserRepositoryStub,
 } from '@/data/mocks/user.mock'
-import {
-  ICreateTokenRepository,
-  ICreateUserRepository,
-  IFindUserByEmailRepository,
-  IGenerateCrypto,
-  IHasher,
-} from '@/data/protocols'
+import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
+import { IGenerateCrypto } from '@/data/protocols/cryptoAdapter/generateCrypto.interface'
+import { ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
+import { ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
+
 import { DbAddUser } from '../dbAddUser.data'
 
 let dbAddUser: DbAddUser

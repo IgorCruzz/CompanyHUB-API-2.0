@@ -13,7 +13,7 @@
     "lint": "eslint 'src/**' --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
-    "test:watch": "jest --watch",
+    "test:watch": "npm test -- --watch",
     "test:cov": "jest --coverage",
     "test:integration": "jest --config jest-integration-config.js",
     "test:staged": "yarn test -- --findRelatedTests",

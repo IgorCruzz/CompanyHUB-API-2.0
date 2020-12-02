@@ -3,10 +3,12 @@ import { IDeleteProductRepository } from '@/data/protocols/db/product/deleteProd
 import { IProductFindAllRepository } from '@/data/protocols/db/product/findAllProductsRepository.interface'
 import { IFindByIdRepository } from '@/data/protocols/db/product/findByIdRepository.interface'
 import { IFindByProductNameRepository } from '@/data/protocols/db/product/findByNameProductRepository.interface'
+import { IFindByProductCompanyId, IFindByProductCompanyIdDTO } from '@/data/protocols/db/product/findByProductCompanyIdRepository.interface'
 import { IProductFindOneRepository } from '@/data/protocols/db/product/findOneProductRepository.interface'
+import { IUpdateProductDTO } from '@/data/protocols/db/product/updateProductRepository.interface'
 import { IProductModel } from '@/domain/models/product.interface'
 import { getRepository } from 'typeorm'
-import { Product } from '../../entities/Product.entity'
+import { Product } from '../entities/Product.entity'
 
 export class ProductRepository
 implements
@@ -15,7 +17,8 @@ implements
   IFindByIdRepository,
   IDeleteProductRepository,
   IProductFindAllRepository,
-  IProductFindOneRepository {
+  IProductFindOneRepository,
+  IFindByProductCompanyId {
   async create (date: ICreateProductDTO): Promise<IProductModel> {
     const orm = getRepository(Product)
 
@@ -32,6 +35,17 @@ implements
     const orm = getRepository(Product)
 
     return await orm.findOne({ id })
+  }
+
+  async findProductCompanyId (data: IFindByProductCompanyIdDTO): Promise<IProductModel> {
+    const orm = getRepository(Product)
+
+    return await orm.findOne({
+      where: {
+        company_id: data.company_id,
+        id: data.product_id
+      }
+    })
   }
 
   async delete (id: number): Promise<boolean> {
@@ -60,5 +74,13 @@ implements
       where: { company_id: id },
       relations: ['serviceConnection']
     })
+  }
+
+  async update (id: number, data: IUpdateProductDTO): Promise<boolean> {
+    const orm = getRepository(Product)
+
+    const updateProduct = await orm.update(id, data)
+
+    return updateProduct && true
   }
 }

@@ -1,4 +1,5 @@
-import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { IDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -6,33 +7,23 @@ import {
 } from '@/presentation/protocols'
 
 export class DeleteCompanyController implements IController {
-  constructor (private readonly deleteCompany: IDbDeleteCompany) {}
+  constructor (private readonly deleteCompany: IDeleteCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { userId, params } = httpRequest
+      const { userId } = httpRequest
+      const { id } = httpRequest.params
 
-      const deleteCompany = await this.deleteCompany.delete({
-        params: { id: params.id },
+      const company = await this.deleteCompany.delete({
+        params: { id },
         user: userId
       })
 
-      if (deleteCompany.error) {
-        return {
-          statusCode: 400,
-          body: { message: deleteCompany.error }
-        }
-      }
+      if (company.error) return BadRequest(company.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Empresa deletada com sucesso!.' }
-      }
+      return Ok({ message: 'Empresa deletada com sucesso!.' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

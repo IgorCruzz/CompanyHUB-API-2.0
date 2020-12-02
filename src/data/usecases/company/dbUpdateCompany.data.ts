@@ -12,16 +12,13 @@ export class DbUpdateCompany implements IUpdateCompany {
     private readonly updateCompanyRepository: IUpdateCompanyRepository
   ) {}
 
-  async update(
-    id: number,
-    data: IUpdateCompanyDTO
-  ): Promise<IUpdateCompanyResult> {
+  async update(id: number, userId: string, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult> {
 
-    const findCompany = await this.findByIdRepository.findId(Number(id))
+    const findCompany = await this.findByIdRepository.findId(id)
 
     if (!findCompany) return { error: 'Insira um ID válido.' }
 
-    if (Number(data.user) !== findCompany.user_id)
+    if (Number(userId) !== findCompany.user_id)
       return {
         error: 'Você não tem permissão parar alterar dados de outra empresa.',
       }
@@ -31,7 +28,7 @@ export class DbUpdateCompany implements IUpdateCompany {
     const { user, ...companyUpdatedData } = JSON.parse(request)
 
     const updated = await this.updateCompanyRepository.update(
-      Number(id),
+      id,
       {
         ...companyUpdatedData
       }

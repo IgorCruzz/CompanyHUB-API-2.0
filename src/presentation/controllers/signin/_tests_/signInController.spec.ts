@@ -34,7 +34,7 @@ describe('SignIn Controller', () => {
     })
   })
 
-  it('should be returns statusCode 200 if call DbSignIn with success', async () => {
+  it('should be returns status 200 if call DbSignIn with success', async () => {
     const req: IHttpRequest = {
       body: {
         email: 'user@mail.com',
@@ -45,7 +45,7 @@ describe('SignIn Controller', () => {
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         id: 1,
         name: 'name',
@@ -55,7 +55,7 @@ describe('SignIn Controller', () => {
     })
   })
 
-  it('should be returns statusCode 401 with user is not authorized to signin', async () => {
+  it('should be returns status 401 with user is not authorized to signin', async () => {
     jest
       .spyOn(dbSignInData, 'signIn')
       .mockResolvedValue({ error: 'Por favor, ative a sua conta.' })
@@ -70,12 +70,12 @@ describe('SignIn Controller', () => {
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      status: 400,
       body: { message: 'Por favor, ative a sua conta.' }
     })
   })
 
-  it('should be returns statusCode 500 if DbSignIn throws', async () => {
+  it('should be returns status 500 if DbSignIn throws', async () => {
     jest.spyOn(dbSignInData, 'signIn').mockRejectedValue(new Error())
 
     const req: IHttpRequest = {
@@ -88,7 +88,7 @@ describe('SignIn Controller', () => {
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

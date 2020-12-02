@@ -9,8 +9,10 @@ import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjReposit
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
 import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
-import { Company } from '../../entities/Company.entity'
 import { getRepository } from 'typeorm'
+import { ICompanyModel } from '@/domain/models/company.interface'
+import { IFindByUserRelationRepository } from '@/data/protocols/db/company/findByUserRelationRepository.interface'
+import { Company } from '../entities/Company.entity'
 
 export class CompanyRepository
 implements
@@ -21,11 +23,25 @@ implements
     IDeleteCompanyRepository,
     IFindAllCompaniesRepository,
     IFindOneCompanyRepository,
-    IUpdateCompanyRepository {
+    IUpdateCompanyRepository,
+    IFindByUserRelationRepository {
   async findUserId (id: number): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.findOne({ user_id: id })
+  }
+
+  async findByUserRelation (id: number): Promise<ICompanyModel> {
+    const orm = getRepository(Company)
+
+    return await orm.findOne({
+      relations: ['user'],
+      where: {
+        user: {
+          id
+        }
+      }
+    })
   }
 
   async findId (id: number): Promise<Company> {

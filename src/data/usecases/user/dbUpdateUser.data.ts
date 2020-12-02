@@ -1,6 +1,7 @@
-import { IFindUserByEmailRepository, IHasher } from '@/data/protocols'
 import { ICompare } from '@/data/protocols/bcryptAdapter/ICompare.interface'
+import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import {
   IUpdateUserDTO,
   IUpdateUserRepository,
@@ -19,10 +20,12 @@ export class DbUpdateUser implements IUpdateUser {
     private readonly hasher: IHasher
   ) {}
 
-  async update(id: number, data: IUpdateUserDTO): Promise<IUpdateResult> {
+  async update(id: number, userId: string, data: IUpdateUserDTO): Promise<IUpdateResult> {
     const user = await this.findUserByIdRepository.findId(id)
 
     if (!user) return { error: 'Não existe um usuário com este ID.' }
+
+    if (user.id !== Number(userId) ) return { error: 'Você não tem permissão para atualizar a conta de outro usuário.'}
 
     const { password, confirmPassword, ...rest } = data
 

@@ -1,7 +1,7 @@
 import { ICompanyModel } from '@/domain/models/company.interface'
 import { IServiceModel } from '@/domain/models/service.interface'
 
-export interface IDbFindAllProductsResult {
+export interface IFindAllProductsResult {
   error?: string
   id?: number
   name?: string
@@ -10,6 +10,6 @@ export interface IDbFindAllProductsResult {
   serviceConnection?: IServiceModel[]
 }
 
-export interface IDbFindAllProducts {
-  findAll(): Promise<IDbFindAllProductsResult[]>
+export interface IFindAllProducts {
+  findAll(): Promise<IFindAllProductsResult[]>
 }

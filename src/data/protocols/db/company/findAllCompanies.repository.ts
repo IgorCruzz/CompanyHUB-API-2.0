@@ -1,5 +1,5 @@
-import { Company } from '@/infra/db/typeorm/entities/Company.entity'
+import { ICompanyModel } from '@/domain/models/company.interface';
 
 export interface IFindAllCompaniesRepository {
-  findAll(): Promise<Company[]>
+  findAll(): Promise<ICompanyModel[]>
 }

@@ -1,4 +1,5 @@
 import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -11,25 +12,15 @@ export class UpdateUserController implements IController {
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
+      const { userId } = httpRequest
 
-      const user = await this.updateUser.update(id, httpRequest.body)
+      const user = await this.updateUser.update(id, userId, httpRequest.body)
 
-      if (user.error) {
-        return {
-          statusCode: 400,
-          body: { message: user.error }
-        }
-      }
+      if (user.error) return BadRequest(user.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Atualizado com sucesso.' }
-      }
+      return Ok({ message: 'Atualizado com sucesso.' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

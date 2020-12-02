@@ -1,12 +1,12 @@
-import { FindUserIdRepositorytub } from "@/data/mocks/company.mock"
+import { FindUserIdRepositoryStub } from "@/data/mocks/company.mock"
 import { DeleteProductRepositoryStub, FindByIdRepositoryStub } from "@/data/mocks/product.mock"
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
 import { IDeleteProductRepository } from "@/data/protocols/db/product/deleteProductRepository.interface"
 import { IFindByIdRepository } from "@/data/protocols/db/product/findByIdRepository.interface"
-import { IDbDeleteProduct } from "@/domain/usecases/product/deleteProduct.interface"
+import { IDeleteProduct } from "@/domain/usecases/product/deleteProduct.interface"
 import { DbDeleteProduct } from "../dbDeleteProduct.data"
 
-let dbDeleteProductData: IDbDeleteProduct
+let dbDeleteProductData: IDeleteProduct
 let findUserIdRepository: IFindUserIdRepository
 let findByIdRepository: IFindByIdRepository
 let deleteProductRepository: IDeleteProductRepository
@@ -14,7 +14,7 @@ let deleteProductRepository: IDeleteProductRepository
 
 describe('DbDeleteProduct Data', () => {
   beforeEach(() => {
-    findUserIdRepository = new FindUserIdRepositorytub()
+    findUserIdRepository = new FindUserIdRepositoryStub()
     findByIdRepository = new FindByIdRepositoryStub()
     deleteProductRepository = new DeleteProductRepositoryStub()
     dbDeleteProductData = new DbDeleteProduct(
