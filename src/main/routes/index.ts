@@ -42,4 +42,4 @@ const routes = [
 
 const router = Router()
 
-export const exposeRoutes = routes.map((r) => router.use('/fodase', r))
+export const exposeRoutes = routes.map((r) => router.use(r))
