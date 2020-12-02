@@ -1,9 +1,9 @@
-import { IDbDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
 import { DbDeleteServiceStub } from '@/presentation/mocks/service.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { DeleteServiceController } from '../deleteService.controller'
 
-let dbDeleteService: IDbDeleteService
+let dbDeleteService: IDeleteService
 let deleteCompanyController: IController
 
 describe('DeleteService Controller', () => {
@@ -16,7 +16,7 @@ describe('DeleteService Controller', () => {
     expect(deleteCompanyController).toBeDefined()
   })
 
-  it('return statusCode 200 if dbDeleteService returns true', async () => {
+  it('return status 200 if dbDeleteService returns true', async () => {
     const req: IHttpRequest = {
       params: {
         id: 1
@@ -30,12 +30,12 @@ describe('DeleteService Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Serviço deletado com sucesso!' }
     })
   })
 
-  it('return statusCode 400 if dbDeleteService returns an error', async () => {
+  it('return status 400 if dbDeleteService returns an error', async () => {
     jest
       .spyOn(dbDeleteService, 'delete')
       .mockResolvedValue({ error: 'Você não tem permissão para deletar este serviço.' })
@@ -53,12 +53,12 @@ describe('DeleteService Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Você não tem permissão para deletar este serviço.' }
     })
   })
 
-  it('return statusCode 500 if dbDeleteService throws', async () => {
+  it('return status 500 if dbDeleteService throws', async () => {
     const req: IHttpRequest = {
       params: {
         id: 1
@@ -74,7 +74,7 @@ describe('DeleteService Controller', () => {
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

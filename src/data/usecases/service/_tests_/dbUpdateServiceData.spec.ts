@@ -1,15 +1,15 @@
 import { FindByUserRelationStub } from "@/data/mocks/company.mock";
 import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
 import { UpdateServiceRepositoryStub } from "@/data/mocks/service.mock";
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
+import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { IUpdateServiceRepository } from "@/data/protocols/db/service/updateServiceRepository";
-import { IDbUpdateService } from "@/domain/usecases/service/updateService.interface";
+import { IUpdateServiceRepository } from "@/data/protocols/db/service/updateServiceRepository.interface";
+import { IUpdateService } from "@/domain/usecases/service/updateService.interface";
 import { DbUpdateService } from "../dbUpdateService.data";
 
 
 let updateServiceRepository: IUpdateServiceRepository
-let dbBUpdateService: IDbUpdateService
+let dbBUpdateService: IUpdateService
 let findByUserRelation: IFindByUserRelationRepository
 let findByProductCompanyId: IFindByProductCompanyId
 

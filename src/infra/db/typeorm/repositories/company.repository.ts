@@ -9,10 +9,10 @@ import { IFindCnpjRepository } from '@/data/protocols/db/company/findCnpjReposit
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
 import { IUpdateCompanyRepository } from '@/data/protocols/db/company/updateCompanyRepository.interface'
-import { Company } from '../../entities/Company.entity'
 import { getRepository } from 'typeorm'
-import { IFindByUserRelationRepository } from '@/data/protocols/db/company/findByUserRelationRepository'
 import { ICompanyModel } from '@/domain/models/company.interface'
+import { IFindByUserRelationRepository } from '@/data/protocols/db/company/findByUserRelationRepository.interface'
+import { Company } from '../entities/Company.entity'
 
 export class CompanyRepository
 implements

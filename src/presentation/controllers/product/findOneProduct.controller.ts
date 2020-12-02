@@ -1,24 +1,19 @@
-import { IDbFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
+import { IFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindOneProductController implements IController {
   constructor (
-    private readonly findOneProduct: IDbFindOneProduct
+    private readonly findOneProduct: IFindOneProduct
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const products = await this.findOneProduct.findOne(httpRequest.params.id)
 
-      return {
-        statusCode: 200,
-        body: products
-      }
+      return Ok(products)
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

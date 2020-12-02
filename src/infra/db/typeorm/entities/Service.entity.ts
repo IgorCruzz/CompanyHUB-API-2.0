@@ -9,7 +9,7 @@ import {
 } from 'typeorm'
 import { Product } from './Product.entity'
 
-@Entity({ name: 'service' })
+@Entity({ name: 'services' })
 export class Service {
   @PrimaryGeneratedColumn('increment')
   id: number

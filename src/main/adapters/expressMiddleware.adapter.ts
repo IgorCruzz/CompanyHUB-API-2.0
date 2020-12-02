@@ -1,5 +1,5 @@
-import { IHttpRequest } from '@/presentation/protocols'
-import { IMiddleware } from '@/presentation/protocols/middleware'
+import { IHttpRequest, IMiddleware } from '@/presentation/protocols'
+
 import { NextFunction, Request, Response } from 'express'
 
 export const adapMiddleware = (middleware: IMiddleware) => {
@@ -11,12 +11,12 @@ export const adapMiddleware = (middleware: IMiddleware) => {
     }
 
     const httpResponse = await middleware.handle(httpRequest)
-    if (httpResponse.statusCode === 200) {
+    if (httpResponse.status === 200) {
       Object.assign(req, httpResponse.body)
 
       next()
     } else {
-      res.status(httpResponse.statusCode).json({
+      res.status(httpResponse.status).json({
         error: httpResponse.body.message
       })
     }

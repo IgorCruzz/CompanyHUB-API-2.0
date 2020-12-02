@@ -1,9 +1,9 @@
 import { FindOneCompanyRepositoryStub } from '@/data/mocks/company.mock'
 import { IFindOneCompanyRepository } from '@/data/protocols/db/company/findOneCompanyRepository.interface'
-import { IDbFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
+import { IFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
 import { DbFindOneCompany } from '../dbFindOneCompany.data'
 
-let dbFindOneCompany: IDbFindOneCompany
+let dbFindOneCompany: IFindOneCompany
 let findOneCompanyRepository: IFindOneCompanyRepository
 
 describe('DbFindOneCompany Data', () => {

@@ -1,4 +1,5 @@
 import { IUpdateProduct } from '@/domain/usecases/product/updateProduct.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateProductController implements IController {
@@ -8,31 +9,20 @@ export class UpdateProductController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { id } = httpRequest.params.id
+      const { id } = httpRequest.params
+      const { userId } = httpRequest
       const { company_id, name } = httpRequest.body
 
-      const product = await this.updateProductData.update(id, {
+      const product = await this.updateProductData.update(id, userId, {
         name,
-        company_id,
-        user: Number(httpRequest.userId)
+        company_id
       })
 
-      if (product.error) {
-        return {
-          statusCode: 400,
-          body: { message: 'Você não tem permissão para atualizar um produto em outra empresa.' }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Produto atualizado com sucesso!' }
-      }
+      return Ok({ message: 'Produto atualizado com sucesso!' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

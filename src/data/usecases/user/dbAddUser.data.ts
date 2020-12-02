@@ -1,11 +1,9 @@
-import {
-  IAddUserDTO,
-  ICreateTokenRepository,
-  ICreateUserRepository,
-  IFindUserByEmailRepository,
-  IGenerateCrypto,
-} from '@/data/protocols'
+
 import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
+import { IGenerateCrypto } from '@/data/protocols/cryptoAdapter/generateCrypto.interface'
+import { ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
+import { IAddUserDTO, ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import { IAddResult, IAddUser } from '@/domain/usecases/user/addUser.interface'
 
 export class DbAddUser implements IAddUser {

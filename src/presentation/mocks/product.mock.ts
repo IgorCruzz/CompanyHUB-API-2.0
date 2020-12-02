@@ -1,7 +1,7 @@
-import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecases/product/addProductinterface'
-import { IDbDeleteProduct, IDbDeleteProductDTO, IDbDeleteProductResult } from '@/domain/usecases/product/deleteProduct.interface'
-import { IDbFindAllProducts, IDbFindAllProductsResult } from '@/domain/usecases/product/findAllProduct.interface'
-import { IDbFindOneProduct, IDbFindOneProductResult } from '@/domain/usecases/product/findOneProduct.interface'
+import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecases/product/addProduct.interface'
+import { IDeleteProduct, IDeleteProductDTO, IDeleteProductResult } from '@/domain/usecases/product/deleteProduct.interface'
+import { IFindAllProducts, IFindAllProductsResult } from '@/domain/usecases/product/findAllProduct.interface'
+import { IFindOneProduct, IFindOneProductResult } from '@/domain/usecases/product/findOneProduct.interface'
 import { IUpdateProduct, IUpdateProductDTO, IUpdateProductResult } from '@/domain/usecases/product/updateProduct.interface'
 
 export class DbAddProductStub implements IAddProduct {
@@ -14,8 +14,8 @@ export class DbAddProductStub implements IAddProduct {
   }
 }
 
-export class DbDeleteProductStub implements IDbDeleteProduct {
-  async delete (data: IDbDeleteProductDTO): Promise<IDbDeleteProductResult> {
+export class DbDeleteProductStub implements IDeleteProduct {
+  async delete (data: IDeleteProductDTO): Promise<IDeleteProductResult> {
     return Promise.resolve({
       deleted: true
     })
@@ -23,15 +23,15 @@ export class DbDeleteProductStub implements IDbDeleteProduct {
 }
 
 export class DbUpdateProductStub implements IUpdateProduct {
-  async update (id: number, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+  async update (id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
     return Promise.resolve({
       updated: true
     })
   }
 }
 
-export class DbFindAllProductStub implements IDbFindAllProducts {
-  async findAll (): Promise<IDbFindAllProductsResult[]> {
+export class DbFindAllProductStub implements IFindAllProducts {
+  async findAll (): Promise<IFindAllProductsResult[]> {
     return Promise.resolve([
       {
         id: 1,
@@ -54,8 +54,8 @@ export class DbFindAllProductStub implements IDbFindAllProducts {
   }
 }
 
-export class DbFindOneProductStub implements IDbFindOneProduct {
-  async findOne (id: number): Promise<IDbFindOneProductResult[]> {
+export class DbFindOneProductStub implements IFindOneProduct {
+  async findOne (id: number): Promise<IFindOneProductResult[]> {
     return Promise.resolve([
       {
         id: 1,

@@ -1,4 +1,4 @@
-import { UserRepository } from '../../../../infra/db/typeorm/repositories/user/user.repository'
+import { UserRepository } from '../../../../infra/db/typeorm/repositories/user.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
 import { BcryptAdapter } from '../../../../infra/bcryptAdapter/bcrypt.adapter'
 import { DbUpdateUser } from '../../../../data/usecases/user/dbUpdateUser.data'

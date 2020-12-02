@@ -1,4 +1,5 @@
-import { IAddProduct } from '@/domain/usecases/product/addProductinterface'
+import { IAddProduct } from '@/domain/usecases/product/addProduct.interface'
+import { BadRequest, Created, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class CreateProductController implements IController {
@@ -8,27 +9,18 @@ export class CreateProductController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
+      const { userId } = httpRequest
+
       const product = await this.addProduct.add({
-        user: httpRequest.userId,
+        user: userId,
         ...httpRequest.body
       })
 
-      if (product.error) {
-        return {
-          statusCode: 401,
-          body: { message: product.error }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        statusCode: 200,
-        body: product
-      }
+      return Created(product)
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

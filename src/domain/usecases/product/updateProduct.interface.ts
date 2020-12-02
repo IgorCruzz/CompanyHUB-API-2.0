@@ -1,7 +1,6 @@
 export interface IUpdateProductDTO {
   name?: string
   company_id: number
-  user: number
 }
 
 export interface IUpdateProductResult {
@@ -10,5 +9,5 @@ export interface IUpdateProductResult {
 }
 
 export interface IUpdateProduct {
-  update(id: number, data: IUpdateProductDTO): Promise<IUpdateProductResult>
+  update(id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult>
 }

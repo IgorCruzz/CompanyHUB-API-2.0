@@ -1,37 +1,31 @@
-import { IDbDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
+import { IDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteProductController implements IController {
   constructor (
-    private readonly deleteProduct: IDbDeleteProduct
+    private readonly deleteProduct: IDeleteProduct
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
+      const { company_id } = httpRequest.body
+      const { id } = httpRequest.params
+      const { userId } = httpRequest
+
       const product = await this.deleteProduct.delete({
-        company_id: httpRequest.body.company_id,
-        user: Number(httpRequest.userId),
+        company_id,
+        user: Number(userId),
         params: {
-          id: httpRequest.params.id
+          id
         }
       })
 
-      if (product.error) {
-        return {
-          statusCode: 400,
-          body: { message: product.error }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Produto deletado com sucesso!' }
-      }
+      return Ok({ message: 'Produto deletado com sucesso!' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

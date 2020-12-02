@@ -1,7 +1,7 @@
 import { IAddService, IAddServiceDTO, IAddServiceResult } from '@/domain/usecases/service/addService.interface'
-import { IDbDeleteService, IDbDeleteServiceDTO, IDbDeleteServiceResult } from '@/domain/usecases/service/deleteService.interface'
-import { IDbFindAllServices, IFindAllServicesResult } from '@/domain/usecases/service/findAllService.interface'
-import { IDbUpdateService, IUpdateServiceDTO, IUpdateServiceResult } from '@/domain/usecases/service/updateService.interface'
+import { IDeleteService, IDeleteServiceDTO, IDeleteServiceResult } from '@/domain/usecases/service/deleteService.interface'
+import { IFindAllServices, IFindAllServicesResult } from '@/domain/usecases/service/findAllService.interface'
+import { IUpdateService, IUpdateServiceDTO, IUpdateServiceResult } from '@/domain/usecases/service/updateService.interface'
 
 export class DbAddServiceStub implements IAddService {
   async add (data: IAddServiceDTO): Promise<IAddServiceResult> {
@@ -14,15 +14,15 @@ export class DbAddServiceStub implements IAddService {
   }
 }
 
-export class DbDeleteServiceStub implements IDbDeleteService {
-  async delete (data: IDbDeleteServiceDTO): Promise<IDbDeleteServiceResult> {
+export class DbDeleteServiceStub implements IDeleteService {
+  async delete (data: IDeleteServiceDTO): Promise<IDeleteServiceResult> {
     return Promise.resolve({
       deleted: true
     })
   }
 }
 
-export class DbFindAllServicesStub implements IDbFindAllServices {
+export class DbFindAllServicesStub implements IFindAllServices {
   async findAll (): Promise<IFindAllServicesResult[]> {
     return Promise.resolve([{
       id: 1,
@@ -44,8 +44,8 @@ export class DbFindAllServicesStub implements IDbFindAllServices {
   }
 }
 
-export class DbUpdateServiceStub implements IDbUpdateService {
-  async update (id: number, user: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
+export class DbUpdateServiceStub implements IUpdateService {
+  async update (id: number, userId: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
     return Promise.resolve({ updated: true })
   }
 }

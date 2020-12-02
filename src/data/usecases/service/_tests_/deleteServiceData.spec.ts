@@ -1,14 +1,14 @@
 import { FindByUserRelationStub } from "@/data/mocks/company.mock";
 import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
 import { DeleteServiceRepositoryStub } from "@/data/mocks/service.mock";
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
+import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { IDeleteServiceRepository } from "@/data/protocols/db/service/deleteServiceRepository";
-import { IDbDeleteService } from "@/domain/usecases/service/deleteService.interface";
-import { DbDeleteService } from "../deleteService.data";
+import { IDeleteServiceRepository } from "@/data/protocols/db/service/deleteServiceRepository.interface";
+import { IDeleteService } from "@/domain/usecases/service/deleteService.interface";
+import { DbDeleteService } from "../dbDeleteService.data";
 
 
-let dbDeleteService: IDbDeleteService
+let dbDeleteService: IDeleteService
 let findByUserRelation: IFindByUserRelationRepository
 let findByProductCompanyId: IFindByProductCompanyId
 let deleteServiceRepository: IDeleteServiceRepository

@@ -1,4 +1,5 @@
-import { IDbFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
+import { IFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -6,7 +7,7 @@ import {
 } from '@/presentation/protocols'
 
 export class FindOneCompanyController implements IController {
-  constructor (private readonly dbFindOneCompany: IDbFindOneCompany) {}
+  constructor (private readonly dbFindOneCompany: IFindOneCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
@@ -14,22 +15,11 @@ export class FindOneCompanyController implements IController {
 
       const company = await this.dbFindOneCompany.findOne(id)
 
-      if (company.error) {
-        return {
-          statusCode: 400,
-          body: { message: company.error }
-        }
-      }
+      if (company.error) return BadRequest(company.error)
 
-      return {
-        statusCode: 200,
-        body: company
-      }
+      return Ok(company)
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

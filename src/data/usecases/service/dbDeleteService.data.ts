@@ -1,9 +1,9 @@
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
+import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { IDeleteServiceRepository } from "@/data/protocols/db/service/deleteServiceRepository";
-import { IDbDeleteService, IDbDeleteServiceDTO, IDbDeleteServiceResult } from "@/domain/usecases/service/deleteService.interface";
+import { IDeleteServiceRepository } from "@/data/protocols/db/service/deleteServiceRepository.interface";
+import { IDeleteService, IDeleteServiceDTO, IDeleteServiceResult } from "@/domain/usecases/service/deleteService.interface";
 
-export class DbDeleteService implements IDbDeleteService {
+export class DbDeleteService implements IDeleteService {
   constructor (
     private readonly findByUserRelation: IFindByUserRelationRepository,
     private readonly findByProductCompanyId: IFindByProductCompanyId,
@@ -11,7 +11,7 @@ export class DbDeleteService implements IDbDeleteService {
 
   ) {}
 
-  async   delete(data: IDbDeleteServiceDTO): Promise<IDbDeleteServiceResult> {
+  async   delete(data: IDeleteServiceDTO): Promise<IDeleteServiceResult> {
     const { user, product_id, id } = data
 
     const company = await this.findByUserRelation.findByUserRelation(Number(user))

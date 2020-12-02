@@ -1,4 +1,5 @@
 import { IUpdateCompany } from '@/domain/usecases/company/updateCompany.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -11,28 +12,15 @@ export class UpdateCompanyController implements IController {
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
+      const { userId } = httpRequest
 
-      const company = await this.dbUpdateCompany.update(id, {
-        ...httpRequest.body,
-        user: httpRequest.userId
-      })
+      const company = await this.dbUpdateCompany.update(id, userId, { ...httpRequest.body })
 
-      if (company.error) {
-        return {
-          statusCode: 400,
-          body: { message: company.error }
-        }
-      }
+      if (company.error) return BadRequest(company.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Empresa atualizada com sucesso!.' }
-      }
+      return Ok({ message: 'Empresa atualizada com sucesso!' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

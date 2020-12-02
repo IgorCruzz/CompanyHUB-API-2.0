@@ -16,7 +16,7 @@ describe('UpdateUser Controller', () => {
     expect(updateProductController).toBeDefined()
   })
 
-  it('should return statusCode 200 if updateProductData returns updated true', async () => {
+  it('should return status 200 if updateProductData returns updated true', async () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       userId: '1',
@@ -28,14 +28,14 @@ describe('UpdateUser Controller', () => {
     const res = await updateProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         message: 'Produto atualizado com sucesso!'
       }
     })
   })
 
-  it('should be returns statusCode 401 if updateProductData returns an error', async () => {
+  it('should be returns status 401 if updateProductData returns an error', async () => {
     jest
       .spyOn(updateProductData, 'update')
       .mockResolvedValue({ error: 'Você não tem permissão para atualizar um produto em outra empresa.' })
@@ -51,7 +51,7 @@ describe('UpdateUser Controller', () => {
     const res = await updateProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Você não tem permissão para atualizar um produto em outra empresa.' }
     })
   })
@@ -70,7 +70,7 @@ describe('UpdateUser Controller', () => {
     const res = await updateProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

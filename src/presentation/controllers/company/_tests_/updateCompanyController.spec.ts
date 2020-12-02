@@ -16,7 +16,7 @@ describe('UpdateCompany Controller', () => {
     expect(updateUserController).toBeDefined()
   })
 
-  it('return statusCode 200 if dbUpdateCompany return true', async () => {
+  it('return status 200 if dbUpdateCompany return true', async () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
@@ -28,12 +28,12 @@ describe('UpdateCompany Controller', () => {
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
-      body: { message: 'Empresa atualizada com sucesso!.' }
+      status: 200,
+      body: { message: 'Empresa atualizada com sucesso!' }
     })
   })
 
-  it('should be returns statusCode 400 if dbUpdateCompany returns an error', async () => {
+  it('should be returns status 400 if dbUpdateCompany returns an error', async () => {
     jest
       .spyOn(dbUpdateCompany, 'update')
       .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
@@ -49,12 +49,12 @@ describe('UpdateCompany Controller', () => {
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Você não cadastrou sua empresa ainda.' }
     })
   })
 
-  it('return statusCode 500 if dbUpdateCompany throws', async () => {
+  it('return status 500 if dbUpdateCompany throws', async () => {
     jest.spyOn(dbUpdateCompany, 'update').mockRejectedValue(new Error())
 
     const req: IHttpRequest = {
@@ -68,7 +68,7 @@ describe('UpdateCompany Controller', () => {
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

@@ -1,9 +1,10 @@
-import { IDbDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteServiceController implements IController {
   constructor (
-    private readonly dbDeleteService: IDbDeleteService
+    private readonly dbDeleteService: IDeleteService
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
@@ -18,22 +19,11 @@ export class DeleteServiceController implements IController {
         user: userId
       })
 
-      if (service.error) {
-        return {
-          statusCode: 400,
-          body: { message: service.error }
-        }
-      }
+      if (service.error) return BadRequest(service.error)
 
-      return {
-        statusCode: 200,
-        body: { message: 'Serviço deletado com sucesso!' }
-      }
+      return Ok({ message: 'Serviço deletado com sucesso!' })
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

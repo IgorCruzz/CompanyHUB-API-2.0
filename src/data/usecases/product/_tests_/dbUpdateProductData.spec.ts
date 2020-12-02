@@ -1,4 +1,4 @@
-import { FindUserIdRepositorytub } from "@/data/mocks/company.mock";
+import { FindUserIdRepositoryStub } from "@/data/mocks/company.mock";
 import { FindByProductNameRepositoryStub, UpdateProductRepositoryStub } from "@/data/mocks/product.mock";
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
 import { IFindByProductNameRepository } from "@/data/protocols/db/product/findByNameProductRepository.interface";
@@ -13,7 +13,7 @@ let updateProductRepository: IUpdateProductRepository
 
 describe('DbUpdateProduct Data', () => {
   beforeEach(() => {
-    findUserIdRepository = new FindUserIdRepositorytub()
+    findUserIdRepository = new FindUserIdRepositoryStub()
     findByProductNameRepository = new FindByProductNameRepositoryStub()
     updateProductRepository = new UpdateProductRepositoryStub()
     dbUpdateProduct = new DbUpdateProduct(
@@ -29,10 +29,9 @@ describe('DbUpdateProduct Data', () => {
   it('should call FindUserIdRepository with success', async () => {
     const res = jest.spyOn(findUserIdRepository, 'findUserId')
 
-    await dbUpdateProduct.update(1, {
+    await dbUpdateProduct.update(1, '1', {
       company_id: 1,
       name: 'product',
-      user: 1
     })
     expect(res).toHaveBeenCalledWith(1)
   })
@@ -40,10 +39,9 @@ describe('DbUpdateProduct Data', () => {
   it('should returns an error message if FindUserIdRepository return an user', async () => {
     jest.spyOn(findUserIdRepository, 'findUserId')
 
-    const res =   await dbUpdateProduct.update(1, {
+    const res =  await dbUpdateProduct.update(1, '1', {
       company_id: 2,
       name: 'product',
-      user: 1
     })
 
     expect(res).toEqual({ error: 'Você não tem permissão para deletar um produto em outra empresa.'})
@@ -52,10 +50,9 @@ describe('DbUpdateProduct Data', () => {
 it('should call FindByProductNameRepository with success', async () => {
   const res = jest.spyOn(findByProductNameRepository, 'findName')
 
-   await dbUpdateProduct.update(1, {
+  await dbUpdateProduct.update(1, '1', {
     company_id: 1,
     name: 'product',
-    user: 1
   })
   expect(res).toHaveBeenCalledWith('product')
 })
@@ -63,12 +60,10 @@ it('should call FindByProductNameRepository with success', async () => {
 it('should returns an error message if FindUserIdRepository return an user', async () => {
   jest.spyOn(findUserIdRepository, 'findUserId')
 
-  const res =   await dbUpdateProduct.update(1, {
+  const res =   await dbUpdateProduct.update(1, '1', {
     company_id: 1,
     name: 'product',
-    user: 1
   })
-
   expect(res).toEqual({ error: 'Este nome ja está em uso, escolha outro.'})
 })
 
@@ -76,11 +71,11 @@ it('should call updateProductRepository with success', async () => {
   jest.spyOn(findByProductNameRepository, 'findName').mockResolvedValue(undefined)
   const res = jest.spyOn(updateProductRepository, 'update')
 
-   await dbUpdateProduct.update(1, {
+  await dbUpdateProduct.update(1, '1', {
     company_id: 1,
     name: 'product',
-    user: 1
   })
+
   expect(res).toHaveBeenCalledWith(1, { name: 'product' })
 })
 });

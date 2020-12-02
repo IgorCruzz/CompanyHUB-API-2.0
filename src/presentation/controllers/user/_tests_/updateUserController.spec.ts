@@ -16,7 +16,7 @@ describe('UpdateUser Controller', () => {
     expect(updateUserController).toBeDefined()
   })
 
-  it('return statusCode 200 if UpdateUser passed on success', async () => {
+  it('return status 200 if UpdateUser passed on success', async () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
@@ -27,12 +27,12 @@ describe('UpdateUser Controller', () => {
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Atualizado com sucesso.' }
     })
   })
 
-  it('return statusCode 400 if UpdateUser returns null', async () => {
+  it('return status 400 if UpdateUser returns null', async () => {
     jest
       .spyOn(updateUserData, 'update')
       .mockResolvedValue({ error: 'Não existe um usuário com este ID.' })
@@ -47,12 +47,12 @@ describe('UpdateUser Controller', () => {
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Não existe um usuário com este ID.' }
     })
   })
 
-  it('return statusCode 500 if UpdateUser throws', async () => {
+  it('return status 500 if UpdateUser throws', async () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
@@ -64,7 +64,7 @@ describe('UpdateUser Controller', () => {
     const promise = await updateUserController.handle(req)
 
     expect(promise).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

@@ -1,7 +1,7 @@
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
 import { ICreateProductRepository } from "@/data/protocols/db/product/createProductRepository.interface";
 import { IFindByProductNameRepository } from "@/data/protocols/db/product/findByNameProductRepository.interface";
-import { IAddProduct, IAddProductDTO, IAddProductResult } from "@/domain/usecases/product/addProductinterface";
+import { IAddProduct, IAddProductDTO, IAddProductResult } from "@/domain/usecases/product/addProduct.interface";
 
 export class DbAddProduct implements IAddProduct {
   constructor (

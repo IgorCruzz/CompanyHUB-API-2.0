@@ -7,6 +7,6 @@ export interface IFindAllServicesResult {
   error?: string
 }
 
-export interface IDbFindAllServices {
+export interface IFindAllServices {
   findAll(): Promise<IFindAllServicesResult[]>
 }

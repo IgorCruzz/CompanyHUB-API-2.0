@@ -1,6 +1,6 @@
-import { ICreateTokenDTO, ICreateTokenRepository } from '@/data/protocols'
+import { ICreateTokenDTO, ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
 import { getRepository } from 'typeorm'
-import { Token } from '../../entities/Token.entity'
+import { Token } from '../entities/Token.entity'
 
 export class TokenRepository implements ICreateTokenRepository {
   async create (data: ICreateTokenDTO): Promise<Token> {

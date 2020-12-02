@@ -1,4 +1,4 @@
-import { AddServiceValidation } from '@/infra/yup/addService.validator'
+import { AddServiceValidation } from '../../../infra/yup/addService.validator'
 import { adapMiddleware } from '../../../main/adapters/expressMiddleware.adapter'
 import { ValidatorDecorator } from '../../../main/decorator/validator.decorator'
 

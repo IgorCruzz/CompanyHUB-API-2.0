@@ -26,7 +26,7 @@ describe('DeleteUser Controller', () => {
     const res = await deleteUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Usuário deletado com sucesso.' }
     })
   })
@@ -45,7 +45,7 @@ describe('DeleteUser Controller', () => {
     const res = await deleteUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Não existe um usuário com este ID' }
     })
   })
@@ -62,7 +62,7 @@ describe('DeleteUser Controller', () => {
     const res = await deleteUserController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

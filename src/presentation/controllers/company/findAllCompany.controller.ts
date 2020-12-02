@@ -1,4 +1,5 @@
-import { IDbFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
+import { IFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -6,20 +7,14 @@ import {
 } from '@/presentation/protocols'
 
 export class FindAllCompanyController implements IController {
-  constructor (private readonly DbFindAllCompany: IDbFindAllCompany) {}
+  constructor (private readonly DbFindAllCompany: IFindAllCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const findCompanies = await this.DbFindAllCompany.findAll()
-      return {
-        statusCode: 200,
-        body: findCompanies
-      }
+      const company = await this.DbFindAllCompany.findAll()
+      return Ok(company)
     } catch (err) {
-      return {
-        statusCode: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

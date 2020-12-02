@@ -1,10 +1,10 @@
-import { IDbFindAllServices } from '@/domain/usecases/service/findAllService.interface'
+import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
 import { DbFindAllServicesStub } from '@/presentation/mocks/service.mock'
 import { IController } from '@/presentation/protocols'
 import { FindAllServicesController } from '../findAllServices.controller'
 import MockDate from 'mockdate'
 
-let dbFindAllServices: IDbFindAllServices
+let dbFindAllServices: IFindAllServices
 let findAllServicesController: IController
 
 describe('findAllServices Controller', () => {
@@ -25,11 +25,11 @@ describe('findAllServices Controller', () => {
     expect(findAllServicesController).toBeDefined()
   })
 
-  it('should return statusCode 200 if dbFindAllServices returns a Product', async () => {
+  it('should return status 200 if dbFindAllServices returns a Product', async () => {
     const res = await findAllServicesController.handle({})
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: [{
         id: 1,
         name: 'service',
@@ -56,7 +56,7 @@ describe('findAllServices Controller', () => {
     const res = await findAllServicesController.handle({})
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

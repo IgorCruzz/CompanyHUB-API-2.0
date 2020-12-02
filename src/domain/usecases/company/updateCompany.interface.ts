@@ -1,7 +1,6 @@
 export interface IUpdateCompanyDTO {
   cnpj?: string
   name?: string
-  user?: string
 }
 
 export interface IUpdateCompanyResult {
@@ -10,5 +9,5 @@ export interface IUpdateCompanyResult {
 }
 
 export interface IUpdateCompany {
-  update(id: number, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult>
+  update(id: number, userId: string, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult>
 }
