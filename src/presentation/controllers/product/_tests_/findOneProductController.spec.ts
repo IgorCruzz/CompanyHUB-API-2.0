@@ -25,7 +25,7 @@ describe('FindOneProduct Controller', () => {
     expect(findOneProductController).toBeDefined()
   })
 
-  it('should return statusCode 200 if FindOneProduct returns an Product array', async () => {
+  it('should return status 200 if FindOneProduct returns an Product array', async () => {
     const req: IHttpRequest = {
       params: { id: 1 }
     }
@@ -33,7 +33,7 @@ describe('FindOneProduct Controller', () => {
     const res = await findOneProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body:
       [
         {
@@ -68,7 +68,7 @@ describe('FindOneProduct Controller', () => {
     const res = await findOneProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

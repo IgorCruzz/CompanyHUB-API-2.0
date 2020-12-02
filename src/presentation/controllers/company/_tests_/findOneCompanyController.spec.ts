@@ -16,13 +16,13 @@ describe('FindOneCompany Controller', () => {
     expect(findOneCompanyController).toBeDefined()
   })
 
-  it('return statusCode 200 if dbFindOneCompany return true', async () => {
+  it('return status 200 if dbFindOneCompany return true', async () => {
     const req: IHttpRequest = { params: { id: 1 } }
 
     const res = await findOneCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         user_id: 1,
         cnpj: '11111111111',
@@ -33,7 +33,7 @@ describe('FindOneCompany Controller', () => {
     })
   })
 
-  it('should be returns statusCode 400 if dbFindOneCompany returns an error', async () => {
+  it('should be returns status 400 if dbFindOneCompany returns an error', async () => {
     jest
       .spyOn(dbFindOneCompany, 'findOne')
       .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
@@ -43,12 +43,12 @@ describe('FindOneCompany Controller', () => {
     const res = await findOneCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Você não cadastrou sua empresa ainda.' }
     })
   })
 
-  it('return statusCode 500 if DbFindAllCompany throws', async () => {
+  it('return status 500 if DbFindAllCompany throws', async () => {
     jest.spyOn(dbFindOneCompany, 'findOne').mockRejectedValue(new Error())
 
     const req: IHttpRequest = { params: { id: 1 } }
@@ -56,7 +56,7 @@ describe('FindOneCompany Controller', () => {
     const res = await findOneCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

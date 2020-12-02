@@ -12,12 +12,12 @@ export class FindAllCompanyController implements IController {
     try {
       const findCompanies = await this.DbFindAllCompany.findAll()
       return {
-        statusCode: 200,
+        status: 200,
         body: findCompanies
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

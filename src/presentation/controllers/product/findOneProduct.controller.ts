@@ -11,12 +11,12 @@ export class FindOneProductController implements IController {
       const products = await this.findOneProduct.findOne(httpRequest.params.id)
 
       return {
-        statusCode: 200,
+        status: 200,
         body: products
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

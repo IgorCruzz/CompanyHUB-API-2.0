@@ -11,12 +11,12 @@ export class FindAllServicesController implements IController {
       const services = await this.dbFindAllServices.findAll()
 
       return {
-        statusCode: 200,
+        status: 200,
         body: services
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

@@ -10,7 +10,7 @@ export class ValidatorDecorator implements IMiddleware {
 
     if (!result.validate) {
       return {
-        statusCode: 401,
+        status: 401,
         body: {
           message: result.err.errors
         }
@@ -18,7 +18,7 @@ export class ValidatorDecorator implements IMiddleware {
     }
 
     return {
-      statusCode: 200,
+      status: 200,
       body: {}
     }
   }

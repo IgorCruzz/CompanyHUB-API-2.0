@@ -16,7 +16,7 @@ describe('CreateService Conroller', () => {
     expect(createServiceController).toBeDefined()
   })
 
-  it('should return statusCode 200 if addProduct returns a Product', async () => {
+  it('should return status 200 if addProduct returns a Product', async () => {
     const req: IHttpRequest = {
       userId: '1',
       body: {
@@ -29,7 +29,7 @@ describe('CreateService Conroller', () => {
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         id: 1,
         name: 'service',
@@ -39,7 +39,7 @@ describe('CreateService Conroller', () => {
     })
   })
 
-  it('should be returns statusCode 401 if addService returns an error', async () => {
+  it('should be returns status 401 if addService returns an error', async () => {
     jest
       .spyOn(addService, 'add')
       .mockResolvedValue({ error: 'Você não tem permissão para cadastrar um serviço neste produto.' })
@@ -56,7 +56,7 @@ describe('CreateService Conroller', () => {
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      status: 401,
       body: { message: 'Você não tem permissão para cadastrar um serviço neste produto.' }
     })
   })
@@ -76,7 +76,7 @@ describe('CreateService Conroller', () => {
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

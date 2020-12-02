@@ -17,18 +17,18 @@ export class CreateServiceController implements IController {
 
       if (service.error) {
         return {
-          statusCode: 401,
+          status: 401,
           body: { message: service.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: service
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

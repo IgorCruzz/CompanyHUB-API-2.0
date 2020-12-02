@@ -19,18 +19,18 @@ export class UpdateCompanyController implements IController {
 
       if (company.error) {
         return {
-          statusCode: 400,
+          status: 400,
           body: { message: company.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { message: 'Empresa atualizada com sucesso!.' }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

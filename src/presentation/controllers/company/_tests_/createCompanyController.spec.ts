@@ -16,7 +16,7 @@ describe('CreateCompany Conroller', () => {
     expect(createCompanyController).toBeDefined()
   })
 
-  it('should return statusCode 200 if DbAddCompany returns a Company', async () => {
+  it('should return status 200 if DbAddCompany returns a Company', async () => {
     const req: IHttpRequest = {
       userId: '1',
       body: {
@@ -28,7 +28,7 @@ describe('CreateCompany Conroller', () => {
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         id: 1,
         user_id: 1,
@@ -38,7 +38,7 @@ describe('CreateCompany Conroller', () => {
     })
   })
 
-  it('should be returns statusCode 401 if addCompany returns an error', async () => {
+  it('should be returns status 401 if addCompany returns an error', async () => {
     jest
       .spyOn(addCompany, 'add')
       .mockResolvedValue({ error: 'Você já possui uma empresa cadastrada' })
@@ -54,7 +54,7 @@ describe('CreateCompany Conroller', () => {
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      status: 401,
       body: { message: 'Você já possui uma empresa cadastrada' }
     })
   })
@@ -73,7 +73,7 @@ describe('CreateCompany Conroller', () => {
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

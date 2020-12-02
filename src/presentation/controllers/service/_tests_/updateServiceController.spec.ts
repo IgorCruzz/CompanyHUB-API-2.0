@@ -30,12 +30,12 @@ describe('UpdateService Controller', () => {
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Serviço atualizado com sucesso!' }
     })
   })
 
-  it('should be returns statusCode 401 if dbUpdateService returns an error', async () => {
+  it('should be returns status 401 if dbUpdateService returns an error', async () => {
     jest
       .spyOn(dbUpdateService, 'update')
       .mockResolvedValue({ error: 'Você não tem permissão para atualizar este serviço.' })
@@ -53,12 +53,12 @@ describe('UpdateService Controller', () => {
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      status: 401,
       body: { message: 'Você não tem permissão para atualizar este serviço.' }
     })
   })
 
-  it('return statusCode 500 if dbUpdateService throws', async () => {
+  it('return status 500 if dbUpdateService throws', async () => {
     const req: IHttpRequest = {
       userId: '1',
       params: { id: 1 },
@@ -74,7 +74,7 @@ describe('UpdateService Controller', () => {
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

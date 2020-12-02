@@ -16,11 +16,11 @@ describe('DeleteCompany Controller', () => {
     expect(findAllCompanyController).toBeDefined()
   })
 
-  it('return statusCode 200 if DbFindAllCompany returns', async () => {
+  it('return status 200 if DbFindAllCompany returns', async () => {
     const res = await findAllCompanyController.handle({})
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: [
         {
           user_id: 1,
@@ -40,13 +40,13 @@ describe('DeleteCompany Controller', () => {
     })
   })
 
-  it('return statusCode 500 if DbFindAllCompany throws', async () => {
+  it('return status 500 if DbFindAllCompany throws', async () => {
     jest.spyOn(DbFindAllCompany, 'findAll').mockRejectedValue(new Error())
 
     const res = await findAllCompanyController.handle({})
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

@@ -21,18 +21,18 @@ export class CreateCompanyController implements IController {
 
       if (company.error) {
         return {
-          statusCode: 401,
+          status: 401,
           body: { message: company.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: company
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

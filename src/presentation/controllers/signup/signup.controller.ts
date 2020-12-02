@@ -20,7 +20,7 @@ export class SignupController implements IController {
 
       if (user.error) {
         return {
-          statusCode: 401,
+          status: 401,
           body: {
             message: user.error
           }
@@ -28,12 +28,12 @@ export class SignupController implements IController {
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: user
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

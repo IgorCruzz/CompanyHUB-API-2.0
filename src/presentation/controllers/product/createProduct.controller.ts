@@ -15,18 +15,18 @@ export class CreateProductController implements IController {
 
       if (product.error) {
         return {
-          statusCode: 401,
+          status: 401,
           body: { message: product.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: product
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

@@ -13,7 +13,7 @@ export class AuthMiddleware implements IMiddleware {
 
       if (!authorization) {
         return {
-          statusCode: 401,
+          status: 401,
           body: { message: 'Insira o token.' }
         }
       }
@@ -28,18 +28,18 @@ export class AuthMiddleware implements IMiddleware {
 
       if (authUser.error) {
         return {
-          statusCode: 401,
+          status: 401,
           body: { message: authUser.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { userId: authUser.id }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

@@ -15,7 +15,7 @@ describe('SignupController', () => {
     expect(signupController).toBeDefined()
   })
 
-  it('returns with statusCode 200 with everthing has OK', async () => {
+  it('returns with status 200 with everthing has OK', async () => {
     const req: IHttpRequest = {
       body: {
         name: 'name',
@@ -28,7 +28,7 @@ describe('SignupController', () => {
     const res = await signupController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: {
         id: 1,
         name: 'name',
@@ -75,7 +75,7 @@ describe('SignupController', () => {
     const res = await signupController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 401,
+      status: 401,
       body: {
         message: 'Já existe um usuário com este e-mail.'
       }
@@ -97,7 +97,7 @@ describe('SignupController', () => {
     const res = await signupController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

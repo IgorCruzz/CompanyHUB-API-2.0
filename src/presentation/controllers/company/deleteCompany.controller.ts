@@ -19,18 +19,18 @@ export class DeleteCompanyController implements IController {
 
       if (deleteCompany.error) {
         return {
-          statusCode: 400,
+          status: 400,
           body: { message: deleteCompany.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { message: 'Empresa deletada com sucesso!.' }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

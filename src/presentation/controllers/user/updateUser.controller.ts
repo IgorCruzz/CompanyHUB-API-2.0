@@ -16,18 +16,18 @@ export class UpdateUserController implements IController {
 
       if (user.error) {
         return {
-          statusCode: 400,
+          status: 400,
           body: { message: user.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { message: 'Atualizado com sucesso.' }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

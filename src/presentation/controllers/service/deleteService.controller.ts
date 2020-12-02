@@ -20,18 +20,18 @@ export class DeleteServiceController implements IController {
 
       if (service.error) {
         return {
-          statusCode: 400,
+          status: 400,
           body: { message: service.error }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { message: 'Serviço deletado com sucesso!' }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }

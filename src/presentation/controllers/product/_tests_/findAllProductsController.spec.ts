@@ -25,11 +25,11 @@ describe('FindAllProducts Controller', () => {
     expect(findAllProductController).toBeDefined()
   })
 
-  it('should return statusCode 200 if findAllProduct returns an Products array', async () => {
+  it('should return status 200 if findAllProduct returns an Products array', async () => {
     const res = await findAllProductController.handle({})
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body:
       [
         {
@@ -60,7 +60,7 @@ describe('FindAllProducts Controller', () => {
     const res = await findAllProductController.handle({})
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

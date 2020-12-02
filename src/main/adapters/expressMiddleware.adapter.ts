@@ -11,12 +11,12 @@ export const adapMiddleware = (middleware: IMiddleware) => {
     }
 
     const httpResponse = await middleware.handle(httpRequest)
-    if (httpResponse.statusCode === 200) {
+    if (httpResponse.status === 200) {
       Object.assign(req, httpResponse.body)
 
       next()
     } else {
-      res.status(httpResponse.statusCode).json({
+      res.status(httpResponse.status).json({
         error: httpResponse.body.message
       })
     }

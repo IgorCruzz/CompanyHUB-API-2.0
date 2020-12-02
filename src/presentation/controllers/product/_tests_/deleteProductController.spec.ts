@@ -16,7 +16,7 @@ describe('DeleteProduct Controller', () => {
     expect(deleteProductController).toBeDefined()
   })
 
-  it('should return statusCode 200 if deleteProduct returns a Product', async () => {
+  it('should return status 200 if deleteProduct returns a Product', async () => {
     const req: IHttpRequest = {
       userId: '1',
       body: {
@@ -28,12 +28,12 @@ describe('DeleteProduct Controller', () => {
     const res = await deleteProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 200,
+      status: 200,
       body: { message: 'Produto deletado com sucesso!' }
     })
   })
 
-  it('should be returns statusCode 401 if deleteProduct returns an error', async () => {
+  it('should be returns status 401 if deleteProduct returns an error', async () => {
     jest
       .spyOn(deleteProduct, 'delete')
       .mockResolvedValue({ error: 'Você não tem permissão para deletar um produto em outra empresa.' })
@@ -49,7 +49,7 @@ describe('DeleteProduct Controller', () => {
     const res = await deleteProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 400,
+      status: 400,
       body: { message: 'Você não tem permissão para deletar um produto em outra empresa.' }
     })
   })
@@ -68,7 +68,7 @@ describe('DeleteProduct Controller', () => {
     const res = await deleteProductController.handle(req)
 
     expect(res).toEqual({
-      statusCode: 500,
+      status: 500,
       body: new Error()
     })
   })

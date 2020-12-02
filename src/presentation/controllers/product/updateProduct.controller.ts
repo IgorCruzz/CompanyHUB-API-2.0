@@ -19,18 +19,18 @@ export class UpdateProductController implements IController {
 
       if (product.error) {
         return {
-          statusCode: 400,
+          status: 400,
           body: { message: 'Você não tem permissão para atualizar um produto em outra empresa.' }
         }
       }
 
       return {
-        statusCode: 200,
+        status: 200,
         body: { message: 'Produto atualizado com sucesso!' }
       }
     } catch (err) {
       return {
-        statusCode: 500,
+        status: 500,
         body: err
       }
     }
