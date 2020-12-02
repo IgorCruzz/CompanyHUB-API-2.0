@@ -1,5 +1,5 @@
 import { IUpdateService } from '@/domain/usecases/service/updateService.interface'
-import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateServiceController implements IController {

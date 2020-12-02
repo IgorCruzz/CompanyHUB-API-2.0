@@ -1,5 +1,5 @@
 import { IFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
-import { Ok, ServerError } from '@/presentation/http/http-helper'
+import { Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,

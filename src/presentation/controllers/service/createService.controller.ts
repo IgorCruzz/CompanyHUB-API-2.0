@@ -1,5 +1,5 @@
 import { IAddService } from '@/domain/usecases/service/addService.interface'
-import { BadRequest, Created, Ok, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Created, Ok, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class CreateServiceController implements IController {

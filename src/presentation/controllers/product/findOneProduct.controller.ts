@@ -1,5 +1,5 @@
 import { IFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
-import { Ok, ServerError } from '@/presentation/http/http-helper'
+import { Ok, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindOneProductController implements IController {

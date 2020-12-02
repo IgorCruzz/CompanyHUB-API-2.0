@@ -6,6 +6,7 @@ export class DbFindAllProducts implements IFindAllProducts {
     private readonly productFindAllRepository: IProductFindAllRepository
   ) {}
 
+
   async findAll(): Promise<IFindAllProductsResult[]> {
     return await this.productFindAllRepository.findAll()
   }

@@ -3,7 +3,7 @@ import { CreateProductRepositoryStub, FindByProductNameRepositoryStub } from "@/
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
 import { ICreateProductRepository } from "@/data/protocols/db/product/createProductRepository.interface"
 import { IFindByProductNameRepository } from "@/data/protocols/db/product/findByNameProductRepository.interface"
-import { IAddProduct } from "@/domain/usecases/product/addProductinterface"
+import { IAddProduct } from "@/domain/usecases/product/addProduct.interface"
 import { DbAddProduct } from "../dbAddProduct.data"
 
 let dbAddProductData: IAddProduct

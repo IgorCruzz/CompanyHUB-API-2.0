@@ -1,5 +1,5 @@
 import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
-import { Ok, ServerError } from '@/presentation/http/http-helper'
+import { Ok, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllServicesController implements IController {
