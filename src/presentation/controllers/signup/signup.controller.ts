@@ -1,5 +1,5 @@
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
-import { BadRequest, Created, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Created, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,

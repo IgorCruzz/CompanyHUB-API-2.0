@@ -1,5 +1,5 @@
 import { IAddProduct } from '@/domain/usecases/product/addProduct.interface'
-import { BadRequest, Created, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Created, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class CreateProductController implements IController {

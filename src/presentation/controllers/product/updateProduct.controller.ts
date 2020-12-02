@@ -1,5 +1,5 @@
 import { IUpdateProduct } from '@/domain/usecases/product/updateProduct.interface'
-import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateProductController implements IController {
