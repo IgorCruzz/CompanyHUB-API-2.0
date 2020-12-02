@@ -4,9 +4,10 @@ import {
   UserFindByEmailRepositoryStub,
   UserFindByIdRepositoryStub,
 } from '@/data/mocks/user.mock'
-import { IFindUserByEmailRepository, IHasher } from '@/data/protocols'
 import { ICompare } from '@/data/protocols/bcryptAdapter/ICompare.interface'
+import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import { IUpdateUserRepository } from '@/data/protocols/db/user/updateUserRepository.interface'
 import { IUpdateUser } from '@/domain/usecases/user/updateUser.interface'
 import { DbUpdateUser } from '../dbUpdateUser.data'

@@ -1,9 +1,9 @@
-import { IDbFindAllServices } from '@/domain/usecases/service/findAllService.interface'
+import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllServicesController implements IController {
   constructor (
-    private readonly dbFindAllServices: IDbFindAllServices
+    private readonly dbFindAllServices: IFindAllServices
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

@@ -1,9 +1,9 @@
-import { IDbFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { IFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllProductsController implements IController {
   constructor (
-    private readonly findAllProduct: IDbFindAllProducts
+    private readonly findAllProduct: IFindAllProducts
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

@@ -1,11 +1,11 @@
 import { ProductFindOneRepositoryStub } from "@/data/mocks/product.mock"
 import MockDate from 'mockdate'
-import { IDbFindOneProduct } from "@/domain/usecases/product/findOneProduct.interface"
+import { IFindOneProduct } from "@/domain/usecases/product/findOneProduct.interface"
 import { IProductFindOneRepository } from "@/data/protocols/db/product/findOneProductRepository.interface"
 import { DbFindOneProduct } from "../dbFindOneProduct.data"
 
 
-let dbFindOneProduct: IDbFindOneProduct
+let dbFindOneProduct: IFindOneProduct
 let productFindOneRepository: IProductFindOneRepository
 
 

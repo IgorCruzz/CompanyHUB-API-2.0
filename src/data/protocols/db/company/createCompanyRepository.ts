@@ -1,4 +1,4 @@
-import { Company } from '@/infra/db/typeorm/entities/Company.entity'
+import { ICompanyModel } from '@/domain/models/company.interface';
 
 export interface ICreateCompanyDTO {
   name: string
@@ -7,5 +7,5 @@ export interface ICreateCompanyDTO {
 }
 
 export interface ICreateCompanyRepository {
-  create(date: ICreateCompanyDTO): Promise<Company>
+  create(date: ICreateCompanyDTO): Promise<ICompanyModel>
 }

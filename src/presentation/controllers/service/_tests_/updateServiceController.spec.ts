@@ -1,9 +1,9 @@
-import { IDbUpdateService } from '@/domain/usecases/service/updateService.interface'
+import { IUpdateService } from '@/domain/usecases/service/updateService.interface'
 import { DbUpdateServiceStub } from '@/presentation/mocks/service.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { UpdateServiceController } from '../updateService.controller'
 
-let dbUpdateService: IDbUpdateService
+let dbUpdateService: IUpdateService
 let updatedServiceController: IController
 
 describe('UpdateService Controller', () => {

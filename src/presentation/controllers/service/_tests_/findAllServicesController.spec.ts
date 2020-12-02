@@ -1,10 +1,10 @@
-import { IDbFindAllServices } from '@/domain/usecases/service/findAllService.interface'
+import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
 import { DbFindAllServicesStub } from '@/presentation/mocks/service.mock'
 import { IController } from '@/presentation/protocols'
 import { FindAllServicesController } from '../findAllServices.controller'
 import MockDate from 'mockdate'
 
-let dbFindAllServices: IDbFindAllServices
+let dbFindAllServices: IFindAllServices
 let findAllServicesController: IController
 
 describe('findAllServices Controller', () => {

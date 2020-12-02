@@ -4,17 +4,17 @@ import {
   IAddCompanyResult
 } from '@/domain/usecases/company/addCompany.interface'
 import {
-  IDbDeleteCompany,
-  IDbDeleteCompanyDTO,
-  IDbDeleteCompanyResult
+  IDeleteCompany,
+  IDeleteCompanyDTO,
+  IDeleteCompanyResult
 } from '@/domain/usecases/company/deleteCompany.interface'
 import {
-  IDbFindAllCompany,
-  IDbFindAllCompanyResult
+  IFindAllCompany,
+  IFindAllCompanyResult
 } from '@/domain/usecases/company/findAllCompanies.interface'
 import {
-  IDbFindOneCompany,
-  IDbFindOneCompanyResult
+  IFindOneCompany,
+  IFindOneCompanyResult
 } from '@/domain/usecases/company/findOneCompany.interface'
 import {
   IUpdateCompany,
@@ -33,16 +33,16 @@ export class DbAddCompanyStub implements IAddCompany {
   }
 }
 
-export class DbDeleteCompanyStub implements IDbDeleteCompany {
-  async delete (data: IDbDeleteCompanyDTO): Promise<IDbDeleteCompanyResult> {
+export class DbDeleteCompanyStub implements IDeleteCompany {
+  async delete (data: IDeleteCompanyDTO): Promise<IDeleteCompanyResult> {
     return Promise.resolve({
       deleted: true
     })
   }
 }
 
-export class DbFindAllCompanyStub implements IDbFindAllCompany {
-  async findAll (): Promise<IDbFindAllCompanyResult[]> {
+export class DbFindAllCompanyStub implements IFindAllCompany {
+  async findAll (): Promise<IFindAllCompanyResult[]> {
     return Promise.resolve([
       {
         user_id: 1,
@@ -62,8 +62,8 @@ export class DbFindAllCompanyStub implements IDbFindAllCompany {
   }
 }
 
-export class DbFindOneCompanyCompanyStub implements IDbFindOneCompany {
-  async findOne (id: string): Promise<IDbFindOneCompanyResult> {
+export class DbFindOneCompanyCompanyStub implements IFindOneCompany {
+  async findOne (id: string): Promise<IFindOneCompanyResult> {
     return Promise.resolve({
       user_id: 1,
       cnpj: '11111111111',

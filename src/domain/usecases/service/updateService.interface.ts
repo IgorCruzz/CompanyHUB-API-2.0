@@ -9,6 +9,6 @@ export interface IUpdateServiceResult {
   updated?: boolean
 }
 
-export interface IDbUpdateService {
+export interface IUpdateService {
   update(id: number, userId: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult>
 }

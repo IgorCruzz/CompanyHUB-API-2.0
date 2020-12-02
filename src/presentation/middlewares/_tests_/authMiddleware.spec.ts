@@ -1,9 +1,9 @@
-import { IDbAuthorization } from '@/domain/usecases/authorization/authorization.interface'
+import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
 import { DbAuthorizationStub } from '@/presentation/mocks/authorization.mock'
 import { IHttpRequest, IMiddleware } from '../../protocols'
 import { AuthMiddleware } from '../auth.middleware'
 
-let authData: IDbAuthorization
+let authData: IAuthorization
 let authController: IMiddleware
 
 describe('Auth Middleware', () => {

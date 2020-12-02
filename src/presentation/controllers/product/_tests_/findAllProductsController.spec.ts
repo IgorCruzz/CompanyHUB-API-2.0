@@ -1,11 +1,11 @@
-import { IDbFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { IFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
 import { DbFindAllProductStub } from '@/presentation/mocks/product.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { FindAllProductsController } from '../findAllProducts.controller'
 import MockDate from 'mockdate'
 
 let findAllProductController: IController
-let findAllProduct: IDbFindAllProducts
+let findAllProduct: IFindAllProducts
 
 describe('FindAllProducts Controller', () => {
   beforeEach(() => {

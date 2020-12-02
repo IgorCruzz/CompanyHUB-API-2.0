@@ -1,10 +1,10 @@
-import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { IDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
 import { DbDeleteCompanyStub } from '@/presentation/mocks/company.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { DeleteCompanyController } from '../deleteCompany.controller'
 
 let deleteCompanyController: IController
-let deleteCompany: IDbDeleteCompany
+let deleteCompany: IDeleteCompany
 
 describe('DeleteCompany Controller', () => {
   beforeEach(() => {

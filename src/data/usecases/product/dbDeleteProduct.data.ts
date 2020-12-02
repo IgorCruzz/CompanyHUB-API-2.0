@@ -1,16 +1,16 @@
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface";
 import { IDeleteProductRepository } from "@/data/protocols/db/product/deleteProductRepository.interface";
 import { IFindByIdRepository } from "@/data/protocols/db/product/findByIdRepository.interface";
-import { IDbDeleteProduct, IDbDeleteProductDTO, IDbDeleteProductResult } from "@/domain/usecases/product/deleteProduct.interface";
+import { IDeleteProduct, IDeleteProductDTO, IDeleteProductResult } from "@/domain/usecases/product/deleteProduct.interface";
 
-export class DbDeleteProduct implements IDbDeleteProduct {
+export class DbDeleteProduct implements IDeleteProduct {
   constructor (
     private readonly findUserIdRepository: IFindUserIdRepository,
     private readonly findByIdRepository: IFindByIdRepository,
     private readonly deleteProductRepository: IDeleteProductRepository
   ) {}
 
-  async delete(data: IDbDeleteProductDTO): Promise<IDbDeleteProductResult> {
+  async delete(data: IDeleteProductDTO): Promise<IDeleteProductResult> {
 
    const company =  await this.findUserIdRepository.findUserId(data.user)
 

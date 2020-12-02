@@ -3,10 +3,10 @@ import { DeleteProductRepositoryStub, FindByIdRepositoryStub } from "@/data/mock
 import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
 import { IDeleteProductRepository } from "@/data/protocols/db/product/deleteProductRepository.interface"
 import { IFindByIdRepository } from "@/data/protocols/db/product/findByIdRepository.interface"
-import { IDbDeleteProduct } from "@/domain/usecases/product/deleteProduct.interface"
+import { IDeleteProduct } from "@/domain/usecases/product/deleteProduct.interface"
 import { DbDeleteProduct } from "../dbDeleteProduct.data"
 
-let dbDeleteProductData: IDbDeleteProduct
+let dbDeleteProductData: IDeleteProduct
 let findUserIdRepository: IFindUserIdRepository
 let findByIdRepository: IFindByIdRepository
 let deleteProductRepository: IDeleteProductRepository

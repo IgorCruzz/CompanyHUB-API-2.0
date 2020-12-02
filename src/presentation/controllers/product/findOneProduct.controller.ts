@@ -1,9 +1,9 @@
-import { IDbFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
+import { IFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindOneProductController implements IController {
   constructor (
-    private readonly findOneProduct: IDbFindOneProduct
+    private readonly findOneProduct: IFindOneProduct
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

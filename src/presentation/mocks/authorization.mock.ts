@@ -1,6 +1,6 @@
-import { IDbAuthorization } from '@/domain/usecases/authorization/authorization.interface'
+import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
 
-export class DbAuthorizationStub implements IDbAuthorization {
+export class DbAuthorizationStub implements IAuthorization {
   async auth (data: any): Promise<any> {
     return Promise.resolve({
       id: 1,

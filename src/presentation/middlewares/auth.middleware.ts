@@ -1,9 +1,9 @@
 import { IHttpRequest, IHttpResponse, IMiddleware } from '../protocols'
-import { IDbAuthorization } from '@/domain/usecases/authorization/authorization.interface'
+import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
 
 export class AuthMiddleware implements IMiddleware {
   constructor (
-    private readonly dbAuthorization: IDbAuthorization,
+    private readonly dbAuthorization: IAuthorization,
     private readonly role: boolean
   ) {}
 

@@ -1,9 +1,9 @@
-import { IDbDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
+import { IDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteProductController implements IController {
   constructor (
-    private readonly deleteProduct: IDbDeleteProduct
+    private readonly deleteProduct: IDeleteProduct
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

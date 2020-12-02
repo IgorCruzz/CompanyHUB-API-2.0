@@ -1,12 +1,12 @@
 import { IProductFindAllRepository } from "@/data/protocols/db/product/findAllProductsRepository.interface";
-import { IDbFindAllProducts, IDbFindAllProductsResult } from "@/domain/usecases/product/findAllProduct.interface";
+import { IFindAllProducts, IFindAllProductsResult } from "@/domain/usecases/product/findAllProduct.interface";
 
-export class DbFindAllProducts implements IDbFindAllProducts {
+export class DbFindAllProducts implements IFindAllProducts {
   constructor (
     private readonly productFindAllRepository: IProductFindAllRepository
   ) {}
 
-  async findAll(): Promise<IDbFindAllProductsResult[]> {
+  async findAll(): Promise<IFindAllProductsResult[]> {
     return await this.productFindAllRepository.findAll()
   }
 

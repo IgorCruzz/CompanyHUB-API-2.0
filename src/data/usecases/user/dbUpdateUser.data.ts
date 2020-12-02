@@ -1,6 +1,7 @@
-import { IFindUserByEmailRepository, IHasher } from '@/data/protocols'
 import { ICompare } from '@/data/protocols/bcryptAdapter/ICompare.interface'
+import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
+import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import {
   IUpdateUserDTO,
   IUpdateUserRepository,

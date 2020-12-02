@@ -1,9 +1,9 @@
-import { IDbDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteServiceController implements IController {
   constructor (
-    private readonly dbDeleteService: IDbDeleteService
+    private readonly dbDeleteService: IDeleteService
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

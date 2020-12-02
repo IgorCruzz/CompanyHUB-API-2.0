@@ -1,4 +1,4 @@
-import { IDbFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
+import { IFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
 import {
   IController,
   IHttpRequest,
@@ -6,7 +6,7 @@ import {
 } from '@/presentation/protocols'
 
 export class FindAllCompanyController implements IController {
-  constructor (private readonly DbFindAllCompany: IDbFindAllCompany) {}
+  constructor (private readonly DbFindAllCompany: IFindAllCompany) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {

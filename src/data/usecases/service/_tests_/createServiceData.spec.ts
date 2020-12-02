@@ -1,9 +1,9 @@
 import { FindByUserRelationStub } from "@/data/mocks/company.mock";
 import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
 import { CreateServiceRepositoryStub } from "@/data/mocks/service.mock";
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
+import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository";
+import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository.interface";
 import { IAddService } from "@/domain/usecases/service/addService.interface";
 import { AddService } from "../createService.data";
 

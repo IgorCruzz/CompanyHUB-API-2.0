@@ -1,9 +1,9 @@
-import { IDbUpdateService } from '@/domain/usecases/service/updateService.interface'
+import { IUpdateService } from '@/domain/usecases/service/updateService.interface'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateServiceController implements IController {
   constructor (
-    private readonly dbUpdateService: IDbUpdateService
+    private readonly dbUpdateService: IUpdateService
   ) {}
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {

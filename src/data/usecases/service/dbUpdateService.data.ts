@@ -1,9 +1,9 @@
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository";
+import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
 import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { IUpdateServiceRepository } from "@/data/protocols/db/service/updateServiceRepository";
-import { IDbUpdateService, IUpdateServiceDTO, IUpdateServiceResult } from "@/domain/usecases/service/updateService.interface";
+import { IUpdateServiceRepository } from "@/data/protocols/db/service/updateServiceRepository.interface";
+import { IUpdateService, IUpdateServiceDTO, IUpdateServiceResult } from "@/domain/usecases/service/updateService.interface";
 
-export class DbUpdateService implements IDbUpdateService {
+export class DbUpdateService implements IUpdateService {
   constructor (
     private readonly findByUserRelation: IFindByUserRelationRepository,
     private readonly findByProductCompanyId: IFindByProductCompanyId,

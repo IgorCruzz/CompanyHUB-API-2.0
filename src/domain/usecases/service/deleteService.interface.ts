@@ -1,14 +1,14 @@
-export interface IDbDeleteServiceDTO {
+export interface IDeleteServiceDTO {
   user: string
   id: number
   product_id: number
 }
 
-export interface IDbDeleteServiceResult {
+export interface IDeleteServiceResult {
   error?: string
   deleted?: boolean
 }
 
-export interface IDbDeleteService {
-  delete(data: IDbDeleteServiceDTO): Promise<IDbDeleteServiceResult>
+export interface IDeleteService {
+  delete(data: IDeleteServiceDTO): Promise<IDeleteServiceResult>
 }

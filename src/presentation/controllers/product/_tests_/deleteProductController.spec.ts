@@ -1,10 +1,10 @@
-import { IDbDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
+import { IDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
 import { DbDeleteProductStub } from '@/presentation/mocks/product.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { DeleteProductController } from '../deleteProduct.controller'
 
 let deleteProductController: IController
-let deleteProduct: IDbDeleteProduct
+let deleteProduct: IDeleteProduct
 
 describe('DeleteProduct Controller', () => {
   beforeEach(() => {

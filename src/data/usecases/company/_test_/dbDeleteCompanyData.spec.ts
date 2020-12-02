@@ -4,10 +4,10 @@ import {
 } from '@/data/mocks/company.mock'
 import { IDeleteCompanyRepository } from '@/data/protocols/db/company/deleteCompanyRepository.interface'
 import { IFindByIdRepository } from '@/data/protocols/db/company/findByIdRepository.interface'
-import { IDbDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { IDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
 import { DbDeleteCompany } from '../dbDeleteCompany.data'
 
-let dbDeleteCompany: IDbDeleteCompany
+let dbDeleteCompany: IDeleteCompany
 let findByIdRepository: IFindByIdRepository
 let deleteCompanyRepository: IDeleteCompanyRepository
 

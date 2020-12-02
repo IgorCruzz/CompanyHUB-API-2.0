@@ -1,5 +1,5 @@
-import { Company } from '@/infra/db/typeorm/entities/Company.entity'
+import { ICompanyModel } from '@/domain/models/company.interface';
 
 export interface IFindCnpjRepository {
-  findCnpj(cnpj: string): Promise<Company>
+  findCnpj(cnpj: string): Promise<ICompanyModel>
 }

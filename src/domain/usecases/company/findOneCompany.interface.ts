@@ -1,6 +1,6 @@
 import { IProductModel } from '@/domain/models/product.interface'
 
-export interface IDbFindOneCompanyResult {
+export interface IFindOneCompanyResult {
   error?: string
   user_id?: number
   cnpj?: string
@@ -9,6 +9,6 @@ export interface IDbFindOneCompanyResult {
   name?: string
 }
 
-export interface IDbFindOneCompany {
-  findOne(id: string): Promise<IDbFindOneCompanyResult>
+export interface IFindOneCompany {
+  findOne(id: string): Promise<IFindOneCompanyResult>
 }

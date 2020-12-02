@@ -1,9 +1,9 @@
-import { IDbDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
 import { DbDeleteServiceStub } from '@/presentation/mocks/service.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { DeleteServiceController } from '../deleteService.controller'
 
-let dbDeleteService: IDbDeleteService
+let dbDeleteService: IDeleteService
 let deleteCompanyController: IController
 
 describe('DeleteService Controller', () => {

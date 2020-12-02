@@ -1,8 +1,9 @@
 import { IServiceModel } from "@/domain/models/service.interface";
-import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createServiceRepository";
-import { IDeleteServiceRepository } from "../protocols/db/service/deleteServiceRepository";
+import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createServiceRepository.interface";
+import { IDeleteServiceRepository } from "../protocols/db/service/deleteServiceRepository.interface";
 import { IFindAllservicesRepository } from "../protocols/db/service/findAllServicesRepository.interface";
-import { IUpdateServiceDTO, IUpdateServiceRepository } from "../protocols/db/service/updateServiceRepository";
+import { IUpdateServiceDTO, IUpdateServiceRepository } from "../protocols/db/service/updateServiceRepository.interface";
+
 
 
 export class CreateServiceRepositoryStub implements ICreateServiceRepository {
