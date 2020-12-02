@@ -1,4 +1,5 @@
-import { IAddProduct } from '@/domain/usecases/product/addProductinterface'
+import { IAddProduct } from '@/domain/usecases/product/addProduct.interface'
+import { BadRequest, Created, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class CreateProductController implements IController {
@@ -15,22 +16,11 @@ export class CreateProductController implements IController {
         ...httpRequest.body
       })
 
-      if (product.error) {
-        return {
-          status: 401,
-          body: { message: product.error }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        status: 200,
-        body: product
-      }
+      return Created(product)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

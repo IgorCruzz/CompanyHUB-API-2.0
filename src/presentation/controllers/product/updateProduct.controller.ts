@@ -1,4 +1,5 @@
 import { IUpdateProduct } from '@/domain/usecases/product/updateProduct.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class UpdateProductController implements IController {
@@ -17,22 +18,11 @@ export class UpdateProductController implements IController {
         company_id
       })
 
-      if (product.error) {
-        return {
-          status: 400,
-          body: { message: product.error }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        status: 200,
-        body: { message: 'Produto atualizado com sucesso!' }
-      }
+      return Ok({ message: 'Produto atualizado com sucesso!' })
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

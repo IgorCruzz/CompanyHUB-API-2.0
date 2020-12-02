@@ -29,7 +29,7 @@ describe('CreateService Conroller', () => {
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
-      status: 200,
+      status: 201,
       body: {
         id: 1,
         name: 'service',
@@ -56,7 +56,7 @@ describe('CreateService Conroller', () => {
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: { message: 'Você não tem permissão para cadastrar um serviço neste produto.' }
     })
   })

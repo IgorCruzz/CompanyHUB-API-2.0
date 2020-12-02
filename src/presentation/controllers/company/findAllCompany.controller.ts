@@ -1,4 +1,5 @@
 import { IFindAllCompany } from '@/domain/usecases/company/findAllCompanies.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -10,16 +11,10 @@ export class FindAllCompanyController implements IController {
 
   async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const findCompanies = await this.DbFindAllCompany.findAll()
-      return {
-        status: 200,
-        body: findCompanies
-      }
+      const company = await this.DbFindAllCompany.findAll()
+      return Ok(company)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

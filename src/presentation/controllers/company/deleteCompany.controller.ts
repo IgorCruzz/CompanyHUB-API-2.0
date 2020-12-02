@@ -1,4 +1,5 @@
 import { IDeleteCompany } from '@/domain/usecases/company/deleteCompany.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -13,27 +14,16 @@ export class DeleteCompanyController implements IController {
       const { userId } = httpRequest
       const { id } = httpRequest.params
 
-      const deleteCompany = await this.deleteCompany.delete({
+      const company = await this.deleteCompany.delete({
         params: { id },
         user: userId
       })
 
-      if (deleteCompany.error) {
-        return {
-          status: 400,
-          body: { message: deleteCompany.error }
-        }
-      }
+      if (company.error) return BadRequest(company.error)
 
-      return {
-        status: 200,
-        body: { message: 'Empresa deletada com sucesso!.' }
-      }
+      return Ok({ message: 'Empresa deletada com sucesso!.' })
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

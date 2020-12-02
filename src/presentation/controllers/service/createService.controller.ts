@@ -1,4 +1,5 @@
 import { IAddService } from '@/domain/usecases/service/addService.interface'
+import { BadRequest, Created, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class CreateServiceController implements IController {
@@ -15,22 +16,11 @@ export class CreateServiceController implements IController {
         ...httpRequest.body
       })
 
-      if (service.error) {
-        return {
-          status: 401,
-          body: { message: service.error }
-        }
-      }
+      if (service.error) return BadRequest(service.error)
 
-      return {
-        status: 200,
-        body: service
-      }
+      return Created(service)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

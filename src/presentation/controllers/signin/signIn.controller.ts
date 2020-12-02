@@ -1,4 +1,5 @@
 import { ISignIn } from '@/domain/usecases/signin/signIn.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -12,22 +13,11 @@ export class SignInController implements IController {
     try {
       const signIn = await this.dbSignInData.signIn(httpRequest.body)
 
-      if (signIn.error) {
-        return {
-          status: 401,
-          body: { message: signIn.error }
-        }
-      }
+      if (signIn.error) return BadRequest(signIn.error)
 
-      return {
-        status: 200,
-        body: signIn
-      }
+      return Ok(signIn)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

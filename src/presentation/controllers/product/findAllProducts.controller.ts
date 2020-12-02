@@ -1,4 +1,5 @@
 import { IFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllProductsController implements IController {
@@ -10,15 +11,9 @@ export class FindAllProductsController implements IController {
     try {
       const products = await this.findAllProduct.findAll()
 
-      return {
-        status: 200,
-        body: products
-      }
+      return Ok(products)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

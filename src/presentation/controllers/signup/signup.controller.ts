@@ -1,4 +1,5 @@
 import { IAddUser } from '@/domain/usecases/user/addUser.interface'
+import { BadRequest, Created, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -18,24 +19,11 @@ export class SignupController implements IController {
         password_hash: password
       })
 
-      if (user.error) {
-        return {
-          status: 401,
-          body: {
-            message: user.error
-          }
-        }
-      }
+      if (user.error) return BadRequest(user.error)
 
-      return {
-        status: 200,
-        body: user
-      }
+      return Created(user)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

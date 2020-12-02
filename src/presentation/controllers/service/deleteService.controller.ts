@@ -1,4 +1,5 @@
 import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteServiceController implements IController {
@@ -18,22 +19,11 @@ export class DeleteServiceController implements IController {
         user: userId
       })
 
-      if (service.error) {
-        return {
-          status: 400,
-          body: { message: service.error }
-        }
-      }
+      if (service.error) return BadRequest(service.error)
 
-      return {
-        status: 200,
-        body: { message: 'Serviço deletado com sucesso!' }
-      }
+      return Ok({ message: 'Serviço deletado com sucesso!' })
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

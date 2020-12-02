@@ -28,7 +28,7 @@ describe('SignupController', () => {
     const res = await signupController.handle(req)
 
     expect(res).toEqual({
-      status: 200,
+      status: 201,
       body: {
         id: 1,
         name: 'name',
@@ -75,7 +75,7 @@ describe('SignupController', () => {
     const res = await signupController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: {
         message: 'Já existe um usuário com este e-mail.'
       }

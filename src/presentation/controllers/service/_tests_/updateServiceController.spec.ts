@@ -53,7 +53,7 @@ describe('UpdateService Controller', () => {
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: { message: 'Você não tem permissão para atualizar este serviço.' }
     })
   })

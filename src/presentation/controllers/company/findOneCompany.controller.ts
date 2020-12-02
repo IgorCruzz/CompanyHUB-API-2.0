@@ -1,4 +1,5 @@
 import { IFindOneCompany } from '@/domain/usecases/company/findOneCompany.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -14,22 +15,11 @@ export class FindOneCompanyController implements IController {
 
       const company = await this.dbFindOneCompany.findOne(id)
 
-      if (company.error) {
-        return {
-          status: 400,
-          body: { message: company.error }
-        }
-      }
+      if (company.error) return BadRequest(company.error)
 
-      return {
-        status: 200,
-        body: company
-      }
+      return Ok(company)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

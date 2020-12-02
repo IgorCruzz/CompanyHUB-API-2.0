@@ -29,7 +29,7 @@ describe('UpdateCompany Controller', () => {
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Empresa atualizada com sucesso!.' }
+      body: { message: 'Empresa atualizada com sucesso!' }
     })
   })
 

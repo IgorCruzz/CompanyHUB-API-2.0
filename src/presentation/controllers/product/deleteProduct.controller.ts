@@ -1,4 +1,5 @@
 import { IDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class DeleteProductController implements IController {
@@ -20,22 +21,11 @@ export class DeleteProductController implements IController {
         }
       })
 
-      if (product.error) {
-        return {
-          status: 400,
-          body: { message: product.error }
-        }
-      }
+      if (product.error) return BadRequest(product.error)
 
-      return {
-        status: 200,
-        body: { message: 'Produto deletado com sucesso!' }
-      }
+      return Ok({ message: 'Produto deletado com sucesso!' })
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

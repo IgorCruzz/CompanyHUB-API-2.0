@@ -70,7 +70,7 @@ describe('SignIn Controller', () => {
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: { message: 'Por favor, ative a sua conta.' }
     })
   })

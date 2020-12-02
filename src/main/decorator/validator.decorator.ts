@@ -1,6 +1,5 @@
 import { IValidation } from '@/data/protocols/yup/validation.interface'
-import { IHttpRequest, IHttpResponse } from '@/presentation/protocols'
-import { IMiddleware } from '@/presentation/protocols/middleware'
+import { IHttpRequest, IHttpResponse, IMiddleware } from '@/presentation/protocols'
 
 export class ValidatorDecorator implements IMiddleware {
   constructor (private readonly validation: IValidation) {}

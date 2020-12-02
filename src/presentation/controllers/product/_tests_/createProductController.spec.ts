@@ -1,4 +1,4 @@
-import { IAddProduct } from '@/domain/usecases/product/addProductinterface'
+import { IAddProduct } from '@/domain/usecases/product/addProduct.interface'
 import { DbAddProductStub } from '@/presentation/mocks/product.mock'
 import { IController, IHttpRequest } from '@/presentation/protocols'
 import { CreateProductController } from '../createProduct.controller'
@@ -28,7 +28,7 @@ describe('CreateProduct Controller', () => {
     const res = await createProductController.handle(req)
 
     expect(res).toEqual({
-      status: 200,
+      status: 201,
       body: {
         company_id: 1,
         name: 'product',
@@ -53,7 +53,7 @@ describe('CreateProduct Controller', () => {
     const res = await createProductController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: { message: 'Você não tem permissão para cadastrar um produto em outra empresa.' }
     })
   })

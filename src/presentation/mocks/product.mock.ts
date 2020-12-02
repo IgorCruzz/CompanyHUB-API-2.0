@@ -1,4 +1,4 @@
-import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecases/product/addProductinterface'
+import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecases/product/addProduct.interface'
 import { IDeleteProduct, IDeleteProductDTO, IDeleteProductResult } from '@/domain/usecases/product/deleteProduct.interface'
 import { IFindAllProducts, IFindAllProductsResult } from '@/domain/usecases/product/findAllProduct.interface'
 import { IFindOneProduct, IFindOneProductResult } from '@/domain/usecases/product/findOneProduct.interface'

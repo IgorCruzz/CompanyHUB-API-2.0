@@ -28,7 +28,7 @@ describe('CreateCompany Conroller', () => {
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
-      status: 200,
+      status: 201,
       body: {
         id: 1,
         user_id: 1,
@@ -54,7 +54,7 @@ describe('CreateCompany Conroller', () => {
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
-      status: 401,
+      status: 400,
       body: { message: 'Você já possui uma empresa cadastrada' }
     })
   })

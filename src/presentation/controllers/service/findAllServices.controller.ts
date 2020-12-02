@@ -1,4 +1,5 @@
 import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
+import { Ok, ServerError } from '@/presentation/http/http-helper'
 import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
 
 export class FindAllServicesController implements IController {
@@ -10,15 +11,9 @@ export class FindAllServicesController implements IController {
     try {
       const services = await this.dbFindAllServices.findAll()
 
-      return {
-        status: 200,
-        body: services
-      }
+      return Ok(services)
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }

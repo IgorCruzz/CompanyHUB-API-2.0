@@ -1,4 +1,5 @@
 import { IDeleteUser } from '@/domain/usecases/user/deleteUser.interface'
+import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
 import {
   IController,
   IHttpRequest,
@@ -14,22 +15,11 @@ export class DeleteUserController implements IController {
 
       const deleteUser = await this.deleteUser.delete(id)
 
-      if (deleteUser.error) {
-        return {
-          status: 400,
-          body: { message: deleteUser.error }
-        }
-      }
+      if (deleteUser.error) return BadRequest(deleteUser.error)
 
-      return {
-        status: 200,
-        body: { message: 'Usuário deletado com sucesso.' }
-      }
+      return Ok({ message: 'Usuário deletado com sucesso.' })
     } catch (err) {
-      return {
-        status: 500,
-        body: err
-      }
+      return ServerError(err)
     }
   }
 }
