@@ -12,5 +12,5 @@ export interface IUpdateResult {
 }
 
 export interface IUpdateUser {
-  update(id: number, data: IUpdateUserDTO): Promise<IUpdateResult>
+  update(id: number, userId: string, data: IUpdateUserDTO): Promise<IUpdateResult>
 }
