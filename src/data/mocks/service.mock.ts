@@ -2,6 +2,7 @@ import { IServiceModel } from "@/domain/models/service.interface";
 import { ICreateServiceDTO, ICreateServiceRepository } from "../protocols/db/service/createServiceRepository";
 import { IDeleteServiceRepository } from "../protocols/db/service/deleteServiceRepository";
 import { IFindAllservicesRepository } from "../protocols/db/service/findAllServicesRepository.interface";
+import { IUpdateServiceDTO, IUpdateServiceRepository } from "../protocols/db/service/updateServiceRepository";
 
 
 export class CreateServiceRepositoryStub implements ICreateServiceRepository {
@@ -22,6 +23,13 @@ export class DeleteServiceRepositoryStub implements IDeleteServiceRepository {
     return Promise.resolve(true)
   }
 }
+
+export class UpdateServiceRepositoryStub implements IUpdateServiceRepository {
+  update(id: number, data: IUpdateServiceDTO): Promise<boolean> {
+    return Promise.resolve(true)
+  }
+}
+
 
 export class FindAllservicesRepositoryStub implements IFindAllservicesRepository {
   async  findAll(): Promise<IServiceModel[]> {
