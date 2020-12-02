@@ -1,6 +1,7 @@
 import { IAddService, IAddServiceDTO, IAddServiceResult } from '@/domain/usecases/service/addService.interface'
 import { IDbDeleteService, IDbDeleteServiceDTO, IDbDeleteServiceResult } from '@/domain/usecases/service/deleteService.interface'
 import { IDbFindAllServices, IFindAllServicesResult } from '@/domain/usecases/service/findAllService.interface'
+import { IDbUpdateService, IUpdateServiceDTO, IUpdateServiceResult } from '@/domain/usecases/service/updateService.interface'
 
 export class DbAddServiceStub implements IAddService {
   async add (data: IAddServiceDTO): Promise<IAddServiceResult> {
@@ -40,5 +41,11 @@ export class DbFindAllServicesStub implements IDbFindAllServices {
       updated_at: new Date()
     }
     ])
+  }
+}
+
+export class DbUpdateServiceStub implements IDbUpdateService {
+  async update (id: number, user: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult> {
+    return Promise.resolve({ updated: true })
   }
 }
