@@ -39,7 +39,7 @@ describe('DbUpdateCompany Data', () => {
   it('should returns an error message if findByIdRepository returns undefined', async () => {
     jest.spyOn(findByIdRepository, 'findId').mockResolvedValue(undefined)
 
-    const res =   await dbUpdateCompany.update(1, '1', {
+    const res = await dbUpdateCompany.update(1, '1', {
       name: 'company',
       cnpj: '111111111',
     })
@@ -48,7 +48,7 @@ describe('DbUpdateCompany Data', () => {
   })
 
   it('should returns an error message if company belongs to another user', async () => {
-    const res =   await dbUpdateCompany.update(2, '2', {
+    const res = await dbUpdateCompany.update(2, '2', {
       name: 'company',
       cnpj: '111111111',
     })
@@ -78,7 +78,7 @@ describe('DbUpdateCompany Data', () => {
 
     expect(res).toHaveBeenCalledWith(1, {
       cnpj: '111111111',
-      name: 'company'
+      name: 'company',
     })
   })
 })

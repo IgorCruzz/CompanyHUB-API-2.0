@@ -19,16 +19,16 @@ describe('DeleteCompany Controller', () => {
   it('return status 200 if deleteCompany returns true', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
-      userId: '1'
+      userId: '1',
     }
 
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Empresa deletada com sucesso!.' }
+      body: { message: 'Empresa deletada com sucesso!.' },
     })
   })
 
@@ -39,25 +39,25 @@ describe('DeleteCompany Controller', () => {
 
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
-      userId: '1'
+      userId: '1',
     }
 
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Não existe uma empresa com este ID.' }
+      body: { message: 'Não existe uma empresa com este ID.' },
     })
   })
 
   it('return status 500 if deleteCompany throws', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
-      userId: '1'
+      userId: '1',
     }
 
     jest.spyOn(deleteCompany, 'delete').mockRejectedValue(new Error())
@@ -66,7 +66,7 @@ describe('DeleteCompany Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

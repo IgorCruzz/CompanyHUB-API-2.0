@@ -12,8 +12,11 @@ export class DbUpdateCompany implements IUpdateCompany {
     private readonly updateCompanyRepository: IUpdateCompanyRepository
   ) {}
 
-  async update(id: number, userId: string, data: IUpdateCompanyDTO): Promise<IUpdateCompanyResult> {
-
+  async update(
+    id: number,
+    userId: string,
+    data: IUpdateCompanyDTO
+  ): Promise<IUpdateCompanyResult> {
     const findCompany = await this.findByIdRepository.findId(id)
 
     if (!findCompany) return { error: 'Insira um ID válido.' }
@@ -27,13 +30,9 @@ export class DbUpdateCompany implements IUpdateCompany {
 
     const { user, ...companyUpdatedData } = JSON.parse(request)
 
-    const updated = await this.updateCompanyRepository.update(
-      id,
-      {
-        ...companyUpdatedData
-      }
-    )
-
+    const updated = await this.updateCompanyRepository.update(id, {
+      ...companyUpdatedData,
+    })
 
     return { updated }
   }

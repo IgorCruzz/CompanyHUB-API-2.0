@@ -19,15 +19,15 @@ describe('Auth Middleware', () => {
   it('should be return 401 if token has no provided', async () => {
     const req: IHttpRequest = {
       headers: {
-        authorization: ''
-      }
+        authorization: '',
+      },
     }
 
     const res = await authController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Insira o token.' }
+      body: { message: 'Insira o token.' },
     })
   })
 
@@ -36,11 +36,11 @@ describe('Auth Middleware', () => {
 
     const req: IHttpRequest = {
       headers: {
-        authorization: 'Bearer token'
+        authorization: 'Bearer token',
       },
       params: {
-        id: 1
-      }
+        id: 1,
+      },
     }
 
     await authController.handle(req)
@@ -48,7 +48,7 @@ describe('Auth Middleware', () => {
     expect(res).toHaveBeenCalledWith({
       token: 'token',
       role: false,
-      params: { id: 1 }
+      params: { id: 1 },
     })
   })
 
@@ -59,18 +59,18 @@ describe('Auth Middleware', () => {
 
     const req: IHttpRequest = {
       headers: {
-        authorization: 'Bearer token'
+        authorization: 'Bearer token',
       },
       params: {
-        id: 2
-      }
+        id: 2,
+      },
     }
 
     const res = await authController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não tem permissão para fazer isto.' }
+      body: { message: 'Você não tem permissão para fazer isto.' },
     })
   })
 
@@ -79,16 +79,16 @@ describe('Auth Middleware', () => {
 
     const req: IHttpRequest = {
       headers: {
-        authorization: 'Bearer token'
+        authorization: 'Bearer token',
       },
-      params: { id: 1 }
+      params: { id: 1 },
     }
 
     const res = await authController.handle(req)
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

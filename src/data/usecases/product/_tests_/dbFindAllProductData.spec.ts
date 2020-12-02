@@ -1,13 +1,11 @@
-import { FindAllProductsRepositoryStub } from "@/data/mocks/product.mock"
-import { IProductFindAllRepository } from "@/data/protocols/db/product/findAllProductsRepository.interface"
-import { IFindAllProducts } from "@/domain/usecases/product/findAllProduct.interface"
-import { DbFindAllProducts } from "../dbFindAllProducts.data"
+import { FindAllProductsRepositoryStub } from '@/data/mocks/product.mock'
+import { IProductFindAllRepository } from '@/data/protocols/db/product/findAllProductsRepository.interface'
+import { IFindAllProducts } from '@/domain/usecases/product/findAllProduct.interface'
+import { DbFindAllProducts } from '../dbFindAllProducts.data'
 import MockDate from 'mockdate'
-
 
 let dbFindAllProducts: IFindAllProducts
 let productFindAllRepository: IProductFindAllRepository
-
 
 describe('DbFindAllProduct Data', () => {
   beforeEach(() => {
@@ -38,7 +36,8 @@ describe('DbFindAllProduct Data', () => {
   it('should return all products', async () => {
     const res = await dbFindAllProducts.findAll()
 
-    expect(res).toEqual([{
+    expect(res).toEqual([
+      {
         id: 1,
         name: 'product',
         company_id: 1,
@@ -53,9 +52,8 @@ describe('DbFindAllProduct Data', () => {
         },
         serviceConnection: [],
         created_at: new Date(),
-        updated_at: new Date()
-    }])
+        updated_at: new Date(),
+      },
+    ])
   })
-
-
 })

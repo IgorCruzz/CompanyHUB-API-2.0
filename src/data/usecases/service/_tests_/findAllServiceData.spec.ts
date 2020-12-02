@@ -13,14 +13,13 @@ describe('DbFindAllService Data', () => {
     findAllServices = new DbFindAllServices(findAllServicesRepository)
   })
 
-   beforeAll(() => {
+  beforeAll(() => {
     MockDate.set(new Date())
   })
 
   afterAll(() => {
     MockDate.reset()
   })
-
 
   it('should be defined', () => {
     expect(findAllServices).toBeDefined()
@@ -35,27 +34,25 @@ describe('DbFindAllService Data', () => {
   })
 
   it('should returns a Services array', async () => {
-
     const res = await findAllServices.findAll()
 
-    expect(res).toEqual([{
-      id: 1,
-      name: 'service',
-      description: 'description',
-      product_id: 1  ,
-      created_at: new Date(),
-      updated_at: new Date(),
-    },
-    {
-      id: 2,
-      name: 'service',
-      description: 'description',
-      product_id: 1  ,
-      created_at: new Date(),
-      updated_at: new Date(),
-    }])
-
+    expect(res).toEqual([
+      {
+        id: 1,
+        name: 'service',
+        description: 'description',
+        product_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+      {
+        id: 2,
+        name: 'service',
+        description: 'description',
+        product_id: 1,
+        created_at: new Date(),
+        updated_at: new Date(),
+      },
+    ])
   })
-
-
 })

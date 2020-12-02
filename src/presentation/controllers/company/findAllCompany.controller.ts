@@ -3,13 +3,13 @@ import { Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class FindAllCompanyController implements IController {
-  constructor (private readonly DbFindAllCompany: IFindAllCompany) {}
+  constructor(private readonly DbFindAllCompany: IFindAllCompany) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const company = await this.DbFindAllCompany.findAll()
       return Ok(company)

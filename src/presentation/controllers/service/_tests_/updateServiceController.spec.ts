@@ -23,22 +23,22 @@ describe('UpdateService Controller', () => {
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Serviço atualizado com sucesso!' }
+      body: { message: 'Serviço atualizado com sucesso!' },
     })
   })
 
   it('should be returns status 401 if dbUpdateService returns an error', async () => {
-    jest
-      .spyOn(dbUpdateService, 'update')
-      .mockResolvedValue({ error: 'Você não tem permissão para atualizar este serviço.' })
+    jest.spyOn(dbUpdateService, 'update').mockResolvedValue({
+      error: 'Você não tem permissão para atualizar este serviço.',
+    })
 
     const req: IHttpRequest = {
       userId: '1',
@@ -46,15 +46,15 @@ describe('UpdateService Controller', () => {
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await updatedServiceController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não tem permissão para atualizar este serviço.' }
+      body: { message: 'Você não tem permissão para atualizar este serviço.' },
     })
   })
 
@@ -65,8 +65,8 @@ describe('UpdateService Controller', () => {
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     jest.spyOn(dbUpdateService, 'update').mockRejectedValue(new Error())
@@ -75,7 +75,7 @@ describe('UpdateService Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

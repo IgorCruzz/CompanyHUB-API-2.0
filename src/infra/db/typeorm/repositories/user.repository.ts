@@ -1,40 +1,42 @@
-
-import { IAddUserDTO, ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
+import {
+  IAddUserDTO,
+  ICreateUserRepository,
+} from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByIdRepository } from '@/data/protocols/db/user/findUserByIdRepository.interface'
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import {
   IUpdateUserDTO,
-  IUpdateUserRepository
+  IUpdateUserRepository,
 } from '@/data/protocols/db/user/updateUserRepository.interface'
 import { getRepository } from 'typeorm'
 import { User } from '../entities/User.entity'
 
 export class UserRepository
-implements
+  implements
     IFindUserByEmailRepository,
     ICreateUserRepository,
     IFindUserByIdRepository,
     IUpdateUserRepository {
-  async findEmail (email: string): Promise<User | undefined> {
+  async findEmail(email: string): Promise<User | undefined> {
     const orm = getRepository(User)
     return await orm.findOne({
-      where: { email }
+      where: { email },
     })
   }
 
-  async findId (id: number): Promise<User> {
+  async findId(id: number): Promise<User> {
     const orm = getRepository(User)
 
     return await orm.findOne({ id })
   }
 
-  async create (data: IAddUserDTO): Promise<User> {
+  async create(data: IAddUserDTO): Promise<User> {
     const orm = getRepository(User)
 
     return orm.save(data)
   }
 
-  async delete (id: number): Promise<boolean> {
+  async delete(id: number): Promise<boolean> {
     const orm = getRepository(User)
 
     const deleteUser = await orm.delete(id)
@@ -42,7 +44,7 @@ implements
     return deleteUser && true
   }
 
-  async update (id: number, data: IUpdateUserDTO): Promise<boolean> {
+  async update(id: number, data: IUpdateUserDTO): Promise<boolean> {
     const orm = getRepository(User)
 
     const updateUser = await orm.update(id, data)

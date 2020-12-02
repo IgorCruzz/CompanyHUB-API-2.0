@@ -12,7 +12,10 @@ import { IFindByUserRelationRepository } from '../protocols/db/company/findByUse
 import { IFindCnpjRepository } from '../protocols/db/company/findCnpjRepository.interface'
 import { IFindOneCompanyRepository } from '../protocols/db/company/findOneCompanyRepository.interface'
 import { IFindUserIdRepository } from '../protocols/db/company/findUserIdRepository.interface'
-import { IUpdateCompanyDTO, IUpdateCompanyRepository } from '../protocols/db/company/updateCompanyRepository.interface'
+import {
+  IUpdateCompanyDTO,
+  IUpdateCompanyRepository,
+} from '../protocols/db/company/updateCompanyRepository.interface'
 
 export class FindUserIdRepositoryStub implements IFindUserIdRepository {
   async findUserId(id: number): Promise<Company> {
@@ -28,7 +31,7 @@ export class FindUserIdRepositoryStub implements IFindUserIdRepository {
 }
 
 export class FindByUserRelationStub implements IFindByUserRelationRepository {
-  async findByUserRelation (id: number): Promise<ICompanyModel> {
+  async findByUserRelation(id: number): Promise<ICompanyModel> {
     return Promise.resolve({
       user_id: 1,
       cnpj: '11111111111',
@@ -42,7 +45,7 @@ export class FindByUserRelationStub implements IFindByUserRelationRepository {
         email: 'user@mail.com',
         password_hash: 'password',
         created_at: new Date(),
-        updated_at: new Date()
+        updated_at: new Date(),
       },
       created_at: new Date(),
       updated_at: new Date(),
@@ -95,7 +98,8 @@ export class DeleteUserRepositoryStub implements IDeleteCompanyRepository {
   }
 }
 
-export class FindAllCompaniesRepositoryStub implements IFindAllCompaniesRepository {
+export class FindAllCompaniesRepositoryStub
+  implements IFindAllCompaniesRepository {
   async findAll(): Promise<Company[]> {
     return Promise.resolve([
       {
@@ -135,7 +139,7 @@ export class FindOneCompanyRepositoryStub implements IFindOneCompanyRepository {
 }
 
 export class UpdateCompanyRepositoryStub implements IUpdateCompanyRepository {
-  async update(id: number, data: IUpdateCompanyDTO): Promise<boolean>{
+  async update(id: number, data: IUpdateCompanyDTO): Promise<boolean> {
     return Promise.resolve(true)
   }
 }

@@ -3,13 +3,13 @@ import { BadRequest, Created, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class CreateCompanyController implements IController {
-  constructor (private readonly addCompany: IAddCompany) {}
+  constructor(private readonly addCompany: IAddCompany) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { name, cnpj } = httpRequest.body
       const { userId } = httpRequest
@@ -17,7 +17,7 @@ export class CreateCompanyController implements IController {
       const company = await this.addCompany.add({
         name,
         user: userId,
-        cnpj
+        cnpj,
       })
 
       if (company.error) return BadRequest(company.error)

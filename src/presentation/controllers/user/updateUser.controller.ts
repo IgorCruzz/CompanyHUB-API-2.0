@@ -3,13 +3,13 @@ import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class UpdateUserController implements IController {
-  constructor (private readonly updateUser: IUpdateUser) {}
+  constructor(private readonly updateUser: IUpdateUser) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
       const { userId } = httpRequest

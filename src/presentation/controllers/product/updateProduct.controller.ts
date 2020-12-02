@@ -1,13 +1,15 @@
 import { IUpdateProduct } from '@/domain/usecases/product/updateProduct.interface'
 import { BadRequest, Ok, ServerError } from '../../http/http-helper'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@/presentation/protocols'
 
 export class UpdateProductController implements IController {
-  constructor (
-    private readonly updateProductData: IUpdateProduct
-  ) {}
+  constructor(private readonly updateProductData: IUpdateProduct) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
       const { userId } = httpRequest
@@ -15,7 +17,7 @@ export class UpdateProductController implements IController {
 
       const product = await this.updateProductData.update(id, userId, {
         name,
-        company_id
+        company_id,
       })
 
       if (product.error) return BadRequest(product.error)

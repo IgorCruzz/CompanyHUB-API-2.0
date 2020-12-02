@@ -6,7 +6,7 @@ export const adapRoute = (controller: IController) => {
     const httpRequest: IHttpRequest = {
       body: req.body,
       params: req.params,
-      userId: req.userId
+      userId: req.userId,
     }
 
     const httpResponse = await controller.handle(httpRequest)
@@ -15,7 +15,7 @@ export const adapRoute = (controller: IController) => {
       res.status(httpResponse.status).json(httpResponse.body)
     } else {
       res.status(httpResponse.status).json({
-        error: httpResponse.body.message
+        error: httpResponse.body.message,
       })
     }
   }

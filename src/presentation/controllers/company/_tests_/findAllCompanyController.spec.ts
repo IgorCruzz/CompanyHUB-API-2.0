@@ -27,16 +27,16 @@ describe('DeleteCompany Controller', () => {
           cnpj: '11111111111',
           id: 1,
           productConnection: [],
-          name: 'company'
+          name: 'company',
         },
         {
           user_id: 1,
           cnpj: '11111111111',
           id: 1,
           productConnection: [],
-          name: 'company'
-        }
-      ]
+          name: 'company',
+        },
+      ],
     })
   })
 
@@ -47,7 +47,7 @@ describe('DeleteCompany Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

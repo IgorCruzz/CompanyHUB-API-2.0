@@ -1,4 +1,7 @@
-import { IAddUserDTO, ICreateUserRepository } from '../protocols/db/user/createUserRepository.interface'
+import {
+  IAddUserDTO,
+  ICreateUserRepository,
+} from '../protocols/db/user/createUserRepository.interface'
 import { IDeleteUserRepository } from '../protocols/db/user/deleteUserRepository.interface'
 import { IFindUserByIdRepository } from '../protocols/db/user/findUserByIdRepository.interface'
 import { IFindUserByEmailRepository } from '../protocols/db/user/findUserRepository.inteface'
@@ -7,7 +10,8 @@ import {
   IUpdateUserRepository,
 } from '../protocols/db/user/updateUserRepository.interface'
 
-export class UserFindByEmailRepositoryStub implements IFindUserByEmailRepository {
+export class UserFindByEmailRepositoryStub
+  implements IFindUserByEmailRepository {
   async findEmail(email: string): Promise<any> {
     return Promise.resolve({
       id: 1,

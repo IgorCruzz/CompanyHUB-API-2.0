@@ -1,18 +1,24 @@
 import { IUpdateService } from '@/domain/usecases/service/updateService.interface'
 import { BadRequest, Ok, ServerError } from '../../http/http-helper'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@/presentation/protocols'
 
 export class UpdateServiceController implements IController {
-  constructor (
-    private readonly dbUpdateService: IUpdateService
-  ) {}
+  constructor(private readonly dbUpdateService: IUpdateService) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
       const { userId } = httpRequest
 
-      const service = await this.dbUpdateService.update(id, userId, httpRequest.body)
+      const service = await this.dbUpdateService.update(
+        id,
+        userId,
+        httpRequest.body
+      )
 
       if (service.error) return BadRequest(service.error)
 

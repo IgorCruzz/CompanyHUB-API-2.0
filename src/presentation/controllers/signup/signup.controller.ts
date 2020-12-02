@@ -3,20 +3,20 @@ import { BadRequest, Created, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class SignupController implements IController {
-  constructor (private readonly AddUser: IAddUser) {}
+  constructor(private readonly AddUser: IAddUser) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { email, name, password } = httpRequest.body
 
       const user = await this.AddUser.add({
         email,
         name,
-        password_hash: password
+        password_hash: password,
       })
 
       if (user.error) return BadRequest(user.error)

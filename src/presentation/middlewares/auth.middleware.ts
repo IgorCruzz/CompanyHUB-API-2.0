@@ -3,12 +3,12 @@ import { IAuthorization } from '@/domain/usecases/authorization/authorization.in
 import { BadRequest, Ok, ServerError } from '../http/http-helper'
 
 export class AuthMiddleware implements IMiddleware {
-  constructor (
+  constructor(
     private readonly dbAuthorization: IAuthorization,
     private readonly role: boolean
   ) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { authorization } = httpRequest.headers
 
@@ -19,7 +19,7 @@ export class AuthMiddleware implements IMiddleware {
       const authUser = await this.dbAuthorization.auth({
         token,
         role: this.role,
-        params: { id: Number(httpRequest.params.id) }
+        params: { id: Number(httpRequest.params.id) },
       })
 
       if (authUser.error) return BadRequest(authUser.error)

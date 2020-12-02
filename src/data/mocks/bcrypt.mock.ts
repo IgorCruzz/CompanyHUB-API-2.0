@@ -1,4 +1,3 @@
-
 import { ICompare } from '../protocols/bcryptAdapter/ICompare.interface'
 import { IHasher } from '../protocols/bcryptAdapter/IHasher.interface'
 

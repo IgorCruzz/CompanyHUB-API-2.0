@@ -10,5 +10,9 @@ export interface IUpdateServiceResult {
 }
 
 export interface IUpdateService {
-  update(id: number, userId: string, data: IUpdateServiceDTO): Promise<IUpdateServiceResult>
+  update(
+    id: number,
+    userId: string,
+    data: IUpdateServiceDTO
+  ): Promise<IUpdateServiceResult>
 }

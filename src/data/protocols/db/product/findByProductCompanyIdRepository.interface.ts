@@ -1,7 +1,7 @@
-import { IProductModel } from "@/domain/models/product.interface";
+import { IProductModel } from '@/domain/models/product.interface'
 
 export interface IFindByProductCompanyIdDTO {
-  company_id: number,
+  company_id: number
   product_id: number
 }
 

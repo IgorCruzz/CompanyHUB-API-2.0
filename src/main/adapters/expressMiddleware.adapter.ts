@@ -7,7 +7,7 @@ export const adapMiddleware = (middleware: IMiddleware) => {
     const httpRequest: IHttpRequest = {
       headers: req.headers,
       body: req.body,
-      params: req.params
+      params: req.params,
     }
 
     const httpResponse = await middleware.handle(httpRequest)
@@ -17,7 +17,7 @@ export const adapMiddleware = (middleware: IMiddleware) => {
       next()
     } else {
       res.status(httpResponse.status).json({
-        error: httpResponse.body.message
+        error: httpResponse.body.message,
       })
     }
   }

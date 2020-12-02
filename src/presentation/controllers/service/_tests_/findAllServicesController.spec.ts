@@ -30,23 +30,24 @@ describe('findAllServices Controller', () => {
 
     expect(res).toEqual({
       status: 200,
-      body: [{
-        id: 1,
-        name: 'service',
-        description: 'description',
-        product_id: 1,
-        created_at: new Date(),
-        updated_at: new Date()
-      },
-      {
-        id: 2,
-        name: 'service',
-        description: 'description',
-        product_id: 1,
-        created_at: new Date(),
-        updated_at: new Date()
-      }
-      ]
+      body: [
+        {
+          id: 1,
+          name: 'service',
+          description: 'description',
+          product_id: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+        {
+          id: 2,
+          name: 'service',
+          description: 'description',
+          product_id: 1,
+          created_at: new Date(),
+          updated_at: new Date(),
+        },
+      ],
     })
   })
 
@@ -57,7 +58,7 @@ describe('findAllServices Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

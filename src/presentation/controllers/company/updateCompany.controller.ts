@@ -3,18 +3,20 @@ import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class UpdateCompanyController implements IController {
-  constructor (private readonly dbUpdateCompany: IUpdateCompany) {}
+  constructor(private readonly dbUpdateCompany: IUpdateCompany) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
       const { userId } = httpRequest
 
-      const company = await this.dbUpdateCompany.update(id, userId, { ...httpRequest.body })
+      const company = await this.dbUpdateCompany.update(id, userId, {
+        ...httpRequest.body,
+      })
 
       if (company.error) return BadRequest(company.error)
 

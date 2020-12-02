@@ -10,29 +10,29 @@ export class createProducts1596748845029 implements MigrationInterface {
         isPrimary: true,
         isGenerated: true,
         generationStrategy: 'increment',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'name',
         type: 'varchar(50)',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'created_at',
         type: 'timestamp',
         default: 'now()',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'company_id',
-        type: 'integer'
+        type: 'integer',
       },
       {
         name: 'updated_at',
         type: 'timestamp',
         default: 'now()',
-        isNullable: false
-      }
+        isNullable: false,
+      },
     ],
     foreignKeys: [
       {
@@ -40,16 +40,16 @@ export class createProducts1596748845029 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'companies',
         onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      }
-    ]
+        onUpdate: 'CASCADE',
+      },
+    ],
   })
 
-  public async up (queryRunner: QueryRunner): Promise<void> {
+  public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.products)
   }
 
-  public async down (queryRunner: QueryRunner): Promise<void> {
+  public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(this.products)
   }
 }

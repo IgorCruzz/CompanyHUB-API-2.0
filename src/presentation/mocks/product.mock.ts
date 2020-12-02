@@ -1,37 +1,59 @@
-import { IAddProduct, IAddProductDTO, IAddProductResult } from '@/domain/usecases/product/addProduct.interface'
-import { IDeleteProduct, IDeleteProductDTO, IDeleteProductResult } from '@/domain/usecases/product/deleteProduct.interface'
-import { IFindAllProducts, IFindAllProductsResult } from '@/domain/usecases/product/findAllProduct.interface'
-import { IFindOneProduct, IFindOneProductResult } from '@/domain/usecases/product/findOneProduct.interface'
-import { IUpdateProduct, IUpdateProductDTO, IUpdateProductResult } from '@/domain/usecases/product/updateProduct.interface'
+import {
+  IAddProduct,
+  IAddProductDTO,
+  IAddProductResult,
+} from '@/domain/usecases/product/addProduct.interface'
+import {
+  IDeleteProduct,
+  IDeleteProductDTO,
+  IDeleteProductResult,
+} from '@/domain/usecases/product/deleteProduct.interface'
+import {
+  IFindAllProducts,
+  IFindAllProductsResult,
+} from '@/domain/usecases/product/findAllProduct.interface'
+import {
+  IFindOneProduct,
+  IFindOneProductResult,
+} from '@/domain/usecases/product/findOneProduct.interface'
+import {
+  IUpdateProduct,
+  IUpdateProductDTO,
+  IUpdateProductResult,
+} from '@/domain/usecases/product/updateProduct.interface'
 
 export class DbAddProductStub implements IAddProduct {
-  async add (data: IAddProductDTO): Promise<IAddProductResult> {
+  async add(data: IAddProductDTO): Promise<IAddProductResult> {
     return Promise.resolve({
       company_id: 1,
       id: 1,
-      name: 'product'
+      name: 'product',
     })
   }
 }
 
 export class DbDeleteProductStub implements IDeleteProduct {
-  async delete (data: IDeleteProductDTO): Promise<IDeleteProductResult> {
+  async delete(data: IDeleteProductDTO): Promise<IDeleteProductResult> {
     return Promise.resolve({
-      deleted: true
+      deleted: true,
     })
   }
 }
 
 export class DbUpdateProductStub implements IUpdateProduct {
-  async update (id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult> {
+  async update(
+    id: number,
+    userId: string,
+    data: IUpdateProductDTO
+  ): Promise<IUpdateProductResult> {
     return Promise.resolve({
-      updated: true
+      updated: true,
     })
   }
 }
 
 export class DbFindAllProductStub implements IFindAllProducts {
-  async findAll (): Promise<IFindAllProductsResult[]> {
+  async findAll(): Promise<IFindAllProductsResult[]> {
     return Promise.resolve([
       {
         id: 1,
@@ -44,18 +66,18 @@ export class DbFindAllProductStub implements IFindAllProducts {
           productConnection: [],
           name: 'company',
           created_at: new Date(),
-          updated_at: new Date()
+          updated_at: new Date(),
         },
         serviceConnection: [],
         created_at: new Date(),
-        updated_at: new Date()
-      }
+        updated_at: new Date(),
+      },
     ])
   }
 }
 
 export class DbFindOneProductStub implements IFindOneProduct {
-  async findOne (id: number): Promise<IFindOneProductResult[]> {
+  async findOne(id: number): Promise<IFindOneProductResult[]> {
     return Promise.resolve([
       {
         id: 1,
@@ -68,12 +90,12 @@ export class DbFindOneProductStub implements IFindOneProduct {
           productConnection: [],
           name: 'company',
           created_at: new Date(),
-          updated_at: new Date()
+          updated_at: new Date(),
         },
         serviceConnection: [],
         created_at: new Date(),
-        updated_at: new Date()
-      }
+        updated_at: new Date(),
+      },
     ])
   }
 }

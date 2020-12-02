@@ -7,7 +7,11 @@ import { ProductRepository } from '../../../../infra/db/typeorm/repositories/pro
 export const makeDeleteController = () => {
   const companyRepository = new CompanyRepository()
   const productRepository = new ProductRepository()
-  const dbDeleteProduct = new DbDeleteProduct(companyRepository, productRepository, productRepository)
+  const dbDeleteProduct = new DbDeleteProduct(
+    companyRepository,
+    productRepository,
+    productRepository
+  )
 
   const deleteController = new DeleteProductController(dbDeleteProduct)
 

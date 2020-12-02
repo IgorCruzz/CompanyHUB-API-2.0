@@ -27,15 +27,14 @@ describe('FindOneProduct Controller', () => {
 
   it('should return status 200 if FindOneProduct returns an Product array', async () => {
     const req: IHttpRequest = {
-      params: { id: 1 }
+      params: { id: 1 },
     }
 
     const res = await findOneProductController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body:
-      [
+      body: [
         {
           id: 1,
           name: 'product',
@@ -47,14 +46,13 @@ describe('FindOneProduct Controller', () => {
             productConnection: [],
             name: 'company',
             created_at: new Date(),
-            updated_at: new Date()
+            updated_at: new Date(),
           },
           serviceConnection: [],
           created_at: new Date(),
-          updated_at: new Date()
-        }
-
-      ]
+          updated_at: new Date(),
+        },
+      ],
     })
   })
 
@@ -62,14 +60,14 @@ describe('FindOneProduct Controller', () => {
     jest.spyOn(findOneProduct, 'findOne').mockRejectedValue(new Error())
 
     const req: IHttpRequest = {
-      params: { id: 1 }
+      params: { id: 1 },
     }
 
     const res = await findOneProductController.handle(req)
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

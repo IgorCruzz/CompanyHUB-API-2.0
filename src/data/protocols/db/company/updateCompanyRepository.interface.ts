@@ -5,4 +5,3 @@ export interface IUpdateCompanyDTO {
 export interface IUpdateCompanyRepository {
   update(id: number, data: IUpdateCompanyDTO): Promise<boolean>
 }
-

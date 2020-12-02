@@ -1,13 +1,15 @@
 import { IFindAllServices } from '@/domain/usecases/service/findAllService.interface'
 import { Ok, ServerError } from '../../http/http-helper'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@/presentation/protocols'
 
 export class FindAllServicesController implements IController {
-  constructor (
-    private readonly dbFindAllServices: IFindAllServices
-  ) {}
+  constructor(private readonly dbFindAllServices: IFindAllServices) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const services = await this.dbFindAllServices.findAll()
 

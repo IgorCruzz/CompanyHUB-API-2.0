@@ -22,8 +22,8 @@ describe('CreateService Conroller', () => {
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await createServiceController.handle(req)
@@ -34,30 +34,33 @@ describe('CreateService Conroller', () => {
         id: 1,
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     })
   })
 
   it('should be returns status 401 if addService returns an error', async () => {
-    jest
-      .spyOn(addService, 'add')
-      .mockResolvedValue({ error: 'Você não tem permissão para cadastrar um serviço neste produto.' })
+    jest.spyOn(addService, 'add').mockResolvedValue({
+      error: 'Você não tem permissão para cadastrar um serviço neste produto.',
+    })
 
     const req: IHttpRequest = {
       userId: '1',
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await createServiceController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não tem permissão para cadastrar um serviço neste produto.' }
+      body: {
+        message:
+          'Você não tem permissão para cadastrar um serviço neste produto.',
+      },
     })
   })
 
@@ -67,8 +70,8 @@ describe('CreateService Conroller', () => {
       body: {
         name: 'service',
         description: 'description',
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     jest.spyOn(addService, 'add').mockRejectedValue(new Error())
@@ -77,7 +80,7 @@ describe('CreateService Conroller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })
