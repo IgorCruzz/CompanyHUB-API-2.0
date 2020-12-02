@@ -26,7 +26,7 @@ export class DbDeleteUserStub implements IDeleteUser {
 }
 
 export class DbUpdateUserStub implements IUpdateUser {
-  async update (id: number, data: IUpdateUserDTO): Promise<IUpdateResult> {
+  async update (id: number, userId: string, data: IUpdateUserDTO): Promise<IUpdateResult> {
     return Promise.resolve({ updated: true })
   }
 }
