@@ -9,8 +9,8 @@ export class createUsers1596747360485 implements MigrationInterface {
         type: 'integer',
         isPrimary: true,
         isGenerated: true,
-        generationStrategy: 'increment',
         isNullable: false,
+        generationStrategy: 'increment',
       },
       {
         name: 'name',
@@ -31,7 +31,6 @@ export class createUsers1596747360485 implements MigrationInterface {
       {
         name: 'administrator',
         type: 'boolean',
-        default: false,
       },
       {
         name: 'activation',

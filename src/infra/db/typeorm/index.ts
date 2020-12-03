@@ -1,5 +1,11 @@
-import { createConnections } from 'typeorm'
+import { createConnection, getConnection } from 'typeorm'
 
-createConnections().catch((err) => {
-  console.log(err)
-})
+export const connection = {
+  async create() {
+    await createConnection()
+  },
+
+  async close() {
+    await getConnection().close()
+  },
+}
