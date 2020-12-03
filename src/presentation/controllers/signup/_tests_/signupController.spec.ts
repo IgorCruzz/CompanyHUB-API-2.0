@@ -21,8 +21,8 @@ describe('SignupController', () => {
         name: 'name',
         email: 'user@mail.com',
         password: 'password',
-        confirmPassword: 'password'
-      }
+        confirmPassword: 'password',
+      },
     }
 
     const res = await signupController.handle(req)
@@ -32,8 +32,8 @@ describe('SignupController', () => {
       body: {
         id: 1,
         name: 'name',
-        email: 'user@mail.com'
-      }
+        email: 'user@mail.com',
+      },
     })
   })
 
@@ -43,8 +43,8 @@ describe('SignupController', () => {
         name: 'name',
         email: 'user@mail.com',
         password: 'password',
-        confirmPassword: 'password'
-      }
+        confirmPassword: 'password',
+      },
     }
 
     const res = jest.spyOn(dbAddUser, 'add')
@@ -54,7 +54,7 @@ describe('SignupController', () => {
     expect(res).toHaveBeenCalledWith({
       name: 'name',
       email: 'user@mail.com',
-      password_hash: 'password'
+      password_hash: 'password',
     })
   })
 
@@ -64,8 +64,8 @@ describe('SignupController', () => {
         name: 'name',
         email: 'user@mail.com',
         password: 'password',
-        confirmPassword: 'password'
-      }
+        confirmPassword: 'password',
+      },
     }
 
     jest
@@ -77,8 +77,8 @@ describe('SignupController', () => {
     expect(res).toEqual({
       status: 400,
       body: {
-        message: 'Já existe um usuário com este e-mail.'
-      }
+        message: 'Já existe um usuário com este e-mail.',
+      },
     })
   })
 
@@ -88,8 +88,8 @@ describe('SignupController', () => {
         name: 'name',
         email: 'user@mail.com',
         password: 'password',
-        confirmPassword: 'password'
-      }
+        confirmPassword: 'password',
+      },
     }
 
     jest.spyOn(dbAddUser, 'add').mockRejectedValue(new Error())
@@ -98,7 +98,7 @@ describe('SignupController', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

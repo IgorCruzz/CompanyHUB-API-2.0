@@ -9,9 +9,7 @@ export const makeUpdateCompanyController = () => {
     companyRepository,
     companyRepository
   )
-  const updateCompanyController = new UpdateCompanyController(
-    dbUpdateCompany
-  )
+  const updateCompanyController = new UpdateCompanyController(dbUpdateCompany)
 
   return adapRoute(updateCompanyController)
 }

@@ -1,4 +1,4 @@
-import { ICompanyModel } from '@/domain/models/company.interface';
+import { ICompanyModel } from '@/domain/models/company.interface'
 
 export interface ICreateCompanyDTO {
   name: string

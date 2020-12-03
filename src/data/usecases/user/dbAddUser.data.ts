@@ -1,8 +1,10 @@
-
 import { IHasher } from '@/data/protocols/bcryptAdapter/IHasher.interface'
 import { IGenerateCrypto } from '@/data/protocols/cryptoAdapter/generateCrypto.interface'
 import { ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
-import { IAddUserDTO, ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
+import {
+  IAddUserDTO,
+  ICreateUserRepository,
+} from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
 import { IAddResult, IAddUser } from '@/domain/usecases/user/addUser.interface'
 
@@ -14,8 +16,6 @@ export class DbAddUser implements IAddUser {
     private readonly createTokenRepo: ICreateTokenRepository,
     private readonly hasher: IHasher
   ) {}
-
-
 
   async add(data: IAddUserDTO): Promise<IAddResult> {
     const { email, password_hash } = data
@@ -35,7 +35,6 @@ export class DbAddUser implements IAddUser {
       token,
       user_id: user.id,
     })
-
 
     return {
       id: user.id,

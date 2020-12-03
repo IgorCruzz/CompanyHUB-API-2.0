@@ -9,5 +9,9 @@ export interface IUpdateProductResult {
 }
 
 export interface IUpdateProduct {
-  update(id: number, userId: string, data: IUpdateProductDTO): Promise<IUpdateProductResult>
+  update(
+    id: number,
+    userId: string,
+    data: IUpdateProductDTO
+  ): Promise<IUpdateProductResult>
 }

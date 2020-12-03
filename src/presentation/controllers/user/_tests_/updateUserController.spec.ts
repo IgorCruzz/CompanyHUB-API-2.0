@@ -20,15 +20,15 @@ describe('UpdateUser Controller', () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
-        name: 'name'
-      }
+        name: 'name',
+      },
     }
 
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Atualizado com sucesso.' }
+      body: { message: 'Atualizado com sucesso.' },
     })
   })
 
@@ -40,15 +40,15 @@ describe('UpdateUser Controller', () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
-        name: 'name'
-      }
+        name: 'name',
+      },
     }
 
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Não existe um usuário com este ID.' }
+      body: { message: 'Não existe um usuário com este ID.' },
     })
   })
 
@@ -56,8 +56,8 @@ describe('UpdateUser Controller', () => {
     const req: IHttpRequest = {
       params: { id: 1 },
       body: {
-        name: 'name'
-      }
+        name: 'name',
+      },
     }
     jest.spyOn(updateUserData, 'update').mockRejectedValue(new Error())
 
@@ -65,7 +65,7 @@ describe('UpdateUser Controller', () => {
 
     expect(promise).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

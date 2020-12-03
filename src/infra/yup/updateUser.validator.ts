@@ -1,11 +1,11 @@
 import {
   IValidation,
-  IValidationResult
+  IValidationResult,
 } from '@/data/protocols/yup/validation.interface'
 import * as Yup from 'yup'
 
 export class UpdateUserValidation implements IValidation {
-  async validate (data: any): Promise<IValidationResult> {
+  async validate(data: any): Promise<IValidationResult> {
     const schema = Yup.object().shape({
       name: Yup.string().min(5),
       email: Yup.string().email(),
@@ -17,7 +17,7 @@ export class UpdateUserValidation implements IValidation {
         ),
       confirmPassword: Yup.string().when('password', (password, field) =>
         password ? field.required().oneOf([Yup.ref('password')]) : field
-      )
+      ),
     })
 
     return await schema
@@ -29,7 +29,7 @@ export class UpdateUserValidation implements IValidation {
         if (err) {
           return {
             validate: false,
-            err
+            err,
           }
         }
       })

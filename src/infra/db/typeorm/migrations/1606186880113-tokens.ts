@@ -8,23 +8,23 @@ export class createToken1596749910860 implements MigrationInterface {
         name: 'user_id',
         type: 'integer',
         isPrimary: true,
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'token',
         type: 'varchar',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'created_at',
         type: 'timestamp',
-        default: 'now()'
+        default: 'now()',
       },
       {
         name: 'updated_at',
         type: 'timestamp',
-        default: 'now()'
-      }
+        default: 'now()',
+      },
     ],
     foreignKeys: [
       {
@@ -32,16 +32,16 @@ export class createToken1596749910860 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'users',
         onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      }
-    ]
+        onUpdate: 'CASCADE',
+      },
+    ],
   })
 
-  public async up (queryRunner: QueryRunner): Promise<any> {
+  public async up(queryRunner: QueryRunner): Promise<any> {
     await queryRunner.createTable(this.tokens)
   }
 
-  public async down (queryRunner: QueryRunner): Promise<void> {
+  public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(this.tokens)
   }
 }

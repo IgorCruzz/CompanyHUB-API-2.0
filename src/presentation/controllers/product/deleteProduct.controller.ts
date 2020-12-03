@@ -1,13 +1,15 @@
 import { IDeleteProduct } from '@/domain/usecases/product/deleteProduct.interface'
 import { BadRequest, Ok, ServerError } from '../../http/http-helper'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@/presentation/protocols'
 
 export class DeleteProductController implements IController {
-  constructor (
-    private readonly deleteProduct: IDeleteProduct
-  ) {}
+  constructor(private readonly deleteProduct: IDeleteProduct) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { company_id } = httpRequest.body
       const { id } = httpRequest.params
@@ -17,8 +19,8 @@ export class DeleteProductController implements IController {
         company_id,
         user: Number(userId),
         params: {
-          id
-        }
+          id,
+        },
       })
 
       if (product.error) return BadRequest(product.error)

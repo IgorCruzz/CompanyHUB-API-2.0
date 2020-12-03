@@ -30,8 +30,7 @@ describe('FindAllProducts Controller', () => {
 
     expect(res).toEqual({
       status: 200,
-      body:
-      [
+      body: [
         {
           id: 1,
           name: 'product',
@@ -43,14 +42,13 @@ describe('FindAllProducts Controller', () => {
             productConnection: [],
             name: 'company',
             created_at: new Date(),
-            updated_at: new Date()
+            updated_at: new Date(),
           },
           serviceConnection: [],
           created_at: new Date(),
-          updated_at: new Date()
-        }
-
-      ]
+          updated_at: new Date(),
+        },
+      ],
     })
   })
 
@@ -61,7 +59,7 @@ describe('FindAllProducts Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

@@ -22,15 +22,15 @@ describe('SignIn Controller', () => {
     const req: IHttpRequest = {
       body: {
         email: 'user@mail.com',
-        password: 'password'
-      }
+        password: 'password',
+      },
     }
 
     await signInController.handle(req)
 
     expect(res).toHaveBeenCalledWith({
       email: 'user@mail.com',
-      password: 'password'
+      password: 'password',
     })
   })
 
@@ -38,8 +38,8 @@ describe('SignIn Controller', () => {
     const req: IHttpRequest = {
       body: {
         email: 'user@mail.com',
-        password: 'password'
-      }
+        password: 'password',
+      },
     }
 
     const res = await signInController.handle(req)
@@ -50,8 +50,8 @@ describe('SignIn Controller', () => {
         id: 1,
         name: 'name',
         email: 'user@mail.com',
-        token: 'token'
-      }
+        token: 'token',
+      },
     })
   })
 
@@ -63,15 +63,15 @@ describe('SignIn Controller', () => {
     const req: IHttpRequest = {
       body: {
         email: 'user@mail.com',
-        password: 'password'
-      }
+        password: 'password',
+      },
     }
 
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Por favor, ative a sua conta.' }
+      body: { message: 'Por favor, ative a sua conta.' },
     })
   })
 
@@ -81,15 +81,15 @@ describe('SignIn Controller', () => {
     const req: IHttpRequest = {
       body: {
         email: 'user@mail.com',
-        password: 'password'
-      }
+        password: 'password',
+      },
     }
 
     const res = await signInController.handle(req)
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

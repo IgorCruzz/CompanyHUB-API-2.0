@@ -1,6 +1,6 @@
 import {
   ICreateCompanyDTO,
-  ICreateCompanyRepository
+  ICreateCompanyRepository,
 } from '@/data/protocols/db/company/createCompanyRepository'
 import { IDeleteCompanyRepository } from '@/data/protocols/db/company/deleteCompanyRepository.interface'
 import { IFindAllCompaniesRepository } from '@/data/protocols/db/company/findAllCompanies.repository'
@@ -15,7 +15,7 @@ import { IFindByUserRelationRepository } from '@/data/protocols/db/company/findB
 import { Company } from '../entities/Company.entity'
 
 export class CompanyRepository
-implements
+  implements
     IFindUserIdRepository,
     IFindByIdRepository,
     IFindCnpjRepository,
@@ -25,61 +25,61 @@ implements
     IFindOneCompanyRepository,
     IUpdateCompanyRepository,
     IFindByUserRelationRepository {
-  async findUserId (id: number): Promise<Company> {
+  async findUserId(id: number): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.findOne({ user_id: id })
   }
 
-  async findByUserRelation (id: number): Promise<ICompanyModel> {
+  async findByUserRelation(id: number): Promise<ICompanyModel> {
     const orm = getRepository(Company)
 
     return await orm.findOne({
       relations: ['user'],
       where: {
         user: {
-          id
-        }
-      }
+          id,
+        },
+      },
     })
   }
 
-  async findId (id: number): Promise<Company> {
+  async findId(id: number): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.findOne({ id })
   }
 
-  async findAll (): Promise<Company[]> {
+  async findAll(): Promise<Company[]> {
     const orm = getRepository(Company)
 
     return await orm.find({
-      relations: ['productConnection']
+      relations: ['productConnection'],
     })
   }
 
-  async findCnpj (cnpj: string): Promise<Company> {
+  async findCnpj(cnpj: string): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.findOne({ cnpj: cnpj })
   }
 
-  async create (date: ICreateCompanyDTO): Promise<Company> {
+  async create(date: ICreateCompanyDTO): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.save(date)
   }
 
-  async findOne (id: number): Promise<Company> {
+  async findOne(id: number): Promise<Company> {
     const orm = getRepository(Company)
 
     return await orm.findOne({
       where: { user_id: id },
-      relations: ['productConnection']
+      relations: ['productConnection'],
     })
   }
 
-  async delete (id: number): Promise<boolean> {
+  async delete(id: number): Promise<boolean> {
     const orm = getRepository(Company)
 
     const deleteCompany = await orm.delete(id)
@@ -87,7 +87,7 @@ implements
     return deleteCompany && true
   }
 
-  async update (id: number, data: any): Promise<boolean> {
+  async update(id: number, data: any): Promise<boolean> {
     const orm = getRepository(Company)
 
     const updateCompany = await orm.update(id, data)

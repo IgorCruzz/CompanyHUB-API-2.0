@@ -19,54 +19,54 @@ describe('DeleteService Controller', () => {
   it('return status 200 if dbDeleteService returns true', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
       userId: '1',
       body: {
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Serviço deletado com sucesso!' }
+      body: { message: 'Serviço deletado com sucesso!' },
     })
   })
 
   it('return status 400 if dbDeleteService returns an error', async () => {
-    jest
-      .spyOn(dbDeleteService, 'delete')
-      .mockResolvedValue({ error: 'Você não tem permissão para deletar este serviço.' })
+    jest.spyOn(dbDeleteService, 'delete').mockResolvedValue({
+      error: 'Você não tem permissão para deletar este serviço.',
+    })
 
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
       userId: '1',
       body: {
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     const res = await deleteCompanyController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não tem permissão para deletar este serviço.' }
+      body: { message: 'Você não tem permissão para deletar este serviço.' },
     })
   })
 
   it('return status 500 if dbDeleteService throws', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1
+        id: 1,
       },
       userId: '1',
       body: {
-        product_id: 1
-      }
+        product_id: 1,
+      },
     }
 
     jest.spyOn(dbDeleteService, 'delete').mockRejectedValue(new Error())
@@ -75,7 +75,7 @@ describe('DeleteService Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

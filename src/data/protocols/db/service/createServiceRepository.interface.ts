@@ -9,4 +9,3 @@ export interface ICreateServiceDTO {
 export interface ICreateServiceRepository {
   create(date: ICreateServiceDTO): Promise<IServiceModel>
 }
-

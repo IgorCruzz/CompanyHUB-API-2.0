@@ -10,35 +10,35 @@ export class createServices1596749081582 implements MigrationInterface {
         isPrimary: true,
         isGenerated: true,
         generationStrategy: 'increment',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'name',
         type: 'varchar(50)',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'description',
         type: 'varchar(125)',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'product_id',
         type: 'integer',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'created_at',
         type: 'timestamp',
         default: 'now()',
-        isNullable: false
+        isNullable: false,
       },
       {
         name: 'updated_at',
         type: 'timestamp',
         default: 'now()',
-        isNullable: false
-      }
+        isNullable: false,
+      },
     ],
     foreignKeys: [
       {
@@ -46,16 +46,16 @@ export class createServices1596749081582 implements MigrationInterface {
         referencedColumnNames: ['id'],
         referencedTableName: 'products',
         onDelete: 'CASCADE',
-        onUpdate: 'CASCADE'
-      }
-    ]
+        onUpdate: 'CASCADE',
+      },
+    ],
   })
 
-  public async up (queryRunner: QueryRunner): Promise<void> {
+  public async up(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.createTable(this.services)
   }
 
-  public async down (queryRunner: QueryRunner): Promise<void> {
+  public async down(queryRunner: QueryRunner): Promise<void> {
     await queryRunner.dropTable(this.services)
   }
 }

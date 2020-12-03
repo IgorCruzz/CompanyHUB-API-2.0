@@ -21,8 +21,8 @@ describe('CreateCompany Conroller', () => {
       userId: '1',
       body: {
         name: 'company',
-        cnpj: '1111111111'
-      }
+        cnpj: '1111111111',
+      },
     }
 
     const res = await createCompanyController.handle(req)
@@ -33,8 +33,8 @@ describe('CreateCompany Conroller', () => {
         id: 1,
         user_id: 1,
         name: 'company',
-        cnpj: '1111111111'
-      }
+        cnpj: '1111111111',
+      },
     })
   })
 
@@ -47,15 +47,15 @@ describe('CreateCompany Conroller', () => {
       userId: '1',
       body: {
         name: 'company',
-        cnpj: '1111111111'
-      }
+        cnpj: '1111111111',
+      },
     }
 
     const res = await createCompanyController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você já possui uma empresa cadastrada' }
+      body: { message: 'Você já possui uma empresa cadastrada' },
     })
   })
 
@@ -64,8 +64,8 @@ describe('CreateCompany Conroller', () => {
       userId: '1',
       body: {
         name: 'company',
-        cnpj: '1111111111'
-      }
+        cnpj: '1111111111',
+      },
     }
 
     jest.spyOn(addCompany, 'add').mockRejectedValue(new Error())
@@ -74,7 +74,7 @@ describe('CreateCompany Conroller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

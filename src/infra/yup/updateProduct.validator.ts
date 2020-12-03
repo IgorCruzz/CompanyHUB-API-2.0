@@ -1,15 +1,13 @@
 import {
   IValidation,
-  IValidationResult
+  IValidationResult,
 } from '@/data/protocols/yup/validation.interface'
 import * as Yup from 'yup'
 
 export class UpdateProductValidation implements IValidation {
-  async validate (data: any): Promise<IValidationResult> {
+  async validate(data: any): Promise<IValidationResult> {
     const schema = Yup.object().shape({
-      name: Yup.string()
-        .min(5)
-        .max(50)
+      name: Yup.string().min(5).max(50),
     })
 
     return await schema
@@ -21,7 +19,7 @@ export class UpdateProductValidation implements IValidation {
         if (err) {
           return {
             validate: false,
-            err
+            err,
           }
         }
       })

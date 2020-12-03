@@ -1,19 +1,16 @@
-import { FindByUserRelationStub } from "@/data/mocks/company.mock";
-import { FindByProductCompanyIdStub } from "@/data/mocks/product.mock";
-import { CreateServiceRepositoryStub } from "@/data/mocks/service.mock";
-import { IFindByUserRelationRepository } from "@/data/protocols/db/company/findByUserRelationRepository.interface";
-import { IFindByProductCompanyId } from "@/data/protocols/db/product/findByProductCompanyIdRepository.interface";
-import { ICreateServiceRepository } from "@/data/protocols/db/service/createServiceRepository.interface";
-import { IAddService } from "@/domain/usecases/service/addService.interface";
-import { DbAddService } from "../dbCreateService.data";
-
+import { FindByUserRelationStub } from '@/data/mocks/company.mock'
+import { FindByProductCompanyIdStub } from '@/data/mocks/product.mock'
+import { CreateServiceRepositoryStub } from '@/data/mocks/service.mock'
+import { IFindByUserRelationRepository } from '@/data/protocols/db/company/findByUserRelationRepository.interface'
+import { IFindByProductCompanyId } from '@/data/protocols/db/product/findByProductCompanyIdRepository.interface'
+import { ICreateServiceRepository } from '@/data/protocols/db/service/createServiceRepository.interface'
+import { IAddService } from '@/domain/usecases/service/addService.interface'
+import { DbAddService } from '../dbCreateService.data'
 
 let addService: IAddService
 let findByUserRelation: IFindByUserRelationRepository
 let findByProductCompanyId: IFindByProductCompanyId
 let createService: ICreateServiceRepository
-
-
 
 describe('AddService Data', () => {
   beforeEach(() => {
@@ -21,10 +18,11 @@ describe('AddService Data', () => {
     findByProductCompanyId = new FindByProductCompanyIdStub()
     createService = new CreateServiceRepositoryStub()
     addService = new DbAddService(
-        findByUserRelation,
-        findByProductCompanyId,
-        createService)
-  });
+      findByUserRelation,
+      findByProductCompanyId,
+      createService
+    )
+  })
 
   it('should be defined', () => {
     expect(addService).toBeDefined()
@@ -37,12 +35,11 @@ describe('AddService Data', () => {
       name: 'company',
       description: 'description',
       user: '1',
-      product_id: 1
+      product_id: 1,
     })
 
     expect(res).toHaveBeenCalledWith(1)
   })
-
 
   it('should call findByProductCompanyId with success', async () => {
     const res = jest.spyOn(findByProductCompanyId, 'findProductCompanyId')
@@ -51,28 +48,29 @@ describe('AddService Data', () => {
       name: 'company',
       description: 'description',
       user: '1',
-      product_id: 1
+      product_id: 1,
     })
 
     expect(res).toHaveBeenCalledWith({
       company_id: 1,
-      product_id: 1
+      product_id: 1,
     })
   })
 
   it('should return an error message if product return undefined and user isnt an administrator', async () => {
-    jest.spyOn(findByProductCompanyId, 'findProductCompanyId').mockResolvedValue(undefined)
-
+    jest
+      .spyOn(findByProductCompanyId, 'findProductCompanyId')
+      .mockResolvedValue(undefined)
 
     const res = await addService.add({
       name: 'company',
       description: 'description',
       user: '1',
-      product_id: 1
+      product_id: 1,
     })
 
     expect(res).toEqual({
-      error: 'Você não tem permissão para cadastrar um serviço neste produto.'
+      error: 'Você não tem permissão para cadastrar um serviço neste produto.',
     })
   })
 
@@ -83,30 +81,29 @@ describe('AddService Data', () => {
       name: 'service',
       description: 'description',
       user: '1',
-      product_id: 1
+      product_id: 1,
     })
 
     expect(res).toHaveBeenCalledWith({
       name: 'service',
       description: 'description',
-      product_id: 1
+      product_id: 1,
     })
   })
 
   it('should return a new service', async () => {
-    const res =  await addService.add({
+    const res = await addService.add({
       name: 'service',
       description: 'description',
       user: '1',
-      product_id: 1
+      product_id: 1,
     })
 
     expect(res).toEqual({
       id: 1,
       name: 'service',
       description: 'description',
-      product_id: 1
+      product_id: 1,
     })
   })
-
 })

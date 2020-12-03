@@ -3,7 +3,7 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
 } from 'typeorm'
 
 @Entity({ name: 'users' })
@@ -14,16 +14,16 @@ export class User {
   @Column()
   name: string
 
-  @Column()
+  @Column({ unique: true })
   email: string
 
   @Column()
   password_hash: string
 
-  @Column()
+  @Column({ nullable: false, default: false })
   administrator: boolean
 
-  @Column()
+  @Column({ nullable: false, default: false })
   activation: boolean
 
   @CreateDateColumn()

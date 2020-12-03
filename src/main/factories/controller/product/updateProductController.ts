@@ -12,9 +12,7 @@ export const makeUpdateProductController = () => {
     productRepository,
     productRepository
   )
-  const updateProductController = new UpdateProductController(
-    dbUpdateProduct
-  )
+  const updateProductController = new UpdateProductController(dbUpdateProduct)
 
   return adapRoute(updateProductController)
 }

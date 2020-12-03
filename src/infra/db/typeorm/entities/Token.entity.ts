@@ -5,7 +5,7 @@ import {
   UpdateDateColumn,
   PrimaryColumn,
   OneToOne,
-  JoinColumn
+  JoinColumn,
 } from 'typeorm'
 import { User } from './User.entity'
 

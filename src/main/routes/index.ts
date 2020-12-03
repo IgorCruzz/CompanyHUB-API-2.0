@@ -37,7 +37,7 @@ const routes = [
   createService,
   deleteService,
   findAllServices,
-  updateService
+  updateService,
 ]
 
 const router = Router()

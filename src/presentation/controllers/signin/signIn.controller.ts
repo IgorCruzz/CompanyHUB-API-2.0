@@ -3,13 +3,13 @@ import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class SignInController implements IController {
-  constructor (private readonly dbSignInData: ISignIn) {}
+  constructor(private readonly dbSignInData: ISignIn) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const signIn = await this.dbSignInData.signIn(httpRequest.body)
 

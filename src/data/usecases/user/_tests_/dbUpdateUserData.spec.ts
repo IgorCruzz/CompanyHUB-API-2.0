@@ -78,7 +78,7 @@ describe('UpdateUser Data', () => {
   it('should be able to call mockCompare with success', async () => {
     const res = jest.spyOn(bcryptCompare, 'compare')
 
-    await updateUserData.update(1,'1', {
+    await updateUserData.update(1, '1', {
       name: 'name',
       email: 'user@mail.com',
       oldPassword: 'password',
@@ -92,7 +92,7 @@ describe('UpdateUser Data', () => {
   it('should return null if mockCompare returns false', async () => {
     jest.spyOn(bcryptCompare, 'compare').mockResolvedValue(false)
 
-    const res = await updateUserData.update(1,'1', {
+    const res = await updateUserData.update(1, '1', {
       name: 'name',
       email: 'user@mail.com',
       oldPassword: 'password',
@@ -112,15 +112,15 @@ describe('UpdateUser Data', () => {
   })
 
   it('return null userId is different the user.id', async () => {
-
     const res = await updateUserData.update(1, '2', {
       name: 'name',
       email: 'other@mail.com',
     })
 
-    expect(res).toEqual({ error: 'Você não tem permissão para atualizar a conta de outro usuário.' })
+    expect(res).toEqual({
+      error: 'Você não tem permissão para atualizar a conta de outro usuário.',
+    })
   })
-
 
   it('should be able to call to UpdateUserRepository and changed the password', async () => {
     const res = jest.spyOn(userUpdateRepository, 'update')

@@ -1,13 +1,11 @@
-import { ProductFindOneRepositoryStub } from "@/data/mocks/product.mock"
+import { ProductFindOneRepositoryStub } from '@/data/mocks/product.mock'
 import MockDate from 'mockdate'
-import { IFindOneProduct } from "@/domain/usecases/product/findOneProduct.interface"
-import { IProductFindOneRepository } from "@/data/protocols/db/product/findOneProductRepository.interface"
-import { DbFindOneProduct } from "../dbFindOneProduct.data"
-
+import { IFindOneProduct } from '@/domain/usecases/product/findOneProduct.interface'
+import { IProductFindOneRepository } from '@/data/protocols/db/product/findOneProductRepository.interface'
+import { DbFindOneProduct } from '../dbFindOneProduct.data'
 
 let dbFindOneProduct: IFindOneProduct
 let productFindOneRepository: IProductFindOneRepository
-
 
 describe('DbFindOneProduct Data', () => {
   beforeEach(() => {
@@ -38,7 +36,8 @@ describe('DbFindOneProduct Data', () => {
   it('should return all products', async () => {
     const res = await dbFindOneProduct.findOne(1)
 
-    expect(res).toEqual([{
+    expect(res).toEqual([
+      {
         id: 1,
         name: 'product',
         company_id: 1,
@@ -53,9 +52,8 @@ describe('DbFindOneProduct Data', () => {
         },
         serviceConnection: [],
         created_at: new Date(),
-        updated_at: new Date()
-    }])
+        updated_at: new Date(),
+      },
+    ])
   })
-
-
 })

@@ -1,10 +1,13 @@
-import { FindUserIdRepositoryStub } from "@/data/mocks/company.mock"
-import { CreateProductRepositoryStub, FindByProductNameRepositoryStub } from "@/data/mocks/product.mock"
-import { IFindUserIdRepository } from "@/data/protocols/db/company/findUserIdRepository.interface"
-import { ICreateProductRepository } from "@/data/protocols/db/product/createProductRepository.interface"
-import { IFindByProductNameRepository } from "@/data/protocols/db/product/findByNameProductRepository.interface"
-import { IAddProduct } from "@/domain/usecases/product/addProduct.interface"
-import { DbAddProduct } from "../dbAddProduct.data"
+import { FindUserIdRepositoryStub } from '@/data/mocks/company.mock'
+import {
+  CreateProductRepositoryStub,
+  FindByProductNameRepositoryStub,
+} from '@/data/mocks/product.mock'
+import { IFindUserIdRepository } from '@/data/protocols/db/company/findUserIdRepository.interface'
+import { ICreateProductRepository } from '@/data/protocols/db/product/createProductRepository.interface'
+import { IFindByProductNameRepository } from '@/data/protocols/db/product/findByNameProductRepository.interface'
+import { IAddProduct } from '@/domain/usecases/product/addProduct.interface'
+import { DbAddProduct } from '../dbAddProduct.data'
 
 let dbAddProductData: IAddProduct
 let findUserIdRepository: IFindUserIdRepository
@@ -16,7 +19,11 @@ describe('DbAddProduct Data', () => {
     findUserIdRepository = new FindUserIdRepositoryStub()
     findByProductNameRepository = new FindByProductNameRepositoryStub()
     createProductRepository = new CreateProductRepositoryStub()
-    dbAddProductData = new DbAddProduct(findUserIdRepository, findByProductNameRepository, createProductRepository)
+    dbAddProductData = new DbAddProduct(
+      findUserIdRepository,
+      findByProductNameRepository,
+      createProductRepository
+    )
   })
 
   it('should be defined', () => {
@@ -43,7 +50,10 @@ describe('DbAddProduct Data', () => {
       user: '1',
     })
 
-    expect(res).toEqual({ error: 'Você não tem permissão para cadastrar um produto em outra empresa.'})
+    expect(res).toEqual({
+      error:
+        'Você não tem permissão para cadastrar um produto em outra empresa.',
+    })
   })
 
   it('should call FindByProductNameRepository with success', async () => {
@@ -58,29 +68,32 @@ describe('DbAddProduct Data', () => {
   })
 
   it('should return an error message if FindByProductNameRepository returns a product', async () => {
-
-     const res = await dbAddProductData.add({
+    const res = await dbAddProductData.add({
       name: 'product',
       company_id: 1,
       user: '1',
     })
-    expect(res).toEqual({ error: 'Este nome já está em uso, escolha outro.'})
+    expect(res).toEqual({ error: 'Este nome já está em uso, escolha outro.' })
   })
 
   it('should call CreateProductRepository with success', async () => {
     const res = jest.spyOn(createProductRepository, 'create')
-    jest.spyOn(findByProductNameRepository, 'findName').mockResolvedValue(undefined)
+    jest
+      .spyOn(findByProductNameRepository, 'findName')
+      .mockResolvedValue(undefined)
 
     await dbAddProductData.add({
       name: 'product',
       company_id: 1,
       user: '1',
     })
-    expect(res).toHaveBeenCalledWith({ name: 'product', company_id: 1})
+    expect(res).toHaveBeenCalledWith({ name: 'product', company_id: 1 })
   })
 
-    it('should return an new product', async () => {
-    jest.spyOn(findByProductNameRepository, 'findName').mockResolvedValue(undefined)
+  it('should return an new product', async () => {
+    jest
+      .spyOn(findByProductNameRepository, 'findName')
+      .mockResolvedValue(undefined)
 
     const res = await dbAddProductData.add({
       name: 'product',
@@ -90,9 +103,7 @@ describe('DbAddProduct Data', () => {
     expect(res).toEqual({
       name: 'product',
       company_id: 1,
-      id: 1
+      id: 1,
     })
   })
-
-
 })

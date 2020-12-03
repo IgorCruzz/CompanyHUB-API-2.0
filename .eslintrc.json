@@ -1,23 +1,29 @@
 {
-  "extends": "standard-with-typescript",
-  "parserOptions": {
-    "project": "./tsconfig.json"
-  },
-  "rules": {
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/class-name-casing": "off",
-    "@typescript-eslint/camelcase": "off",
-    "no-useless-constructor": "off",
-    "no-unused-expressions": "off",
-    "@typescript-eslint/no-floating-promises": "off",
-    "@typescript-eslint/strict-boolean-expressions": "off",
-    "@typescript-eslint/no-useless-constructor": "off",
-    "@typescript-eslint/no-unused-vars": "off",
-    "@typescript-eslint/consistent-type-definitions": "off",
-    "@typescript-eslint/no-misused-promises": "off",
-    "@typescript-eslint/no-use-before-define": "off",
-    "@typescript-eslint/no-empty-function": "off"
-  }
-}
+  "parser":"@typescript-eslint/parser",
+  "parserOptions":{
+    "project":"tsconfig.json"
+    },
+    "plugins":["@typescript-eslint/eslint-plugin","prettier"],
+    "extends":["standard",
+              "plugin:@typescript-eslint/eslint-recommended",
+              "plugin:@typescript-eslint/recommended",
+              "prettier",
+              "prettier/@typescript-eslint"],
+    "root": true,
+    "env": {
+      "node":true,
+      "jest":true},
+    "rules": {
+      "prettier/prettier":"error",
+      "camelcase": "off",
+      "@typescript-eslint/interface-name-prefix":"off",
+      "@typescript-eslint/explicit-function-return-type":"off",
+      "@typescript-eslint/no-explicit-any":"off",
+      "@typescript-eslint/class-name-casing":"off",
+      "@typescript-eslint/camelcase":"off",
+      "class-methods-use-this":"off",
+      "no-useless-constructor":"off",
+      "no-unused-expressions":"off",
+      "@typescript-eslint/no-unused-vars":"off",
+      "@typescript-eslint/explicit-module-boundary-types": "off"
+      }}

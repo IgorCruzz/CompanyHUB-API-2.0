@@ -13,11 +13,12 @@
     "lint": "eslint 'src/**' --fix",
     "format": "prettier --write \"src/**/*.ts\"",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
-    "test:watch": "npm test -- --watch",
-    "test:cov": "jest --coverage",
-    "test:integration": "jest --config jest-integration-config.js",
-    "test:staged": "yarn test -- --findRelatedTests",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run"
+    "test:verbose": "jest --passWithNoTests --runInBand",
+    "test:unit": "npm test -- --watch -c jest-unit-config.js",
+    "test:integration": "npm test -- --watch -c jest-integration-config.js",
+    "test:staged": "npm test -- --findRelatedTests",
+    "test:ci": "npm test -- --coverage",
+    "test:cov": "npm run test:ci && coveralls < coverage/lcov.info"
   },
   "author": "Igor",
   "license": "ISC",

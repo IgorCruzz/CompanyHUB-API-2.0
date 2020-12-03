@@ -1,13 +1,15 @@
 import { IDeleteService } from '@/domain/usecases/service/deleteService.interface'
 import { BadRequest, Ok, ServerError } from '../../http/http-helper'
-import { IController, IHttpRequest, IHttpResponse } from '@/presentation/protocols'
+import {
+  IController,
+  IHttpRequest,
+  IHttpResponse,
+} from '@/presentation/protocols'
 
 export class DeleteServiceController implements IController {
-  constructor (
-    private readonly dbDeleteService: IDeleteService
-  ) {}
+  constructor(private readonly dbDeleteService: IDeleteService) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { userId } = httpRequest
       const { product_id } = httpRequest.body
@@ -16,7 +18,7 @@ export class DeleteServiceController implements IController {
       const service = await this.dbDeleteService.delete({
         id,
         product_id,
-        user: userId
+        user: userId,
       })
 
       if (service.error) return BadRequest(service.error)

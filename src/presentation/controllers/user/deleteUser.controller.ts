@@ -3,13 +3,13 @@ import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class DeleteUserController implements IController {
-  constructor (private readonly deleteUser: IDeleteUser) {}
+  constructor(private readonly deleteUser: IDeleteUser) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
 

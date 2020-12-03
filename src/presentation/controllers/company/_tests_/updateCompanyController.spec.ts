@@ -21,15 +21,15 @@ describe('UpdateCompany Controller', () => {
       params: { id: 1 },
       body: {
         cnpj: '1111111111',
-        name: 'company'
-      }
+        name: 'company',
+      },
     }
 
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
       status: 200,
-      body: { message: 'Empresa atualizada com sucesso!' }
+      body: { message: 'Empresa atualizada com sucesso!' },
     })
   })
 
@@ -42,15 +42,15 @@ describe('UpdateCompany Controller', () => {
       params: { id: 1 },
       body: {
         cnpj: '1111111111',
-        name: 'company'
-      }
+        name: 'company',
+      },
     }
 
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não cadastrou sua empresa ainda.' }
+      body: { message: 'Você não cadastrou sua empresa ainda.' },
     })
   })
 
@@ -61,15 +61,15 @@ describe('UpdateCompany Controller', () => {
       params: { id: 1 },
       body: {
         cnpj: '1111111111',
-        name: 'company'
-      }
+        name: 'company',
+      },
     }
 
     const res = await updateUserController.handle(req)
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

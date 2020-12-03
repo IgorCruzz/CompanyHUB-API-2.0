@@ -3,13 +3,13 @@ import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,
-  IHttpResponse
+  IHttpResponse,
 } from '@/presentation/protocols'
 
 export class FindOneCompanyController implements IController {
-  constructor (private readonly dbFindOneCompany: IFindOneCompany) {}
+  constructor(private readonly dbFindOneCompany: IFindOneCompany) {}
 
-  async handle (httpRequest: IHttpRequest): Promise<IHttpResponse> {
+  async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { id } = httpRequest.params
 

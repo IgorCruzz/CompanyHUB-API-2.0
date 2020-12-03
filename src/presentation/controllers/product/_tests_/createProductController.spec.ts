@@ -21,8 +21,8 @@ describe('CreateProduct Controller', () => {
       userId: '1',
       body: {
         name: 'product',
-        company_id: 1
-      }
+        company_id: 1,
+      },
     }
 
     const res = await createProductController.handle(req)
@@ -32,29 +32,33 @@ describe('CreateProduct Controller', () => {
       body: {
         company_id: 1,
         name: 'product',
-        id: 1
-      }
+        id: 1,
+      },
     })
   })
 
   it('should be returns status 401 if addProduct returns an error', async () => {
-    jest
-      .spyOn(addProduct, 'add')
-      .mockResolvedValue({ error: 'Você não tem permissão para cadastrar um produto em outra empresa.' })
+    jest.spyOn(addProduct, 'add').mockResolvedValue({
+      error:
+        'Você não tem permissão para cadastrar um produto em outra empresa.',
+    })
 
     const req: IHttpRequest = {
       userId: '1',
       body: {
         name: 'product',
-        company_id: 1
-      }
+        company_id: 1,
+      },
     }
 
     const res = await createProductController.handle(req)
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não tem permissão para cadastrar um produto em outra empresa.' }
+      body: {
+        message:
+          'Você não tem permissão para cadastrar um produto em outra empresa.',
+      },
     })
   })
 
@@ -63,8 +67,8 @@ describe('CreateProduct Controller', () => {
       userId: '1',
       body: {
         name: 'product',
-        company_id: 1
-      }
+        company_id: 1,
+      },
     }
 
     jest.spyOn(addProduct, 'add').mockRejectedValue(new Error())
@@ -73,7 +77,7 @@ describe('CreateProduct Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })

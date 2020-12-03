@@ -28,8 +28,8 @@ describe('FindOneCompany Controller', () => {
         cnpj: '11111111111',
         id: 1,
         productConnection: [],
-        name: 'company'
-      }
+        name: 'company',
+      },
     })
   })
 
@@ -44,7 +44,7 @@ describe('FindOneCompany Controller', () => {
 
     expect(res).toEqual({
       status: 400,
-      body: { message: 'Você não cadastrou sua empresa ainda.' }
+      body: { message: 'Você não cadastrou sua empresa ainda.' },
     })
   })
 
@@ -57,7 +57,7 @@ describe('FindOneCompany Controller', () => {
 
     expect(res).toEqual({
       status: 500,
-      body: new Error()
+      body: new Error(),
     })
   })
 })
