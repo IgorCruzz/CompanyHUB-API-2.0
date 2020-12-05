@@ -28,8 +28,8 @@ describe('Company', () => {
     await getRepository(Company).query(`DELETE FROM companies`)
   })
 
-  describe('Create Company', () => {
-    it('POST /companies - 201', async () => {
+  describe('Delete Company', () => {
+    it('DELETE /companies - 200', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -39,32 +39,8 @@ describe('Company', () => {
         activation: true,
       })
 
-      const authorization = sign({ id: user.id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRESIN,
-      })
-
-      await request(app)
-        .post('/companies')
-        .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
-        })
-        .expect(201)
-    })
-
-    it('POST /companies - 400', async () => {
-      const password = await hash('password', 12)
-
-      const user = await getRepository(User).save({
-        name: 'Igor Oliveira da Cruz',
-        email: 'igorcruz.dev@email.com',
-        password_hash: password,
-        activation: true,
-      })
-
-      await getRepository(Company).save({
-        name: 'Igor Oliveira da Cruz',
+      const company = await getRepository(Company).save({
+        name: 'Company',
         cnpj: '111111111111',
         user_id: user.id,
       })
@@ -74,16 +50,32 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .delete(`/companies/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
-        })
+        .expect(200)
+    })
+
+    it('DELETE /companies - 400', async () => {
+      const password = await hash('password', 12)
+
+      const user = await getRepository(User).save({
+        name: 'Igor Oliveira da Cruz',
+        email: 'igorcruz.dev@email.com',
+        password_hash: password,
+        activation: true,
+      })
+
+      const authorization = sign({ id: user.id }, process.env.JWT_SECRET, {
+        expiresIn: process.env.JWT_EXPIRESIN,
+      })
+
+      await request(app)
+        .delete(`/companies/1`)
+        .set('authorization', `Bearer ${authorization}`)
         .expect(400)
     })
 
-    it('POST /companies - 400', async () => {
+    it('DELETE /companies - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -95,12 +87,12 @@ describe('Company', () => {
 
       const user2 = await getRepository(User).save({
         name: 'Igor Oliveira da Cruz',
-        email: 'igorcruz.devo@email.com',
+        email: 'igorcruz.devp@email.com',
         password_hash: password,
         activation: true,
       })
 
-      await getRepository(Company).save({
+      const company = await getRepository(Company).save({
         name: 'Company',
         cnpj: '111111111111',
         user_id: user2.id,
@@ -111,12 +103,8 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .delete(`/companies/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Company',
-          cnpj: '111111111111',
-        })
         .expect(400)
     })
   })

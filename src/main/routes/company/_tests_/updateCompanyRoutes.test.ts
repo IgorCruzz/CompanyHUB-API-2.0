@@ -28,8 +28,8 @@ describe('Company', () => {
     await getRepository(Company).query(`DELETE FROM companies`)
   })
 
-  describe('Create Company', () => {
-    it('POST /companies - 201', async () => {
+  describe('Update Company', () => {
+    it('PUT /companies/:id - 200', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -39,21 +39,26 @@ describe('Company', () => {
         activation: true,
       })
 
+      const company = await getRepository(Company).save({
+        name: 'Igor Oliveira da Cruz',
+        cnpj: '111111111111',
+        user_id: user.id,
+      })
+
       const authorization = sign({ id: user.id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRESIN,
       })
 
       await request(app)
-        .post('/companies')
+        .put(`/companies/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
+          name: 'company',
         })
-        .expect(201)
+        .expect(200)
     })
 
-    it('POST /companies - 400', async () => {
+    it('PUT /companies/:id - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -74,16 +79,15 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .put(`/companies/invalid_id`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
+          name: 'company',
         })
         .expect(400)
     })
 
-    it('POST /companies - 400', async () => {
+    it('PUT /companies/:id - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -100,7 +104,7 @@ describe('Company', () => {
         activation: true,
       })
 
-      await getRepository(Company).save({
+      const company = await getRepository(Company).save({
         name: 'Company',
         cnpj: '111111111111',
         user_id: user2.id,
@@ -111,11 +115,10 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .put(`/companies/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
-          name: 'Company',
-          cnpj: '111111111111',
+          name: 'company',
         })
         .expect(400)
     })

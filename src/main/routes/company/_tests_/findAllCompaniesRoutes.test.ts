@@ -28,8 +28,8 @@ describe('Company', () => {
     await getRepository(Company).query(`DELETE FROM companies`)
   })
 
-  describe('Create Company', () => {
-    it('POST /companies - 201', async () => {
+  describe('FindAll Company', () => {
+    it('GET /companies - 200', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -37,34 +37,11 @@ describe('Company', () => {
         email: 'igorcruz.dev@email.com',
         password_hash: password,
         activation: true,
-      })
-
-      const authorization = sign({ id: user.id }, process.env.JWT_SECRET, {
-        expiresIn: process.env.JWT_EXPIRESIN,
-      })
-
-      await request(app)
-        .post('/companies')
-        .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
-        })
-        .expect(201)
-    })
-
-    it('POST /companies - 400', async () => {
-      const password = await hash('password', 12)
-
-      const user = await getRepository(User).save({
-        name: 'Igor Oliveira da Cruz',
-        email: 'igorcruz.dev@email.com',
-        password_hash: password,
-        activation: true,
+        administrator: true,
       })
 
       await getRepository(Company).save({
-        name: 'Igor Oliveira da Cruz',
+        name: 'Company',
         cnpj: '111111111111',
         user_id: user.id,
       })
@@ -74,16 +51,12 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .get(`/companies`)
         .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Igor Oliveira da Cruz',
-          cnpj: '111111111111',
-        })
-        .expect(400)
+        .expect(200)
     })
 
-    it('POST /companies - 400', async () => {
+    it('GET /companies - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -93,31 +66,14 @@ describe('Company', () => {
         activation: true,
       })
 
-      const user2 = await getRepository(User).save({
-        name: 'Igor Oliveira da Cruz',
-        email: 'igorcruz.devo@email.com',
-        password_hash: password,
-        activation: true,
-      })
-
-      await getRepository(Company).save({
-        name: 'Company',
-        cnpj: '111111111111',
-        user_id: user2.id,
-      })
-
       const authorization = sign({ id: user.id }, process.env.JWT_SECRET, {
         expiresIn: process.env.JWT_EXPIRESIN,
       })
 
       await request(app)
-        .post('/companies')
+        .get(`/companies`)
         .set('authorization', `Bearer ${authorization}`)
-        .send({
-          name: 'Company',
-          cnpj: '111111111111',
-        })
-        .expect(400)
+        .expect(401)
     })
   })
 })

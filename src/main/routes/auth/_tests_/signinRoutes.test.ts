@@ -24,43 +24,6 @@ describe('Auth', () => {
     await getRepository(User).query(`DELETE FROM users`)
   })
 
-  describe('Signup', () => {
-    it('POST /signup - 201', async () => {
-      const res = await request(app)
-        .post('/signup')
-        .send({
-          name: 'Igor Oliveira da Cruz',
-          email: 'igor@email.com',
-          password: 'password',
-          confirmPassword: 'password',
-        })
-        .expect(201)
-
-      expect(res.status).toBe(201)
-    })
-
-    it('POST /signup - should return 400 if already exists an user with email passed on request', async () => {
-      await request(app).post('/signup').send({
-        name: 'Igor Oliveira da Cruz',
-        email: 'igor@email.com',
-        password: 'password',
-        confirmPassword: 'password',
-      })
-
-      const res = await request(app)
-        .post('/signup')
-        .send({
-          name: 'Pedro Henrique de Carvalho',
-          email: 'igor@email.com',
-          password: 'password',
-          confirmPassword: 'password',
-        })
-        .expect(400)
-
-      expect(res.status).toBe(400)
-    })
-  })
-
   describe('Signin', () => {
     it('POST /signin - 200', async () => {
       const password = await hash('password', 12)
