@@ -19,11 +19,8 @@
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration:undo": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js query 'SELECT * FROM users'",
     "test:staged": "npm test -- --findRelatedTests",
-    "test:ci": "npm test -- --coverage",
-    "test:cov": "npm run test:ci",
-    "preoi": "NODE_ENV=test yarn migration:run",
-    "oi": "NODE_ENV=test npm test -c jest-integration-config.js",
-    "postoi": "NODE_ENV=test  yarn migration:undo"
+    "test:cov": "npm test -- --coverage",
+    "test:coveralls": "npm run test:cov && coveralls < coverage/lcov.info"
   },
   "author": "Igor",
   "license": "ISC",

@@ -1,5 +1,6 @@
 import { BcryptAdapterStub } from '@/data/mocks/bcrypt.mock'
 import { CryptoAdapterStub } from '@/data/mocks/crypto.mock'
+import { SendGridAdapterStub } from '@/data/mocks/sendgrid.mock'
 import { TokenRepositoryStub } from '@/data/mocks/token.mock'
 import {
   UserFindByEmailRepositoryStub,
@@ -10,6 +11,7 @@ import { IGenerateCrypto } from '@/data/protocols/cryptoAdapter/generateCrypto.i
 import { ICreateTokenRepository } from '@/data/protocols/db/token/createTokenRepository.interface'
 import { ICreateUserRepository } from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
+import { IAuthenticateMail } from '@/data/protocols/sendGridAdapter/sendMail.interface'
 
 import { DbAddUser } from '../dbAddUser.data'
 
@@ -19,9 +21,11 @@ let userFindByEmailRepository: IFindUserByEmailRepository
 let userCreateRepository: ICreateUserRepository
 let tokenRepository: ICreateTokenRepository
 let bcryptAdapter: IHasher
+let authenticateMail: IAuthenticateMail
 
 describe('DbAddUser  Data', () => {
   beforeEach(() => {
+    authenticateMail = new SendGridAdapterStub()
     cryptoAdapter = new CryptoAdapterStub()
     userFindByEmailRepository = new UserFindByEmailRepositoryStub()
     userCreateRepository = new UserRepositoryStub()
@@ -32,7 +36,8 @@ describe('DbAddUser  Data', () => {
       userFindByEmailRepository,
       userCreateRepository,
       tokenRepository,
-      bcryptAdapter
+      bcryptAdapter,
+      authenticateMail
     )
   })
 
