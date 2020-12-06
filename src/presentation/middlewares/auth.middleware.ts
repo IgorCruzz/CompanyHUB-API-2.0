@@ -1,6 +1,6 @@
 import { IHttpRequest, IHttpResponse, IMiddleware } from '../protocols'
 import { IAuthorization } from '@/domain/usecases/authorization/authorization.interface'
-import { BadRequest, Ok, ServerError } from '../http/http-helper'
+import { BadRequest, Ok, ServerError, Unauthorized } from '../http/http-helper'
 
 export class AuthMiddleware implements IMiddleware {
   constructor(
@@ -12,7 +12,7 @@ export class AuthMiddleware implements IMiddleware {
     try {
       const { authorization } = httpRequest.headers
 
-      if (!authorization) return BadRequest('Insira o token.')
+      if (!authorization) return Unauthorized('Insira o token.')
 
       const [, token] = authorization.split(' ')
 
@@ -22,7 +22,7 @@ export class AuthMiddleware implements IMiddleware {
         params: { id: Number(httpRequest.params.id) },
       })
 
-      if (authUser.error) return BadRequest(authUser.error)
+      if (authUser.error) return Unauthorized(authUser.error)
 
       return Ok({ userId: authUser.id })
     } catch (err) {

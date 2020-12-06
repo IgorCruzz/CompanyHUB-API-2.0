@@ -1,10 +1,12 @@
-import { connection } from '../../../infra/db/typeorm/index'
-import app from '../../config/app'
+import { connection } from '../../../../infra/db/typeorm/index'
+import app from '../../../config/app'
 import request from 'supertest'
 import { getRepository } from 'typeorm'
 import { User } from '@/infra/db/typeorm/entities/User.entity'
 
-describe('Signup', () => {
+jest.setTimeout(30000)
+
+describe('Auth', () => {
   beforeAll(async () => {
     await connection.create()
   })
@@ -14,12 +16,15 @@ describe('Signup', () => {
   })
 
   beforeEach(async () => {
-    const userEntity = getRepository(User)
-    await userEntity.query(`DELETE FROM users`)
+    await getRepository(User).query(`DELETE FROM users`)
   })
 
-  describe('User', () => {
-    it('/POST  - 201', async () => {
+  afterEach(async () => {
+    await getRepository(User).query(`DELETE FROM users`)
+  })
+
+  describe('Signup', () => {
+    it('POST /signup - 201', async () => {
       const res = await request(app)
         .post('/signup')
         .send({
@@ -33,7 +38,7 @@ describe('Signup', () => {
       expect(res.status).toBe(201)
     })
 
-    it('/POST  - 400', async () => {
+    it('POST /signup - should return 400 if already exists an user with email passed on request', async () => {
       await request(app).post('/signup').send({
         name: 'Igor Oliveira da Cruz',
         email: 'igor@email.com',

@@ -26,7 +26,7 @@ describe('Auth Middleware', () => {
     const res = await authController.handle(req)
 
     expect(res).toEqual({
-      status: 400,
+      status: 401,
       body: { message: 'Insira o token.' },
     })
   })
@@ -69,7 +69,7 @@ describe('Auth Middleware', () => {
     const res = await authController.handle(req)
 
     expect(res).toEqual({
-      status: 400,
+      status: 401,
       body: { message: 'Você não tem permissão para fazer isto.' },
     })
   })
