@@ -5,6 +5,7 @@ export interface IUpdateUserDTO {
   password?: string
   confirmPassword?: string
   password_hash?: string
+  activation?: boolean
 }
 
 export interface IUpdateUserRepository {
