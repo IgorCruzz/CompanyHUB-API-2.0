@@ -1,3 +1,7 @@
+import {
+  IActivateUserAccount,
+  IActivateUserAccountResult,
+} from '@/domain/usecases/user/activateUserAccount.interface'
 import { IAddUser, IAddUserDTO } from '@/domain/usecases/user/addUser.interface'
 import {
   IDeleteResult,
@@ -31,6 +35,12 @@ export class DbUpdateUserStub implements IUpdateUser {
     userId: string,
     data: IUpdateUserDTO
   ): Promise<IUpdateResult> {
+    return Promise.resolve({ updated: true })
+  }
+}
+
+export class DbActivateUserAccountStub implements IActivateUserAccount {
+  async activate(token: string): Promise<IActivateUserAccountResult> {
     return Promise.resolve({ updated: true })
   }
 }

@@ -18,6 +18,7 @@ import createService from './service/serviceProduct.routes'
 import deleteService from './service/deleteService.routes'
 import findAllServices from './service/findAllServices.routes'
 import updateService from './service/updateService.routes'
+import activateUser from './user/activateUser.routes'
 
 const routes = [
   deleteUserRoute,
@@ -38,6 +39,7 @@ const routes = [
   deleteService,
   findAllServices,
   updateService,
+  activateUser,
 ]
 
 const router = Router()
