@@ -2,6 +2,8 @@
 
 # CompanyHUB
 Sistema para gerenciamento de produtos empresariais. 
+<a href='https://coveralls.io/github/IgorCruzz/CompanyHUB-API?branch=develop'><img src='https://coveralls.io/repos/github/IgorCruzz/CompanyHUB-API/badge.svg?branch=develop' alt='Coverage Status' /></a>
+
 
 Api:
 - Express ( Typescript )
