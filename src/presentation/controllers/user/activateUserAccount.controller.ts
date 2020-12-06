@@ -1,5 +1,5 @@
 import { IActivateUserAccount } from '@/domain/usecases/user/activateUserAccount.interface'
-import { BadRequest, Ok, ServerError } from '@/presentation/http/http-helper'
+import { BadRequest, Ok, ServerError } from '../../http/http-helper'
 import {
   IController,
   IHttpRequest,

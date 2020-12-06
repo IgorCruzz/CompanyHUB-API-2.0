@@ -6,6 +6,7 @@ import {
   ICreateUserRepository,
 } from '@/data/protocols/db/user/createUserRepository.interface'
 import { IFindUserByEmailRepository } from '@/data/protocols/db/user/findUserRepository.inteface'
+import { IAuthenticateMail } from '@/data/protocols/sendGridAdapter/sendMail.interface'
 import { IAddResult, IAddUser } from '@/domain/usecases/user/addUser.interface'
 
 export class DbAddUser implements IAddUser {
@@ -14,7 +15,8 @@ export class DbAddUser implements IAddUser {
     private readonly findUserByEmailRepo: IFindUserByEmailRepository,
     private readonly createUserRepo: ICreateUserRepository,
     private readonly createTokenRepo: ICreateTokenRepository,
-    private readonly hasher: IHasher
+    private readonly hasher: IHasher,
+    private readonly authenticateMail: IAuthenticateMail
   ) {}
 
   async add(data: IAddUserDTO): Promise<IAddResult> {
@@ -34,6 +36,12 @@ export class DbAddUser implements IAddUser {
     await this.createTokenRepo.create({
       token,
       user_id: user.id,
+    })
+
+    await this.authenticateMail.authenticateUser({
+      email: user.email,
+      name: user.name,
+      token,
     })
 
     return {
