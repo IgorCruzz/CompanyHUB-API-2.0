@@ -1,8 +1,8 @@
 import { UserRepository } from '../../../../infra/db/typeorm/repositories/user.repository'
 import { adapRoute } from '../../../adapters/expressRouter.adapter'
-import { DbActivateUserAccount } from '@/data/usecases/user/dbActivateUserAccount.data'
-import { TokenRepository } from '@/infra/db/typeorm/repositories/token.repository'
-import { ActivateUserAccountController } from '@/presentation/controllers/user/activateUserAccount.controller'
+import { DbActivateUserAccount } from '../../../../data/usecases/user/dbActivateUserAccount.data'
+import { TokenRepository } from '../../../../infra/db/typeorm/repositories/token.repository'
+import { ActivateUserAccountController } from '../../../../presentation/controllers/user/activateUserAccount.controller'
 
 export const makeActivateUserAccountController = () => {
   const userRepository = new UserRepository()
