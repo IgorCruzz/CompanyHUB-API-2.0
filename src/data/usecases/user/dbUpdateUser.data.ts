@@ -25,16 +25,18 @@ export class DbUpdateUser implements IUpdateUser {
     userId: string,
     data: IUpdateUserDTO
   ): Promise<IUpdateResult> {
-    const user = await this.findUserByIdRepository.findId(id)
+    const user = await this.findUserByIdRepository.findId(Number(id))
 
     if (!user) return { error: 'Não existe um usuário com este ID.' }
 
-    if (user.id !== Number(userId))
-      return {
-        error:
-          'Você não tem permissão para atualizar a conta de outro usuário.',
-      }
-
+    if (user.id !== Number(userId)) {
+      const userAdm = await this.findUserByIdRepository.findId(Number(userId))
+      if (!userAdm.administrator)
+        return {
+          error:
+            'Você não tem permissão para atualizar a conta de outro usuário.',
+        }
+    }
     const { password, confirmPassword, ...rest } = data
 
     if (rest.email) {
