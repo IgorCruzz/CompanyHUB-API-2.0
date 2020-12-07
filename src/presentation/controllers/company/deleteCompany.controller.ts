@@ -12,10 +12,10 @@ export class DeleteCompanyController implements IController {
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
       const { userId } = httpRequest
-      const { id } = httpRequest.params
+      const { deleteId } = httpRequest.params
 
       const company = await this.deleteCompany.delete({
-        params: { id },
+        params: { id: deleteId },
         user: userId,
       })
 

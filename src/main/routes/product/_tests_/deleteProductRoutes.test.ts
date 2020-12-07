@@ -32,7 +32,7 @@ describe('Product', () => {
   })
 
   describe('Delete Product', () => {
-    it('DELETE /products/:id - 200', async () => {
+    it('DELETE /product/:id - 200', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -58,7 +58,7 @@ describe('Product', () => {
       })
 
       await request(app)
-        .delete(`/products/${product.id}`)
+        .delete(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           company_id: company.id,
@@ -66,7 +66,7 @@ describe('Product', () => {
         .expect(200)
     })
 
-    it('POST /products - 400', async () => {
+    it('POST /product - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -92,7 +92,7 @@ describe('Product', () => {
       })
 
       await request(app)
-        .delete(`/products/${product.id}`)
+        .delete(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           company_id: 2,
@@ -100,7 +100,7 @@ describe('Product', () => {
         .expect(400)
     })
 
-    it('POST /products - 400', async () => {
+    it('POST /product - 400', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -126,7 +126,7 @@ describe('Product', () => {
       })
 
       await request(app)
-        .delete(`/products/999`)
+        .delete(`/product/999`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           company_id: company.id,

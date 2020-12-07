@@ -13,10 +13,10 @@ export class DeleteServiceController implements IController {
     try {
       const { userId } = httpRequest
       const { product_id } = httpRequest.body
-      const { id } = httpRequest.params
+      const { deleteId } = httpRequest.params
 
       const service = await this.dbDeleteService.delete({
-        id,
+        id: deleteId,
         product_id,
         user: userId,
       })

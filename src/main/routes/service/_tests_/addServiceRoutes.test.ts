@@ -60,7 +60,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .post('/services')
+        .post('/service')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'service',
@@ -89,7 +89,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .post('/services')
+        .post('/service')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'service',

@@ -7,7 +7,7 @@ import { makeAddCompanyValidation } from '../../factories/validation/addCompany'
 const routes = Router()
 
 routes.post(
-  '/companies',
+  '/company',
   makeAddCompanyValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
   makeAddCompanyController()

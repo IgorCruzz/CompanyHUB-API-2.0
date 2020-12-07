@@ -35,7 +35,7 @@ describe('Service', () => {
   })
 
   describe('Update Service', () => {
-    it('PUT /services/:id - 200', async () => {
+    it('PUT /service/:id - 200', async () => {
       const password = await hash('password', 12)
       const user = await getRepository(User).save({
         name: 'Igor Oliveira da Cruz',
@@ -60,7 +60,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .put(`/services/${product.id}`)
+        .put(`/service/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'service',
@@ -95,7 +95,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .put(`/services/${product.id}`)
+        .put(`/service/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'service',

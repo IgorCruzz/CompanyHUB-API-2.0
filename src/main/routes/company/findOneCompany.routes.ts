@@ -6,7 +6,7 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 const routes = Router()
 
 routes.get(
-  '/companies/:id',
+  '/company/:findId',
   adapMiddleware(makeAuthMiddleware(false)),
   makeFindOneCompanyController()
 )

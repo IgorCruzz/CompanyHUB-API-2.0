@@ -11,9 +11,9 @@ export class FindOneCompanyController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { id } = httpRequest.params
+      const { findId } = httpRequest.params
 
-      const company = await this.dbFindOneCompany.findOne(id)
+      const company = await this.dbFindOneCompany.findOne(findId)
 
       if (company.error) return BadRequest(company.error)
 

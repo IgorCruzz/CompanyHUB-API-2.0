@@ -11,10 +11,14 @@ export class UpdateUserController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { id } = httpRequest.params
+      const { updateId } = httpRequest.params
       const { userId } = httpRequest
 
-      const user = await this.updateUser.update(id, userId, httpRequest.body)
+      const user = await this.updateUser.update(
+        updateId,
+        userId,
+        httpRequest.body
+      )
 
       if (user.error) return BadRequest(user.error)
 

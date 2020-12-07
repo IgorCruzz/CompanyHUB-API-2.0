@@ -35,7 +35,7 @@ describe('Service', () => {
   })
 
   describe('Delete Service', () => {
-    it('DELETE /services - 200', async () => {
+    it('DELETE /service - 200', async () => {
       const password = await hash('password', 12)
       const user = await getRepository(User).save({
         name: 'Igor Oliveira da Cruz',
@@ -60,7 +60,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .delete(`/services/${product.id}`)
+        .delete(`/service/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           product_id: product.id,
@@ -68,7 +68,7 @@ describe('Service', () => {
         .expect(200)
     })
 
-    it('DELETE /services - 200', async () => {
+    it('DELETE /service - 200', async () => {
       const password = await hash('password', 12)
       const user = await getRepository(User).save({
         name: 'Igor Oliveira da Cruz',
@@ -93,7 +93,7 @@ describe('Service', () => {
       })
 
       await request(app)
-        .delete(`/services/${product.id}`)
+        .delete(`/service/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           product_id: 'invalid_id',

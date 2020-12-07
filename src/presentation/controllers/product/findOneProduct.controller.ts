@@ -11,7 +11,9 @@ export class FindOneProductController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const products = await this.findOneProduct.findOne(httpRequest.params.id)
+      const products = await this.findOneProduct.findOne(
+        httpRequest.params.findId
+      )
 
       return Ok(products)
     } catch (err) {

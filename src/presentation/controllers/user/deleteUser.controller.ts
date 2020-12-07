@@ -11,9 +11,9 @@ export class DeleteUserController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { id } = httpRequest.params
+      const { deleteId } = httpRequest.params
 
-      const deleteUser = await this.deleteUser.delete(id)
+      const deleteUser = await this.deleteUser.delete(deleteId)
 
       if (deleteUser.error) return BadRequest(deleteUser.error)
 

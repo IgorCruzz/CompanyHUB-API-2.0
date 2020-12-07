@@ -32,7 +32,7 @@ describe('Product', () => {
   })
 
   describe('FindAll Product', () => {
-    it('GET /products/:id - 200', async () => {
+    it('GET /product/:id - 200', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -59,7 +59,7 @@ describe('Product', () => {
       })
 
       await request(app)
-        .get(`/products/${product.id}`)
+        .get(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .expect(200)
     })
@@ -90,7 +90,7 @@ describe('Product', () => {
         expiresIn: process.env.JWT_EXPIRESIN,
       })
 
-      await request(app).get(`/products/${product.id}`).expect(401)
+      await request(app).get(`/product/${product.id}`).expect(401)
     })
   })
 })

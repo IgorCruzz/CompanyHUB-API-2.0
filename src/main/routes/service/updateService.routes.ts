@@ -7,7 +7,7 @@ import { makeUpdateServiceValidation } from '../../../main/factories/validation/
 const routes = Router()
 
 routes.put(
-  '/services/:id',
+  '/service/:updateId',
   makeUpdateServiceValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
   makeUpdateServiceController()

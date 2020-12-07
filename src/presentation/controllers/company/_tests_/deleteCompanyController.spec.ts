@@ -19,7 +19,7 @@ describe('DeleteCompany Controller', () => {
   it('return status 200 if deleteCompany returns true', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
       userId: '1',
     }
@@ -39,7 +39,7 @@ describe('DeleteCompany Controller', () => {
 
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
       userId: '1',
     }
@@ -55,7 +55,7 @@ describe('DeleteCompany Controller', () => {
   it('return status 500 if deleteCompany throws', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
       userId: '1',
     }

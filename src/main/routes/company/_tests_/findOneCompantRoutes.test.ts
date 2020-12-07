@@ -51,7 +51,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .get(`/companies/${user.id}`)
+        .get(`/company/${user.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .expect(200)
     })
@@ -77,7 +77,7 @@ describe('Company', () => {
         expiresIn: process.env.JWT_EXPIRESIN,
       })
 
-      await request(app).get(`/companies/${company.id}`).expect(401)
+      await request(app).get(`/company/${company.id}`).expect(401)
     })
   })
 })

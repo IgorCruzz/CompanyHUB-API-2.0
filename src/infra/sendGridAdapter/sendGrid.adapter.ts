@@ -21,7 +21,7 @@ export class SendGridAdapter implements IAuthenticateMail {
              type="button"
              style="
              margin:5px 0;
-             background:green;
+             background:SlateBlue;
              color:white;
              font-weight:bold;
              border:0;

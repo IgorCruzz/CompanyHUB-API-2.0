@@ -58,7 +58,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/products/${product.id}`)
+        .put(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product_name',
@@ -93,7 +93,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/products/${product.id}`)
+        .put(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product_name',
@@ -128,7 +128,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/products/${product.id}`)
+        .put(`/product/${product.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product',

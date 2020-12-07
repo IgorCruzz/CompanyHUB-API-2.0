@@ -44,7 +44,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .post('/company')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'Igor Oliveira da Cruz',
@@ -74,7 +74,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .post('/company')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'Igor Oliveira da Cruz',
@@ -111,7 +111,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/companies')
+        .post('/company')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'Company',
