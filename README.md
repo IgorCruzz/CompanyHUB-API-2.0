@@ -1,5 +1,3 @@
-# IN CONSTRUCTION
-
 # CompanyHUB
 Sistema para gerenciamento de produtos empresariais. 
 <br />
