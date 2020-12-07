@@ -7,13 +7,16 @@ Sistema para gerenciamento de produtos empresariais.
 
 
 Api:
-- Express ( Typescript )
-- Solid
+- Kubernetes
+- Google Cloud (CI/ CD)
 - Clean Architecture
+- Express ( Typescript )
+- Swagger
+- Solid
 - Design Patterns: Decorator, Adapter
 - Jest
-- Kubernetes
 - Docker
-- Google Cloud (CI/ CD)
+- SendGrid
+- BcryptJS
 - TypeORM ( Postgres )
 
