@@ -50,7 +50,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .delete(`/companies/${company.id}`)
+        .delete(`/company/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .expect(200)
     })
@@ -70,7 +70,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .delete(`/companies/1`)
+        .delete(`/company/1`)
         .set('authorization', `Bearer ${authorization}`)
         .expect(400)
     })
@@ -103,7 +103,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .delete(`/companies/${company.id}`)
+        .delete(`/company/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .expect(400)
     })

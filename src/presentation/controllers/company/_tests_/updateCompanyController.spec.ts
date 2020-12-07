@@ -18,7 +18,7 @@ describe('UpdateCompany Controller', () => {
 
   it('return status 200 if dbUpdateCompany return true', async () => {
     const req: IHttpRequest = {
-      params: { id: 1 },
+      params: { updateId: 1 },
       body: {
         cnpj: '1111111111',
         name: 'company',
@@ -39,7 +39,7 @@ describe('UpdateCompany Controller', () => {
       .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
 
     const req: IHttpRequest = {
-      params: { id: 1 },
+      params: { updateId: 1 },
       body: {
         cnpj: '1111111111',
         name: 'company',

@@ -7,7 +7,7 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 const routes = Router()
 
 routes.put(
-  '/users/:id',
+  '/users/:updateId',
   adapMiddleware(makeAuthMiddleware(false)),
   makeUpdateUserValidation(),
   makeUpdateUserController()

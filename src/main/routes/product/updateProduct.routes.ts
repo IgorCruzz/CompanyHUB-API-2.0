@@ -7,7 +7,7 @@ import { makeUpdateProductValidation } from '../../../main/factories/validation/
 const routes = Router()
 
 routes.put(
-  '/products/:id',
+  '/product/:updateId',
   makeUpdateProductValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
   makeUpdateProductController()

@@ -18,7 +18,7 @@ describe('UpdateUser Controller', () => {
 
   it('return status 200 if UpdateUser passed on success', async () => {
     const req: IHttpRequest = {
-      params: { id: 1 },
+      params: { updateId: 1 },
       body: {
         name: 'name',
       },
@@ -38,7 +38,7 @@ describe('UpdateUser Controller', () => {
       .mockResolvedValue({ error: 'Não existe um usuário com este ID.' })
 
     const req: IHttpRequest = {
-      params: { id: 1 },
+      params: { updateId: 1 },
       body: {
         name: 'name',
       },
@@ -54,7 +54,7 @@ describe('UpdateUser Controller', () => {
 
   it('return status 500 if UpdateUser throws', async () => {
     const req: IHttpRequest = {
-      params: { id: 1 },
+      params: { updateId: 1 },
       body: {
         name: 'name',
       },

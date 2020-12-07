@@ -17,7 +17,7 @@ describe('FindOneCompany Controller', () => {
   })
 
   it('return status 200 if dbFindOneCompany return true', async () => {
-    const req: IHttpRequest = { params: { id: 1 } }
+    const req: IHttpRequest = { params: { findId: 1 } }
 
     const res = await findOneCompanyController.handle(req)
 
@@ -38,7 +38,7 @@ describe('FindOneCompany Controller', () => {
       .spyOn(dbFindOneCompany, 'findOne')
       .mockResolvedValue({ error: 'Você não cadastrou sua empresa ainda.' })
 
-    const req: IHttpRequest = { params: { id: 1 } }
+    const req: IHttpRequest = { params: { findId: 1 } }
 
     const res = await findOneCompanyController.handle(req)
 
@@ -51,7 +51,7 @@ describe('FindOneCompany Controller', () => {
   it('return status 500 if DbFindAllCompany throws', async () => {
     jest.spyOn(dbFindOneCompany, 'findOne').mockRejectedValue(new Error())
 
-    const req: IHttpRequest = { params: { id: 1 } }
+    const req: IHttpRequest = { params: { findId: 1 } }
 
     const res = await findOneCompanyController.handle(req)
 

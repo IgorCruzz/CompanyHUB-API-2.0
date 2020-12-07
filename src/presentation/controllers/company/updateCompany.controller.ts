@@ -11,10 +11,10 @@ export class UpdateCompanyController implements IController {
 
   async handle(httpRequest: IHttpRequest): Promise<IHttpResponse> {
     try {
-      const { id } = httpRequest.params
+      const { updateId } = httpRequest.params
       const { userId } = httpRequest
 
-      const company = await this.dbUpdateCompany.update(id, userId, {
+      const company = await this.dbUpdateCompany.update(updateId, userId, {
         ...httpRequest.body,
       })
 

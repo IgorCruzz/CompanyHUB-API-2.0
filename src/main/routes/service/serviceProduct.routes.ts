@@ -7,7 +7,7 @@ import { makeAddServiceController } from '../../../main/factories/controller/ser
 const routes = Router()
 
 routes.post(
-  '/services',
+  '/service',
   makeAddServiceValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
   makeAddServiceController()

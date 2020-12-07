@@ -7,7 +7,7 @@ import { makeUpdateCompanyValidation } from '../../factories/validation/updateCo
 const routes = Router()
 
 routes.put(
-  '/companies/:id',
+  '/company/:updateId',
   adapMiddleware(makeAuthMiddleware(false)),
   makeUpdateCompanyValidation(),
   makeUpdateCompanyController()

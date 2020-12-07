@@ -6,7 +6,7 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 const routes = Router()
 
 routes.delete(
-  '/users/:id',
+  '/users/:deleteId',
   adapMiddleware(makeAuthMiddleware(false)),
   makeDeleteController()
 )

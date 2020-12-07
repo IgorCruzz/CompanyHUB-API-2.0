@@ -19,7 +19,7 @@ describe('DeleteUser Controller', () => {
   it('return status 200 if deleteUser returns true', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
     }
 
@@ -38,7 +38,7 @@ describe('DeleteUser Controller', () => {
 
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
     }
 
@@ -53,7 +53,7 @@ describe('DeleteUser Controller', () => {
   it('throw error 500 if AddUser throws', async () => {
     const req: IHttpRequest = {
       params: {
-        id: 1,
+        deleteId: 1,
       },
     }
 

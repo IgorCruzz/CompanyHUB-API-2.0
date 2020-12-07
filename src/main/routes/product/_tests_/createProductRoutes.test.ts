@@ -32,7 +32,7 @@ describe('Company', () => {
   })
 
   describe('Create Company', () => {
-    it('POST /products - 201', async () => {
+    it('POST /product - 201', async () => {
       const password = await hash('password', 12)
 
       const user = await getRepository(User).save({
@@ -53,7 +53,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/products')
+        .post('/product')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product',
@@ -83,7 +83,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/products')
+        .post('/product')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product',
@@ -118,7 +118,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .post('/products')
+        .post('/product')
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'product',

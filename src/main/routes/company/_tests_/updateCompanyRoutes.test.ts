@@ -50,7 +50,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/companies/${company.id}`)
+        .put(`/company/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'company',
@@ -79,7 +79,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/companies/invalid_id`)
+        .put(`/company/invalid_id`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'company',
@@ -115,7 +115,7 @@ describe('Company', () => {
       })
 
       await request(app)
-        .put(`/companies/${company.id}`)
+        .put(`/company/${company.id}`)
         .set('authorization', `Bearer ${authorization}`)
         .send({
           name: 'company',

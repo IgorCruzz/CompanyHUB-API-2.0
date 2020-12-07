@@ -7,7 +7,7 @@ import { makeAuthMiddleware } from '../../factories/middlewares/authMiddleware'
 const routes = Router()
 
 routes.post(
-  '/products',
+  '/product',
   makeAddProductValidation(),
   adapMiddleware(makeAuthMiddleware(false)),
   makeAddProductController()
