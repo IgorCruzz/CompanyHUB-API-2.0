@@ -3,11 +3,11 @@ import { forbidden } from './components/forbidden'
 import { serverError } from './components/server-error'
 import { notFound } from './components/not-found'
 import { unauthorized } from './components/unauthorized'
-import { apiKeyAuthSchema } from './schemas/results/apiKey/api-key-aut-schema'
+import { BearerSchema } from './schemas/results/apiKey/Bearerschema'
 
 export default {
   securitySchemes: {
-    apiKeyAuth: apiKeyAuthSchema,
+    apiKeyAuth: BearerSchema,
   },
   badRequest,
   serverError,
