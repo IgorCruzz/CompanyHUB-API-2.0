@@ -10,7 +10,7 @@ export const findOneProduct = {
     parameters: [
       {
         in: 'path',
-        name: 'id',
+        name: 'findId',
         required: true,
         schema: {
           type: 'string',
