@@ -1,4 +1,4 @@
-export const signInResultSchema = {
+export const ProductResult = {
   type: 'object',
   properties: {
     id: {
@@ -7,13 +7,13 @@ export const signInResultSchema = {
     name: {
       type: 'string',
     },
-    administrator: {
+    company_id: {
+      type: 'number',
+    },
+    created_at: {
       type: 'string',
     },
-    email: {
-      type: 'string',
-    },
-    token: {
+    updated_at: {
       type: 'string',
     },
   },

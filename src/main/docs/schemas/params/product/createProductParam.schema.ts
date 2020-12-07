@@ -5,7 +5,7 @@ export const createProductParams = {
       type: 'string',
     },
     company_id: {
-      type: 'string',
+      type: 'number',
     },
   },
   required: ['name', 'company_id'],

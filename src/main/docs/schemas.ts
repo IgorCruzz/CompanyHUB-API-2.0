@@ -16,6 +16,7 @@ import { signUpResultSchema } from './schemas/results/auth/signup.schema'
 import { companiesSchema } from './schemas/results/company/companies.schema'
 import { companySchema } from './schemas/results/company/company.schema'
 import { createCompanySchema } from './schemas/results/company/createCompany.schema'
+import { ProductResult } from './schemas/results/company/product.schema'
 import { createProductSchema } from './schemas/results/product/createProduct.schema'
 import { ProductSchema } from './schemas/results/product/product.schema'
 import { ProductsSchema } from './schemas/results/product/products.schema'
@@ -37,6 +38,7 @@ export default {
 
   updateUserParams: updateUserParamSchema,
 
+  companyResult: companySchema,
   createCompanyParams: createCompanyParams,
   createCompanyResult: createCompanySchema,
 
@@ -50,6 +52,7 @@ export default {
 
   updateProductParamSchema: updateProductParamSchema,
 
+  products: ProductResult,
   productResult: ProductSchema,
   findAllProductsResult: ProductsSchema,
 

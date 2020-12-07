@@ -23,7 +23,7 @@ export const deleteUser = {
         content: {
           'application/json': {
             schema: {
-              $ref: '#/schemas/deleteSchema',
+              $ref: '#/schemas/deleteResult',
             },
           },
         },
