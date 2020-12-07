@@ -3,7 +3,7 @@
   "version": "2.9.0",
   "description": "",
   "main": "index.js",
-  "author": "Igor",
+  "author": "Igor Cruz",
   "license": "ISC",
   "scripts": {
     "prebuild": "rimraf dist",
@@ -19,7 +19,6 @@
     "test:unit": "npm test -- --watch -c jest-unit-config.js",
     "test:integration": "NODE_ENV=test npm test -- --watch -c jest-integration-config.js",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:undo": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js query 'SELECT * FROM users'",
     "test:staged": "npm test -- --findRelatedTests",
     "test:cov": "npm test -- --coverage",
     "test:coveralls": "yarn test:cov && coveralls < coverage/lcov.info"
