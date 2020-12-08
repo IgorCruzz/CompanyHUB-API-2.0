@@ -3,7 +3,7 @@ Sistema para gerenciamento de produtos empresariais.
 <br />
 <a href='https://coveralls.io/github/IgorCruzz/CompanyHUB-API?branch=develop'><img src='https://coveralls.io/repos/github/IgorCruzz/CompanyHUB-API/badge.svg?branch=develop' alt='Coverage Status' /></a>
 
-Estrutura do projeto
+Estrutura do projeto:
 - Infra: Responsável pela implementação com frameworks externos.
 - Data: Responsável pela implementação da regra de negócios.
 - Domain: Responsável pela criação da regra de negócio.
