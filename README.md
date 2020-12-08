@@ -16,5 +16,5 @@ Api:
 - Docker
 - SendGrid
 - BcryptJS
-- TypeORM ( Postgres )
+- TypeORM ( Postgres, Sqlite )
 
