@@ -11,7 +11,7 @@ Estrutura do projeto
 - Main: Responsável pela parte principal da aplicação.
 
 
-Api:
+Tecs:
 - Kubernetes
 - Google Cloud (CI/ CD)
 - Clean Architecture
